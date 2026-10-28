@@ -22,7 +22,13 @@ int main(int argc, char *argv[])
   // print message
   std::cout << "Filename: \"" << filename << "\"" << std::endl;
   
-  
-  loadFromFile(filename);
+  Settings settings;
+  // load settings from file
+  settings.loadFromFile(filename);
+
+  // display all settings on console
+  settings.printSettings();
+
+
   return EXIT_SUCCESS;
 }
