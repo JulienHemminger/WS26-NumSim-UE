@@ -1,0 +1,1 @@
+ g++ main.cpp settings.cpp -o test2
