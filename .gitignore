@@ -1,0 +1,37 @@
+# --- CMake build directories ---
+build/
+bin/
+lib/
+
+# Catch any generic build folders anywhere in the subdirectories
+**/build/
+**/bin/
+**/obj/
+
+# --- Compiled Object files & Binaries ---
+*.o
+*.obj
+*.a
+*.lib
+*.so
+*.dylib
+*.exe
+a.out
+
+# --- Simulation & Visualization Output ---
+# Ignore ParaView VTI files and other potential simulation outputs
+*.vti
+*.vtu
+*.pvd
+out/
+**/out/
+
+# --- IDEs and Editors ---
+.vscode/
+.idea/
+*.swp
+*.swo
+.DS_Store
+
+# --- CUSTOM ---
+JULIEN_localonly/
