@@ -1,6 +1,7 @@
 #pragma once
 
 #include "OutputWriter/OutputWriter.h"
+#include "StaggeredGrid/Discretization.h"
 
 #include <vtkSmartPointer.h>
 #include <vtkXMLImageDataWriter.h>

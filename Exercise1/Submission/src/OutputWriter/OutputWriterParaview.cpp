@@ -1,4 +1,5 @@
 #include "OutputWriter/OutputWriterParaview.h"
+#include "StaggeredGrid/Discretization.h"
 
 #include <vtkImageData.h>
 #include <vtkDoubleArray.h>

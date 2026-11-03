@@ -14,4 +14,4 @@ class GaussSeidel : public PressureSolver {
 
     // solve the system of the Poisson equation for pressure
     void solve() override;
-}
+};

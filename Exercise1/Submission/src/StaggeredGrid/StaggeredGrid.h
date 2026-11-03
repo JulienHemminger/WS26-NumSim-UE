@@ -5,108 +5,107 @@
 #include "Array2D/FieldVariable.h"
 
 class StaggeredGrid {
-    public:
-        //Constructor
-        StaggeredGrid(std::array<int, 2> nCells, std::array<double, 2> meshWidth)
+   public:
+    // Constructor
+    StaggeredGrid(std::array<int, 2> nCells, std::array<double, 2> meshWidth);
 
-        //get the mesh width, i.e. the length of a single cell in x and y direction
-        const std::array<double 2> meshWidth();
+    // get the mesh width, i.e. the length of a single cell in x and y direction
+    const std::array<double, 2> meshWidth();
 
-        //get number of cells in each coordinate direction
-        const std::array<int, 2> nCells();
+    // get number of cells in each coordinate direction
+    const std::array<int, 2> nCells();
 
-        //get a reference to field variable u
-        const FieldVariable& u();
+    // get a reference to field variable u
+    const FieldVariable& u();
 
-        //get a reference to field variable v
-        const FieldVariable& v();
+    // get a reference to field variable v
+    const FieldVariable& v();
 
-        //get a reference to field variable p
-        const FieldVariable& p();
+    // get a reference to field variable p
+    const FieldVariable& p();
 
-        //access value of u in element (i,j)
-        //get const value of u in element (x,y)
-        double u(int i, int j) const;
+    // access value of u in element (i,j)
+    // get const value of u in element (x,y)
+    double u(int i, int j) const;
 
-        //access value of u in element (x,y)
-        double& u(int i, int j);
+    // access value of u in element (x,y)
+    double& u(int i, int j);
 
-        //access value of v in element (i,j)
-        //get const value of v in element (x,y)
-        double v(int i, int j) const;
+    // access value of v in element (i,j)
+    // get const value of v in element (x,y)
+    double v(int i, int j) const;
 
-        //access value of v in element (x,y)
-        double& v(int i, int j);
+    // access value of v in element (x,y)
+    double& v(int i, int j);
 
-        //access value of p in element (i,j)
-        //get const value of p in element (x,y)
-        double p(int i, int j) const;
+    // access value of p in element (i,j)
+    // get const value of p in element (x,y)
+    double p(int i, int j) const;
 
-        //access value of p in element (x,y)
-        double& p(int i, int j);
+    // access value of p in element (x,y)
+    double& p(int i, int j);
 
-        //acces value of rhs in element (i,j)
-        //access value of rhs in element (x,y)
-        double & rhs(int i, int j);
+    // acces value of rhs in element (i,j)
+    // access value of rhs in element (x,y)
+    double& rhs(int i, int j);
 
-        //access value of F in element (i,j)
-        //access value of F in element (x,y)
-        double & f(int i, int j);
+    // access value of F in element (i,j)
+    // access value of F in element (x,y)
+    double& f(int i, int j);
 
-        //access value of G in element (i,j)
-        //access value of G in element (x,y)
-        double & g(int i, int j);
+    // access value of G in element (i,j)
+    // access value of G in element (x,y)
+    double& g(int i, int j);
 
-        //get the mesh width in x-direction
-        double dx() const;
+    // get the mesh width in x-direction
+    double dx() const;
 
-        //get the mesh width in y-direction
-        double dy() const;
+    // get the mesh width in y-direction
+    double dy() const;
 
-        //first valid index for u in x direction
-        int ulBegin() const;
+    // first valid index for u in x direction
+    int uIBegin() const;
 
-        //one after last valid index for u in x direction
-        int ulEnd() const;
+    // one after last valid index for u in x direction
+    int uIEnd() const;
 
-        //first valid index for u in y direction
-        int ujBegin() const;
+    // first valid index for u in y direction
+    int uJBegin() const;
 
-        //one after last valid index for u in y direction
-        int ujEnd() const;
+    // one after last valid index for u in y direction
+    int uJEnd() const;
 
-        //first valid index for v in x direction
-        int vlBegin() const;
+    // first valid index for v in x direction
+    int vIBegin() const;
 
-        //one after last valid index for v in x direction
-        int vlEnd() const;
+    // one after last valid index for v in x direction
+    int vIEnd() const;
 
-        //first valid index for v in y direction
-        int vjBegin() const;
+    // first valid index for v in y direction
+    int vJBegin() const;
 
-        //one after last valid index for v in y direction
-        int vjEnd() const;
+    // one after last valid index for v in y direction
+    int vJEnd() const;
 
-        //first valid index for p in x direction
-        int plBegin() const;
+    // first valid index for p in x direction
+    int pIBegin() const;
 
-        //one after last valid index for p in x direction
-        int plEnd() const;
+    // one after last valid index for p in x direction
+    int pIEnd() const;
 
-        //first valid index for p in y direction
-        int pjBegin() const;
+    // first valid index for p in y direction
+    int pJBegin() const;
 
-        //one after last valid index for p in y direction
-        int pjEnd() const;
+    // one after last valid index for p in y direction
+    int pJEnd() const;
 
-    protected:
-        const std::array<int, 2> nCells_;
-        const std::array<double, 2> meshWidth_;
-        FieldVariable u_;
-        FieldVariable v_;
-        FieldVariable p_;
-        FieldVariable rhs_;
-        FieldVariable f_;
-        FieldVariable g_;
-
+   protected:
+    const std::array<int, 2> nCells_;
+    const std::array<double, 2> meshWidth_;
+    FieldVariable u_;
+    FieldVariable v_;
+    FieldVariable p_;
+    FieldVariable rhs_;
+    FieldVariable f_;
+    FieldVariable g_;
 };
