@@ -31,3 +31,4 @@ add_test(
 )
 
 set_tests_properties(CompareScenario3 PROPERTIES DEPENDS RunScenario3)
+
