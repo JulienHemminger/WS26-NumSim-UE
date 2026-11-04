@@ -20,5 +20,5 @@ protected:
 
   std::shared_ptr<Discretization> discretization_;  //< a shared pointer to the discretization which contains all data that will be written to the file
   int fileNo_;   //< a counter that increments for every file, this number is part of the file name of output files
-  std::string uID_;   //< the unique name of the output folder
+  std::string outputDirectory_;  //< directory used for this run's output files
 };

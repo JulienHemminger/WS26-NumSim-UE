@@ -24,9 +24,12 @@ function(add_reference_test scenario test_id)
     add_test(
         NAME Compare${test_id}
         COMMAND "${Python3_EXECUTABLE}"
-                "${CMAKE_CURRENT_SOURCE_DIR}/compare_vti.py"
+                "${CMAKE_CURRENT_SOURCE_DIR}/tools/compare_vti_outputs.py"
                 "${reference_dir}"
                 "${CMAKE_BINARY_DIR}/out"
+                --value-tolerance 1e-2
+                --mean-dt-relative-tolerance 0.05
+                --endpoint-tolerance 1e-8
     )
     set_tests_properties(Compare${test_id} PROPERTIES DEPENDS Run${test_id})
 endfunction()

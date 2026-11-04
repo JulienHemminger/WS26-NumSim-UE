@@ -1,273 +1,1015 @@
-main@UltrabookJulienH:~/Documents/Career/1_Studium/1_SimTech_MSc/1_WS26/Numerische_Simulation/UE$ gh run list
-STATUS  NAME                                                                             WORKFLOW         BRANCH      EVENT  ID           ELAPSED  AGE
-X       21.10                                                                            C++ CI Pipeline  julien-dev  push   41904092535  4m25s    13m
-X       21.06                                                                            C++ CI Pipeline  julien-dev  push   41903488765  2m15s    17m
-X       20.57                                                                            C++ CI Pipeline  julien-dev  push   41902016941  1m11s    26m
-X       20.53                                                                            C++ CI Pipeline  julien-dev  push   41901404710  1m13s    30m
-X       print tree for debugging                                                         C++ CI Pipeline  julien-dev  push   41900468366  1m44s    36m
-X       20.17                                                                            C++ CI Pipeline  julien-dev  push   41895599764  9m17s    1h
-X       update compare_vti                                                               C++ CI Pipeline  julien-dev  push   41894174108  1m7s     1h
-X       reset                                                                            C++ CI Pipeline  julien-dev  push   41892771327  1m18s    1h
-X       add default-jdk                                                                  CI               julien-dev  push   41885729867  1m29s    2h
-X       new ci.yaml to cache installed depencendies - im fkin done bro                   CI               julien-dev  push   41884674575  2m30s    2h
-X       sudo apt-get install -y libvtk9-dev qtbase5-dev libqt5opengl5-dev python3-numpy  CI               julien-dev  push   41883897237  10m23s   2h
-X       sudo apt-get install -y libvtk9-dev python3-numpy qtbase5-dev                    CI               julien-dev  push   41882682074  5m29s    2h
-X       sudo apt-get install -y libvtk9-dev python3-numpy                                CI               julien-dev  push   41881593365  1m32s    2h
-X       18.50                                                                            CI               julien-dev  push   41881166843  29s      2h
-X       sudo apt-get install -y python3-numpy                                            CI               julien-dev  push   41880963670  21s      2h
-X       18.31                                                                            CI               julien-dev  push   41878316963  11m55s   2h
-X       18.21                                                                            CI               julien-dev  push   41876890057  24m17s   3h
-X       typo                                                                             CI               julien-dev  push   41876348334  1m49s    3h
-X       another try                                                                      CI               julien-dev  push   41875859598  1m35s    3h
-X       new dependency: default-jdk                                                      CI               julien-dev  push   41867177541  1m40s    3h
+Computed right hand side
+SOR: 26 with a residuum of 8.65053e-11 from target 1e-10
+Computed pressure
+Computed velocities
+Writing output...
+Applied boundary values for u/v and F/G.
+Applied obstacle boundary values for u/v and F/G.
+dt boundaries - diffusion: 2.5 convection_u: 0.0522485 convection_v: 0.259092
+Computed time step width: 0.025
++++++++++++++++++++++++
+current Time: 8.85
++++++++++++++++++++++++
+Computed preliminary velocities
+Computed right hand side
+SOR: 26 with a residuum of 8.64391e-11 from target 1e-10
+Computed pressure
+Computed velocities
+Writing output...
+Applied boundary values for u/v and F/G.
+Applied obstacle boundary values for u/v and F/G.
+dt boundaries - diffusion: 2.5 convection_u: 0.0522484 convection_v: 0.259114
+Computed time step width: 0.025
++++++++++++++++++++++++
+current Time: 8.875
++++++++++++++++++++++++
+Computed preliminary velocities
+Computed right hand side
+SOR: 26 with a residuum of 8.63553e-11 from target 1e-10
+Computed pressure
+Computed velocities
+Writing output...
+Applied boundary values for u/v and F/G.
+Applied obstacle boundary values for u/v and F/G.
+dt boundaries - diffusion: 2.5 convection_u: 0.0522483 convection_v: 0.259138
+Computed time step width: 0.025
++++++++++++++++++++++++
+current Time: 8.9
++++++++++++++++++++++++
+Computed preliminary velocities
+Computed right hand side
+SOR: 26 with a residuum of 8.6271e-11 from target 1e-10
+Computed pressure
+Computed velocities
+Writing output...
+Applied boundary values for u/v and F/G.
+Applied obstacle boundary values for u/v and F/G.
+dt boundaries - diffusion: 2.5 convection_u: 0.0522483 convection_v: 0.259163
+Computed time step width: 0.025
++++++++++++++++++++++++
+current Time: 8.925
++++++++++++++++++++++++
+Computed preliminary velocities
+Computed right hand side
+SOR: 26 with a residuum of 8.62054e-11 from target 1e-10
+Computed pressure
+Computed velocities
+Writing output...
+Applied boundary values for u/v and F/G.
+Applied obstacle boundary values for u/v and F/G.
+dt boundaries - diffusion: 2.5 convection_u: 0.0522482 convection_v: 0.259189
+Computed time step width: 0.025
++++++++++++++++++++++++
+current Time: 8.95
++++++++++++++++++++++++
+Computed preliminary velocities
+Computed right hand side
+SOR: 26 with a residuum of 8.61547e-11 from target 1e-10
+Computed pressure
+Computed velocities
+Writing output...
+Applied boundary values for u/v and F/G.
+Applied obstacle boundary values for u/v and F/G.
+dt boundaries - diffusion: 2.5 convection_u: 0.0522481 convection_v: 0.259217
+Computed time step width: 0.025
++++++++++++++++++++++++
+current Time: 8.975
++++++++++++++++++++++++
+Computed preliminary velocities
+Computed right hand side
+SOR: 26 with a residuum of 8.6114e-11 from target 1e-10
+Computed pressure
+Computed velocities
+Writing output...
+Applied boundary values for u/v and F/G.
+Applied obstacle boundary values for u/v and F/G.
+dt boundaries - diffusion: 2.5 convection_u: 0.052248 convection_v: 0.259245
+Computed time step width: 0.025
++++++++++++++++++++++++
+current Time: 9
++++++++++++++++++++++++
+Computed preliminary velocities
+Computed right hand side
+SOR: 26 with a residuum of 8.60987e-11 from target 1e-10
+Computed pressure
+Computed velocities
+Writing output...
+Applied boundary values for u/v and F/G.
+Applied obstacle boundary values for u/v and F/G.
+dt boundaries - diffusion: 2.5 convection_u: 0.0522479 convection_v: 0.259275
+Computed time step width: 0.025
++++++++++++++++++++++++
+current Time: 9.025
++++++++++++++++++++++++
+Computed preliminary velocities
+Computed right hand side
+SOR: 26 with a residuum of 8.6792e-11 from target 1e-10
+Computed pressure
+Computed velocities
+Writing output...
+Applied boundary values for u/v and F/G.
+Applied obstacle boundary values for u/v and F/G.
+dt boundaries - diffusion: 2.5 convection_u: 0.0522478 convection_v: 0.259305
+Computed time step width: 0.025
++++++++++++++++++++++++
+current Time: 9.05
++++++++++++++++++++++++
+Computed preliminary velocities
+Computed right hand side
+SOR: 26 with a residuum of 8.70282e-11 from target 1e-10
+Computed pressure
+Computed velocities
+Writing output...
+Applied boundary values for u/v and F/G.
+Applied obstacle boundary values for u/v and F/G.
+dt boundaries - diffusion: 2.5 convection_u: 0.0522477 convection_v: 0.259337
+Computed time step width: 0.025
++++++++++++++++++++++++
+current Time: 9.075
++++++++++++++++++++++++
+Computed preliminary velocities
+Computed right hand side
+SOR: 26 with a residuum of 8.70739e-11 from target 1e-10
+Computed pressure
+Computed velocities
+Writing output...
+Applied boundary values for u/v and F/G.
+Applied obstacle boundary values for u/v and F/G.
+dt boundaries - diffusion: 2.5 convection_u: 0.0522477 convection_v: 0.25937
+Computed time step width: 0.025
++++++++++++++++++++++++
+current Time: 9.1
++++++++++++++++++++++++
+Computed preliminary velocities
+Computed right hand side
+SOR: 26 with a residuum of 8.7178e-11 from target 1e-10
+Computed pressure
+Computed velocities
+Writing output...
+Applied boundary values for u/v and F/G.
+Applied obstacle boundary values for u/v and F/G.
+dt boundaries - diffusion: 2.5 convection_u: 0.0522476 convection_v: 0.259403
+Computed time step width: 0.025
++++++++++++++++++++++++
+current Time: 9.125
++++++++++++++++++++++++
+Computed preliminary velocities
+Computed right hand side
+SOR: 26 with a residuum of 8.72234e-11 from target 1e-10
+Computed pressure
+Computed velocities
+Writing output...
+Applied boundary values for u/v and F/G.
+Applied obstacle boundary values for u/v and F/G.
+dt boundaries - diffusion: 2.5 convection_u: 0.0522475 convection_v: 0.259438
+Computed time step width: 0.025
++++++++++++++++++++++++
+current Time: 9.15
++++++++++++++++++++++++
+Computed preliminary velocities
+Computed right hand side
+SOR: 26 with a residuum of 8.72431e-11 from target 1e-10
+Computed pressure
+Computed velocities
+Writing output...
+Applied boundary values for u/v and F/G.
+Applied obstacle boundary values for u/v and F/G.
+dt boundaries - diffusion: 2.5 convection_u: 0.0522474 convection_v: 0.259473
+Computed time step width: 0.025
++++++++++++++++++++++++
+current Time: 9.175
++++++++++++++++++++++++
+Computed preliminary velocities
+Computed right hand side
+SOR: 26 with a residuum of 8.72617e-11 from target 1e-10
+Computed pressure
+Computed velocities
+Writing output...
+Applied boundary values for u/v and F/G.
+Applied obstacle boundary values for u/v and F/G.
+dt boundaries - diffusion: 2.5 convection_u: 0.0522473 convection_v: 0.259509
+Computed time step width: 0.025
++++++++++++++++++++++++
+current Time: 9.2
++++++++++++++++++++++++
+Computed preliminary velocities
+Computed right hand side
+SOR: 26 with a residuum of 8.72788e-11 from target 1e-10
+Computed pressure
+Computed velocities
+Writing output...
+Applied boundary values for u/v and F/G.
+Applied obstacle boundary values for u/v and F/G.
+dt boundaries - diffusion: 2.5 convection_u: 0.0522472 convection_v: 0.259546
+Computed time step width: 0.025
++++++++++++++++++++++++
+current Time: 9.225
++++++++++++++++++++++++
+Computed preliminary velocities
+Computed right hand side
+SOR: 26 with a residuum of 8.73267e-11 from target 1e-10
+Computed pressure
+Computed velocities
+Writing output...
+Applied boundary values for u/v and F/G.
+Applied obstacle boundary values for u/v and F/G.
+dt boundaries - diffusion: 2.5 convection_u: 0.0522471 convection_v: 0.259584
+Computed time step width: 0.025
++++++++++++++++++++++++
+current Time: 9.25
++++++++++++++++++++++++
+Computed preliminary velocities
+Computed right hand side
+SOR: 26 with a residuum of 8.82731e-11 from target 1e-10
+Computed pressure
+Computed velocities
+Writing output...
+Applied boundary values for u/v and F/G.
+Applied obstacle boundary values for u/v and F/G.
+dt boundaries - diffusion: 2.5 convection_u: 0.0522471 convection_v: 0.259622
+Computed time step width: 0.025
++++++++++++++++++++++++
+current Time: 9.275
++++++++++++++++++++++++
+Computed preliminary velocities
+Computed right hand side
+SOR: 26 with a residuum of 8.87984e-11 from target 1e-10
+Computed pressure
+Computed velocities
+Writing output...
+Applied boundary values for u/v and F/G.
+Applied obstacle boundary values for u/v and F/G.
+dt boundaries - diffusion: 2.5 convection_u: 0.052247 convection_v: 0.259661
+Computed time step width: 0.025
++++++++++++++++++++++++
+current Time: 9.3
++++++++++++++++++++++++
+Computed preliminary velocities
+Computed right hand side
+SOR: 26 with a residuum of 8.88367e-11 from target 1e-10
+Computed pressure
+Computed velocities
+Writing output...
+Applied boundary values for u/v and F/G.
+Applied obstacle boundary values for u/v and F/G.
+dt boundaries - diffusion: 2.5 convection_u: 0.0522469 convection_v: 0.259701
+Computed time step width: 0.025
++++++++++++++++++++++++
+current Time: 9.325
++++++++++++++++++++++++
+Computed preliminary velocities
+Computed right hand side
+SOR: 26 with a residuum of 8.88243e-11 from target 1e-10
+Computed pressure
+Computed velocities
+Writing output...
+Applied boundary values for u/v and F/G.
+Applied obstacle boundary values for u/v and F/G.
+dt boundaries - diffusion: 2.5 convection_u: 0.0522468 convection_v: 0.259741
+Computed time step width: 0.025
++++++++++++++++++++++++
+current Time: 9.35
++++++++++++++++++++++++
+Computed preliminary velocities
+Computed right hand side
+SOR: 26 with a residuum of 8.88686e-11 from target 1e-10
+Computed pressure
+Computed velocities
+Writing output...
+Applied boundary values for u/v and F/G.
+Applied obstacle boundary values for u/v and F/G.
+dt boundaries - diffusion: 2.5 convection_u: 0.0522467 convection_v: 0.259782
+Computed time step width: 0.025
++++++++++++++++++++++++
+current Time: 9.375
++++++++++++++++++++++++
+Computed preliminary velocities
+Computed right hand side
+SOR: 26 with a residuum of 8.8961e-11 from target 1e-10
+Computed pressure
+Computed velocities
+Writing output...
+Applied boundary values for u/v and F/G.
+Applied obstacle boundary values for u/v and F/G.
+dt boundaries - diffusion: 2.5 convection_u: 0.0522467 convection_v: 0.259823
+Computed time step width: 0.025
++++++++++++++++++++++++
+current Time: 9.4
++++++++++++++++++++++++
+Computed preliminary velocities
+Computed right hand side
+SOR: 26 with a residuum of 8.90664e-11 from target 1e-10
+Computed pressure
+Computed velocities
+Writing output...
+Applied boundary values for u/v and F/G.
+Applied obstacle boundary values for u/v and F/G.
+dt boundaries - diffusion: 2.5 convection_u: 0.0522466 convection_v: 0.259865
+Computed time step width: 0.025
++++++++++++++++++++++++
+current Time: 9.425
++++++++++++++++++++++++
+Computed preliminary velocities
+Computed right hand side
+SOR: 26 with a residuum of 8.91747e-11 from target 1e-10
+Computed pressure
+Computed velocities
+Writing output...
+Applied boundary values for u/v and F/G.
+Applied obstacle boundary values for u/v and F/G.
+dt boundaries - diffusion: 2.5 convection_u: 0.0522465 convection_v: 0.259907
+Computed time step width: 0.025
++++++++++++++++++++++++
+current Time: 9.45
++++++++++++++++++++++++
+Computed preliminary velocities
+Computed right hand side
+SOR: 26 with a residuum of 8.92871e-11 from target 1e-10
+Computed pressure
+Computed velocities
+Writing output...
+Applied boundary values for u/v and F/G.
+Applied obstacle boundary values for u/v and F/G.
+dt boundaries - diffusion: 2.5 convection_u: 0.0522464 convection_v: 0.25995
+Computed time step width: 0.025
++++++++++++++++++++++++
+current Time: 9.475
++++++++++++++++++++++++
+Computed preliminary velocities
+Computed right hand side
+SOR: 26 with a residuum of 8.9405e-11 from target 1e-10
+Computed pressure
+Computed velocities
+Writing output...
+Applied boundary values for u/v and F/G.
+Applied obstacle boundary values for u/v and F/G.
+dt boundaries - diffusion: 2.5 convection_u: 0.0522463 convection_v: 0.259993
+Computed time step width: 0.025
++++++++++++++++++++++++
+current Time: 9.5
++++++++++++++++++++++++
+Computed preliminary velocities
+Computed right hand side
+SOR: 26 with a residuum of 8.95287e-11 from target 1e-10
+Computed pressure
+Computed velocities
+Writing output...
+Applied boundary values for u/v and F/G.
+Applied obstacle boundary values for u/v and F/G.
+dt boundaries - diffusion: 2.5 convection_u: 0.0522462 convection_v: 0.260037
+Computed time step width: 0.025
++++++++++++++++++++++++
+current Time: 9.525
++++++++++++++++++++++++
+Computed preliminary velocities
+Computed right hand side
+SOR: 26 with a residuum of 8.96581e-11 from target 1e-10
+Computed pressure
+Computed velocities
+Writing output...
+Applied boundary values for u/v and F/G.
+Applied obstacle boundary values for u/v and F/G.
+dt boundaries - diffusion: 2.5 convection_u: 0.0522462 convection_v: 0.260081
+Computed time step width: 0.025
++++++++++++++++++++++++
+current Time: 9.55
++++++++++++++++++++++++
+Computed preliminary velocities
+Computed right hand side
+SOR: 26 with a residuum of 8.9793e-11 from target 1e-10
+Computed pressure
+Computed velocities
+Writing output...
+Applied boundary values for u/v and F/G.
+Applied obstacle boundary values for u/v and F/G.
+dt boundaries - diffusion: 2.5 convection_u: 0.0522461 convection_v: 0.260125
+Computed time step width: 0.025
++++++++++++++++++++++++
+current Time: 9.575
++++++++++++++++++++++++
+Computed preliminary velocities
+Computed right hand side
+SOR: 26 with a residuum of 8.99333e-11 from target 1e-10
+Computed pressure
+Computed velocities
+Writing output...
+Applied boundary values for u/v and F/G.
+Applied obstacle boundary values for u/v and F/G.
+dt boundaries - diffusion: 2.5 convection_u: 0.052246 convection_v: 0.26017
+Computed time step width: 0.025
++++++++++++++++++++++++
+current Time: 9.6
++++++++++++++++++++++++
+Computed preliminary velocities
+Computed right hand side
+SOR: 26 with a residuum of 9.00788e-11 from target 1e-10
+Computed pressure
+Computed velocities
+Writing output...
+Applied boundary values for u/v and F/G.
+Applied obstacle boundary values for u/v and F/G.
+dt boundaries - diffusion: 2.5 convection_u: 0.0522459 convection_v: 0.260215
+Computed time step width: 0.025
++++++++++++++++++++++++
+current Time: 9.625
++++++++++++++++++++++++
+Computed preliminary velocities
+Computed right hand side
+SOR: 26 with a residuum of 9.02293e-11 from target 1e-10
+Computed pressure
+Computed velocities
+Writing output...
+Applied boundary values for u/v and F/G.
+Applied obstacle boundary values for u/v and F/G.
+dt boundaries - diffusion: 2.5 convection_u: 0.0522459 convection_v: 0.26026
+Computed time step width: 0.025
++++++++++++++++++++++++
+current Time: 9.65
++++++++++++++++++++++++
+Computed preliminary velocities
+Computed right hand side
+SOR: 26 with a residuum of 9.03844e-11 from target 1e-10
+Computed pressure
+Computed velocities
+Writing output...
+Applied boundary values for u/v and F/G.
+Applied obstacle boundary values for u/v and F/G.
+dt boundaries - diffusion: 2.5 convection_u: 0.0522458 convection_v: 0.260306
+Computed time step width: 0.025
++++++++++++++++++++++++
+current Time: 9.675
++++++++++++++++++++++++
+Computed preliminary velocities
+Computed right hand side
+SOR: 26 with a residuum of 9.05142e-11 from target 1e-10
+Computed pressure
+Computed velocities
+Writing output...
+Applied boundary values for u/v and F/G.
+Applied obstacle boundary values for u/v and F/G.
+dt boundaries - diffusion: 2.5 convection_u: 0.0522457 convection_v: 0.260352
+Computed time step width: 0.025
++++++++++++++++++++++++
+current Time: 9.7
++++++++++++++++++++++++
+Computed preliminary velocities
+Computed right hand side
+SOR: 26 with a residuum of 9.06097e-11 from target 1e-10
+Computed pressure
+Computed velocities
+Writing output...
+Applied boundary values for u/v and F/G.
+Applied obstacle boundary values for u/v and F/G.
+dt boundaries - diffusion: 2.5 convection_u: 0.0522456 convection_v: 0.260398
+Computed time step width: 0.025
++++++++++++++++++++++++
+current Time: 9.725
++++++++++++++++++++++++
+Computed preliminary velocities
+Computed right hand side
+SOR: 26 with a residuum of 9.07531e-11 from target 1e-10
+Computed pressure
+Computed velocities
+Writing output...
+Applied boundary values for u/v and F/G.
+Applied obstacle boundary values for u/v and F/G.
+dt boundaries - diffusion: 2.5 convection_u: 0.0522455 convection_v: 0.260444
+Computed time step width: 0.025
++++++++++++++++++++++++
+current Time: 9.75
++++++++++++++++++++++++
+Computed preliminary velocities
+Computed right hand side
+SOR: 26 with a residuum of 9.09235e-11 from target 1e-10
+Computed pressure
+Computed velocities
+Writing output...
+Applied boundary values for u/v and F/G.
+Applied obstacle boundary values for u/v and F/G.
+dt boundaries - diffusion: 2.5 convection_u: 0.0522455 convection_v: 0.260491
+Computed time step width: 0.025
++++++++++++++++++++++++
+current Time: 9.775
++++++++++++++++++++++++
+Computed preliminary velocities
+Computed right hand side
+SOR: 26 with a residuum of 9.10492e-11 from target 1e-10
+Computed pressure
+Computed velocities
+Writing output...
+Applied boundary values for u/v and F/G.
+Applied obstacle boundary values for u/v and F/G.
+dt boundaries - diffusion: 2.5 convection_u: 0.0522454 convection_v: 0.260538
+Computed time step width: 0.025
++++++++++++++++++++++++
+current Time: 9.8
++++++++++++++++++++++++
+Computed preliminary velocities
+Computed right hand side
+SOR: 26 with a residuum of 9.1213e-11 from target 1e-10
+Computed pressure
+Computed velocities
+Writing output...
+Applied boundary values for u/v and F/G.
+Applied obstacle boundary values for u/v and F/G.
+dt boundaries - diffusion: 2.5 convection_u: 0.0522453 convection_v: 0.260585
+Computed time step width: 0.025
++++++++++++++++++++++++
+current Time: 9.825
++++++++++++++++++++++++
+Computed preliminary velocities
+Computed right hand side
+SOR: 26 with a residuum of 9.14094e-11 from target 1e-10
+Computed pressure
+Computed velocities
+Writing output...
+Applied boundary values for u/v and F/G.
+Applied obstacle boundary values for u/v and F/G.
+dt boundaries - diffusion: 2.5 convection_u: 0.0522452 convection_v: 0.260632
+Computed time step width: 0.025
++++++++++++++++++++++++
+current Time: 9.85
++++++++++++++++++++++++
+Computed preliminary velocities
+Computed right hand side
+SOR: 26 with a residuum of 9.15997e-11 from target 1e-10
+Computed pressure
+Computed velocities
+Writing output...
+Applied boundary values for u/v and F/G.
+Applied obstacle boundary values for u/v and F/G.
+dt boundaries - diffusion: 2.5 convection_u: 0.0522451 convection_v: 0.260679
+Computed time step width: 0.025
++++++++++++++++++++++++
+current Time: 9.875
++++++++++++++++++++++++
+Computed preliminary velocities
+Computed right hand side
+SOR: 26 with a residuum of 9.17855e-11 from target 1e-10
+Computed pressure
+Computed velocities
+Writing output...
+Applied boundary values for u/v and F/G.
+Applied obstacle boundary values for u/v and F/G.
+dt boundaries - diffusion: 2.5 convection_u: 0.0522451 convection_v: 0.260726
+Computed time step width: 0.025
++++++++++++++++++++++++
+current Time: 9.9
++++++++++++++++++++++++
+Computed preliminary velocities
+Computed right hand side
+SOR: 26 with a residuum of 9.19565e-11 from target 1e-10
+Computed pressure
+Computed velocities
+Writing output...
+Applied boundary values for u/v and F/G.
+Applied obstacle boundary values for u/v and F/G.
+dt boundaries - diffusion: 2.5 convection_u: 0.052245 convection_v: 0.260774
+Computed time step width: 0.025
++++++++++++++++++++++++
+current Time: 9.925
++++++++++++++++++++++++
+Computed preliminary velocities
+Computed right hand side
+SOR: 26 with a residuum of 9.21411e-11 from target 1e-10
+Computed pressure
+Computed velocities
+Writing output...
+Applied boundary values for u/v and F/G.
+Applied obstacle boundary values for u/v and F/G.
+dt boundaries - diffusion: 2.5 convection_u: 0.0522449 convection_v: 0.260822
+Computed time step width: 0.025
++++++++++++++++++++++++
+current Time: 9.95
++++++++++++++++++++++++
+Computed preliminary velocities
+Computed right hand side
+SOR: 26 with a residuum of 9.23352e-11 from target 1e-10
+Computed pressure
+Computed velocities
+Writing output...
+Applied boundary values for u/v and F/G.
+Applied obstacle boundary values for u/v and F/G.
+dt boundaries - diffusion: 2.5 convection_u: 0.0522448 convection_v: 0.260869
+Computed time step width: 0.025
++++++++++++++++++++++++
+current Time: 9.975
++++++++++++++++++++++++
+Computed preliminary velocities
+Computed right hand side
+SOR: 26 with a residuum of 9.25315e-11 from target 1e-10
+Computed pressure
+Computed velocities
+Writing output...
+Applied boundary values for u/v and F/G.
+Applied obstacle boundary values for u/v and F/G.
+dt boundaries - diffusion: 2.5 convection_u: 0.0522448 convection_v: 0.260917
 
-For details on a run, try: gh run view <run-id>
-main@UltrabookJulienH:~/Documents/Career/1_Studium/1_SimTech_MSc/1_WS26/Numerische_Simulation/UE$ gh run view --log-failed
-? Select a workflow run X 21.10, C++ CI Pipeline (julien-dev) 13m36s ago
-build-and-test  Run CTest       2026-11-04T20:15:05.0058950Z ##[group]Run ctest --test-dir build --output-on-failure
-build-and-test  Run CTest       2026-11-04T20:15:05.0059615Z ctest --test-dir build --output-on-failure
-build-and-test  Run CTest       2026-11-04T20:15:05.0076949Z shell: /usr/bin/bash -e {0}
-build-and-test  Run CTest       2026-11-04T20:15:05.0077176Z ##[endgroup]
-build-and-test  Run CTest       2026-11-04T20:15:05.3819688Z Internal ctest changing into directory: /home/runner/work/WS26-NumSim-UE/WS26-NumSim-UE/build
-build-and-test  Run CTest       2026-11-04T20:15:05.4513232Z Test project /home/runner/work/WS26-NumSim-UE/WS26-NumSim-UE/build
-build-and-test  Run CTest       2026-11-04T20:15:05.5184980Z     Start 1: RunScenario0
-build-and-test  Run CTest       2026-11-04T20:15:05.6685185Z 1/4 Test #1: RunScenario0 .....................   Passed    0.14 sec
-build-and-test  Run CTest       2026-11-04T20:15:05.6751591Z     Start 2: CompareScenario0
-build-and-test  Run CTest       2026-11-04T20:15:05.7905139Z 2/4 Test #2: CompareScenario0 .................***Failed    0.12 sec
-build-and-test  Run CTest       2026-11-04T20:15:05.7905554Z 
-build-and-test  Run CTest       2026-11-04T20:15:05.7906065Z Comparing reference directory: /home/runner/work/WS26-NumSim-UE/WS26-NumSim-UE/test/reference_data/scenario0_lid_driven_cavity
-build-and-test  Run CTest       2026-11-04T20:15:05.7907178Z Against generated directory:  /home/runner/work/WS26-NumSim-UE/WS26-NumSim-UE/build/out
-build-and-test  Run CTest       2026-11-04T20:15:05.7908003Z ERROR: Generated output directory does not exist: /home/runner/work/WS26-NumSim-UE/WS26-NumSim-UE/build/out
-build-and-test  Run CTest       2026-11-04T20:15:05.7908662Z Hint: Did the simulation executable fail to run or write output?
-build-and-test  Run CTest       2026-11-04T20:15:05.7908975Z 
-build-and-test  Run CTest       2026-11-04T20:15:05.7909442Z --- Directory Tree for: /home/runner/work/WS26-NumSim-UE/WS26-NumSim-UE/build ---
-build-and-test  Run CTest       2026-11-04T20:15:05.7909757Z build/
-build-and-test  Run CTest       2026-11-04T20:15:05.7909925Z     CTestTestfile.cmake
-build-and-test  Run CTest       2026-11-04T20:15:05.7910104Z     Makefile
-build-and-test  Run CTest       2026-11-04T20:15:05.7910275Z     CMakeCache.txt
-build-and-test  Run CTest       2026-11-04T20:15:05.7910448Z     cmake_install.cmake
-build-and-test  Run CTest       2026-11-04T20:15:05.7910635Z     Testing/
-build-and-test  Run CTest       2026-11-04T20:15:05.7910796Z         Temporary/
-build-and-test  Run CTest       2026-11-04T20:15:05.7910975Z             CTestCheckpoint.txt
-build-and-test  Run CTest       2026-11-04T20:15:05.7911203Z             LastTest.log.tmp
-build-and-test  Run CTest       2026-11-04T20:15:05.7911395Z     test/
-build-and-test  Run CTest       2026-11-04T20:15:05.7911557Z         CTestTestfile.cmake
-build-and-test  Run CTest       2026-11-04T20:15:05.7911750Z         Makefile
-build-and-test  Run CTest       2026-11-04T20:15:05.7911926Z         cmake_install.cmake
-build-and-test  Run CTest       2026-11-04T20:15:05.7912108Z         CMakeFiles/
-build-and-test  Run CTest       2026-11-04T20:15:05.7912288Z             progress.marks
-build-and-test  Run CTest       2026-11-04T20:15:05.7912502Z             CMakeDirectoryInformation.cmake
-build-and-test  Run CTest       2026-11-04T20:15:05.7912735Z     CMakeFiles/
-build-and-test  Run CTest       2026-11-04T20:15:05.7912913Z         Makefile.cmake
-build-and-test  Run CTest       2026-11-04T20:15:05.7913100Z         TargetDirectories.txt
-build-and-test  Run CTest       2026-11-04T20:15:05.7913353Z         progress.marks
-build-and-test  Run CTest       2026-11-04T20:15:05.7913601Z         Makefile2
-build-and-test  Run CTest       2026-11-04T20:15:05.7913856Z         cmake.check_cache
-build-and-test  Run CTest       2026-11-04T20:15:05.7914153Z         CMakeConfigureLog.yaml
-build-and-test  Run CTest       2026-11-04T20:15:05.7914484Z         CMakeDirectoryInformation.cmake
-build-and-test  Run CTest       2026-11-04T20:15:05.7914826Z         FindMPI/
-build-and-test  Run CTest       2026-11-04T20:15:05.7915088Z             test_mpi_C.bin
-build-and-test  Run CTest       2026-11-04T20:15:05.7915330Z         3.31.6/
-build-and-test  Run CTest       2026-11-04T20:15:05.7915543Z             CMakeSystem.cmake
-build-and-test  Run CTest       2026-11-04T20:15:05.7915810Z             CMakeCCompiler.cmake
-build-and-test  Run CTest       2026-11-04T20:15:05.7916130Z             CMakeDetermineCompilerABI_CXX.bin
-build-and-test  Run CTest       2026-11-04T20:15:05.7916422Z             CMakeCXXCompiler.cmake
-build-and-test  Run CTest       2026-11-04T20:15:05.7916650Z             CMakeDetermineCompilerABI_C.bin
-build-and-test  Run CTest       2026-11-04T20:15:05.7916876Z             CompilerIdCXX/
-build-and-test  Run CTest       2026-11-04T20:15:05.7917053Z                 a.out
-build-and-test  Run CTest       2026-11-04T20:15:05.7917240Z                 CMakeCXXCompilerId.cpp
-build-and-test  Run CTest       2026-11-04T20:15:05.7917448Z                 tmp/
-build-and-test  Run CTest       2026-11-04T20:15:05.7917626Z             CompilerIdC/
-build-and-test  Run CTest       2026-11-04T20:15:05.7917803Z                 a.out
-build-and-test  Run CTest       2026-11-04T20:15:05.7917987Z                 CMakeCCompilerId.c
-build-and-test  Run CTest       2026-11-04T20:15:05.7918184Z                 tmp/
-build-and-test  Run CTest       2026-11-04T20:15:05.7918349Z         CMakeScratch/
-build-and-test  Run CTest       2026-11-04T20:15:05.7918515Z         pkgRedirects/
-build-and-test  Run CTest       2026-11-04T20:15:05.7918689Z     src/
-build-and-test  Run CTest       2026-11-04T20:15:05.7918856Z         CTestTestfile.cmake
-build-and-test  Run CTest       2026-11-04T20:15:05.7919263Z         numsim
-build-and-test  Run CTest       2026-11-04T20:15:05.7919453Z         Makefile
-build-and-test  Run CTest       2026-11-04T20:15:05.7919624Z         cmake_install.cmake
-build-and-test  Run CTest       2026-11-04T20:15:05.7919811Z         CMakeFiles/
-build-and-test  Run CTest       2026-11-04T20:15:05.7919991Z             progress.marks
-build-and-test  Run CTest       2026-11-04T20:15:05.7920441Z             CMakeDirectoryInformation.cmake
-build-and-test  Run CTest       2026-11-04T20:15:05.7920678Z             hdf5/
-build-and-test  Run CTest       2026-11-04T20:15:05.7920851Z                 a.out
-build-and-test  Run CTest       2026-11-04T20:15:05.7921029Z                 cmake_hdf5_test.c
-build-and-test  Run CTest       2026-11-04T20:15:05.7921231Z                 cmake_hdf5_test.o
-build-and-test  Run CTest       2026-11-04T20:15:05.7921419Z                 CMakeFiles/
-build-and-test  Run CTest       2026-11-04T20:15:05.7921611Z                     CMakeTmp/
-build-and-test  Run CTest       2026-11-04T20:15:05.7921802Z             numsim.dir/
-build-and-test  Run CTest       2026-11-04T20:15:05.7921980Z                 Settings.cpp.o
-build-and-test  Run CTest       2026-11-04T20:15:05.7922177Z                 compiler_depend.ts
-build-and-test  Run CTest       2026-11-04T20:15:05.7922385Z                 Computation.cpp.o
-build-and-test  Run CTest       2026-11-04T20:15:05.7922577Z                 build.make
-build-and-test  Run CTest       2026-11-04T20:15:05.7922759Z                 cmake_clean.cmake
-build-and-test  Run CTest       2026-11-04T20:15:05.7922945Z                 depend.make
-build-and-test  Run CTest       2026-11-04T20:15:05.7923141Z                 compiler_depend.make
-build-and-test  Run CTest       2026-11-04T20:15:05.7923355Z                 link.txt
-build-and-test  Run CTest       2026-11-04T20:15:05.7923648Z                 progress.make
-build-and-test  Run CTest       2026-11-04T20:15:05.7923837Z                 main.cpp.o
-build-and-test  Run CTest       2026-11-04T20:15:05.7924020Z                 flags.make
-build-and-test  Run CTest       2026-11-04T20:15:05.7924210Z                 DependInfo.cmake
-build-and-test  Run CTest       2026-11-04T20:15:05.7924410Z                 Settings.cpp.o.d
-build-and-test  Run CTest       2026-11-04T20:15:05.7924605Z                 Computation.cpp.o.d
-build-and-test  Run CTest       2026-11-04T20:15:05.7924806Z                 link.d
-build-and-test  Run CTest       2026-11-04T20:15:05.7924989Z                 main.cpp.o.d
-build-and-test  Run CTest       2026-11-04T20:15:05.7925173Z                 Array2D/
-build-and-test  Run CTest       2026-11-04T20:15:05.7925356Z                     Array2d.cpp.o
-build-and-test  Run CTest       2026-11-04T20:15:05.7925560Z                     FieldVariable.cpp.o.d
-build-and-test  Run CTest       2026-11-04T20:15:05.7925777Z                     Array2d.cpp.o.d
-build-and-test  Run CTest       2026-11-04T20:15:05.7925993Z                     FieldVariable.cpp.o
-build-and-test  Run CTest       2026-11-04T20:15:05.7926209Z                 OutputWriter/
-build-and-test  Run CTest       2026-11-04T20:15:05.7926410Z                     OutputWriterText.cpp.o.d
-build-and-test  Run CTest       2026-11-04T20:15:05.7926642Z                     OutputWriter.cpp.o
-build-and-test  Run CTest       2026-11-04T20:15:05.7926878Z                     OutputWriterParaview.cpp.o.d
-build-and-test  Run CTest       2026-11-04T20:15:05.7927125Z                     OutputWriterText.cpp.o
-build-and-test  Run CTest       2026-11-04T20:15:05.7927360Z                     OutputWriterParaview.cpp.o
-build-and-test  Run CTest       2026-11-04T20:15:05.7927587Z                     OutputWriter.cpp.o.d
-build-and-test  Run CTest       2026-11-04T20:15:05.7927804Z                 StaggeredGrid/
-build-and-test  Run CTest       2026-11-04T20:15:05.7928030Z                     StaggeredGrid.cpp.o
-build-and-test  Run CTest       2026-11-04T20:15:05.7928248Z                     Discretization.cpp.o.d
-build-and-test  Run CTest       2026-11-04T20:15:05.7928463Z                     DonorCell.cpp.o
-build-and-test  Run CTest       2026-11-04T20:15:05.7928684Z                     StaggeredGrid.cpp.o.d
-build-and-test  Run CTest       2026-11-04T20:15:05.7928907Z                     CentralDifferences.cpp.o.d
-build-and-test  Run CTest       2026-11-04T20:15:05.7929374Z                     DonorCell.cpp.o.d
-build-and-test  Run CTest       2026-11-04T20:15:05.7929598Z                     CentralDifferences.cpp.o
-build-and-test  Run CTest       2026-11-04T20:15:05.7929828Z                     Discretization.cpp.o
-build-and-test  Run CTest       2026-11-04T20:15:05.7930035Z                 PressureSolver/
-build-and-test  Run CTest       2026-11-04T20:15:05.7930271Z                     PressureSolver.cpp.o
-build-and-test  Run CTest       2026-11-04T20:15:05.7930478Z                     SOR.cpp.o
-build-and-test  Run CTest       2026-11-04T20:15:05.7930677Z                     GaussSeidel.cpp.o
-build-and-test  Run CTest       2026-11-04T20:15:05.7930889Z                     PressureSolver.cpp.o.d
-build-and-test  Run CTest       2026-11-04T20:15:05.7931098Z                     SOR.cpp.o.d
-build-and-test  Run CTest       2026-11-04T20:15:05.7931290Z                     GaussSeidel.cpp.o.d
-build-and-test  Run CTest       2026-11-04T20:15:05.7931498Z ----------------------------------------
-build-and-test  Run CTest       2026-11-04T20:15:05.7931648Z 
-build-and-test  Run CTest       2026-11-04T20:15:05.7931653Z 
-build-and-test  Run CTest       2026-11-04T20:15:05.7931736Z     Start 3: RunScenario3
-build-and-test  Run CTest       2026-11-04T20:15:05.8911646Z 3/4 Test #3: RunScenario3 .....................   Passed    0.10 sec
-build-and-test  Run CTest       2026-11-04T20:15:05.8913227Z     Start 4: CompareScenario3
-build-and-test  Run CTest       2026-11-04T20:15:05.9828061Z 4/4 Test #4: CompareScenario3 .................***Failed    0.09 sec
-build-and-test  Run CTest       2026-11-04T20:15:05.9828504Z 
-build-and-test  Run CTest       2026-11-04T20:15:05.9829196Z Comparing reference directory: /home/runner/work/WS26-NumSim-UE/WS26-NumSim-UE/test/reference_data/scenario3_vary_everything
-build-and-test  Run CTest       2026-11-04T20:15:05.9830020Z Against generated directory:  /home/runner/work/WS26-NumSim-UE/WS26-NumSim-UE/build/out
-build-and-test  Run CTest       2026-11-04T20:15:05.9830755Z ERROR: Generated output directory does not exist: /home/runner/work/WS26-NumSim-UE/WS26-NumSim-UE/build/out
-build-and-test  Run CTest       2026-11-04T20:15:05.9831654Z Hint: Did the simulation executable fail to run or write output?
-build-and-test  Run CTest       2026-11-04T20:15:05.9831960Z 
-build-and-test  Run CTest       2026-11-04T20:15:05.9832239Z --- Directory Tree for: /home/runner/work/WS26-NumSim-UE/WS26-NumSim-UE/build ---
-build-and-test  Run CTest       2026-11-04T20:15:05.9832685Z build/
-build-and-test  Run CTest       2026-11-04T20:15:05.9832888Z     CTestTestfile.cmake
-build-and-test  Run CTest       2026-11-04T20:15:05.9833071Z     Makefile
-build-and-test  Run CTest       2026-11-04T20:15:05.9833237Z     CMakeCache.txt
-build-and-test  Run CTest       2026-11-04T20:15:05.9833416Z     cmake_install.cmake
-build-and-test  Run CTest       2026-11-04T20:15:05.9833587Z     Testing/
-build-and-test  Run CTest       2026-11-04T20:15:05.9833736Z         Temporary/
-build-and-test  Run CTest       2026-11-04T20:15:05.9833906Z             CTestCheckpoint.txt
-build-and-test  Run CTest       2026-11-04T20:15:05.9834121Z             LastTest.log.tmp
-build-and-test  Run CTest       2026-11-04T20:15:05.9834312Z     test/
-build-and-test  Run CTest       2026-11-04T20:15:05.9834479Z         CTestTestfile.cmake
-build-and-test  Run CTest       2026-11-04T20:15:05.9834663Z         Makefile
-build-and-test  Run CTest       2026-11-04T20:15:05.9834832Z         cmake_install.cmake
-build-and-test  Run CTest       2026-11-04T20:15:05.9835169Z         CMakeFiles/
-build-and-test  Run CTest       2026-11-04T20:15:05.9835418Z             progress.marks
-build-and-test  Run CTest       2026-11-04T20:15:05.9835727Z             CMakeDirectoryInformation.cmake
-build-and-test  Run CTest       2026-11-04T20:15:05.9836065Z     CMakeFiles/
-build-and-test  Run CTest       2026-11-04T20:15:05.9836316Z         Makefile.cmake
-build-and-test  Run CTest       2026-11-04T20:15:05.9836568Z         TargetDirectories.txt
-build-and-test  Run CTest       2026-11-04T20:15:05.9836849Z         progress.marks
-build-and-test  Run CTest       2026-11-04T20:15:05.9837019Z         Makefile2
-build-and-test  Run CTest       2026-11-04T20:15:05.9837191Z         cmake.check_cache
-build-and-test  Run CTest       2026-11-04T20:15:05.9837388Z         CMakeConfigureLog.yaml
-build-and-test  Run CTest       2026-11-04T20:15:05.9837601Z         CMakeDirectoryInformation.cmake
-build-and-test  Run CTest       2026-11-04T20:15:05.9837819Z         FindMPI/
-build-and-test  Run CTest       2026-11-04T20:15:05.9837990Z             test_mpi_C.bin
-build-and-test  Run CTest       2026-11-04T20:15:05.9838244Z         3.31.6/
-build-and-test  Run CTest       2026-11-04T20:15:05.9838489Z             CMakeSystem.cmake
-build-and-test  Run CTest       2026-11-04T20:15:05.9838729Z             CMakeCCompiler.cmake
-build-and-test  Run CTest       2026-11-04T20:15:05.9838955Z             CMakeDetermineCompilerABI_CXX.bin
-build-and-test  Run CTest       2026-11-04T20:15:05.9839381Z             CMakeCXXCompiler.cmake
-build-and-test  Run CTest       2026-11-04T20:15:05.9839613Z             CMakeDetermineCompilerABI_C.bin
-build-and-test  Run CTest       2026-11-04T20:15:05.9839838Z             CompilerIdCXX/
-build-and-test  Run CTest       2026-11-04T20:15:05.9840019Z                 a.out
-build-and-test  Run CTest       2026-11-04T20:15:05.9840211Z                 CMakeCXXCompilerId.cpp
-build-and-test  Run CTest       2026-11-04T20:15:05.9840420Z                 tmp/
-build-and-test  Run CTest       2026-11-04T20:15:05.9840598Z             CompilerIdC/
-build-and-test  Run CTest       2026-11-04T20:15:05.9840777Z                 a.out
-build-and-test  Run CTest       2026-11-04T20:15:05.9840949Z                 CMakeCCompilerId.c
-build-and-test  Run CTest       2026-11-04T20:15:05.9841147Z                 tmp/
-build-and-test  Run CTest       2026-11-04T20:15:05.9841308Z         CMakeScratch/
-build-and-test  Run CTest       2026-11-04T20:15:05.9841478Z         pkgRedirects/
-build-and-test  Run CTest       2026-11-04T20:15:05.9841648Z     src/
-build-and-test  Run CTest       2026-11-04T20:15:05.9841818Z         CTestTestfile.cmake
-build-and-test  Run CTest       2026-11-04T20:15:05.9842006Z         numsim
-build-and-test  Run CTest       2026-11-04T20:15:05.9842168Z         Makefile
-build-and-test  Run CTest       2026-11-04T20:15:05.9842332Z         cmake_install.cmake
-build-and-test  Run CTest       2026-11-04T20:15:05.9842522Z         CMakeFiles/
-build-and-test  Run CTest       2026-11-04T20:15:05.9842711Z             progress.marks
-build-and-test  Run CTest       2026-11-04T20:15:05.9842919Z             CMakeDirectoryInformation.cmake
-build-and-test  Run CTest       2026-11-04T20:15:05.9843139Z             hdf5/
-build-and-test  Run CTest       2026-11-04T20:15:05.9843307Z                 a.out
-build-and-test  Run CTest       2026-11-04T20:15:05.9843488Z                 cmake_hdf5_test.c
-build-and-test  Run CTest       2026-11-04T20:15:05.9843687Z                 cmake_hdf5_test.o
-build-and-test  Run CTest       2026-11-04T20:15:05.9843875Z                 CMakeFiles/
-build-and-test  Run CTest       2026-11-04T20:15:05.9844058Z                     CMakeTmp/
-build-and-test  Run CTest       2026-11-04T20:15:05.9844260Z             numsim.dir/
-build-and-test  Run CTest       2026-11-04T20:15:05.9844442Z                 Settings.cpp.o
-build-and-test  Run CTest       2026-11-04T20:15:05.9844640Z                 compiler_depend.ts
-build-and-test  Run CTest       2026-11-04T20:15:05.9844850Z                 Computation.cpp.o
-build-and-test  Run CTest       2026-11-04T20:15:05.9845046Z                 build.make
-build-and-test  Run CTest       2026-11-04T20:15:05.9845240Z                 cmake_clean.cmake
-build-and-test  Run CTest       2026-11-04T20:15:05.9845434Z                 depend.make
-build-and-test  Run CTest       2026-11-04T20:15:05.9845628Z                 compiler_depend.make
-build-and-test  Run CTest       2026-11-04T20:15:05.9845831Z                 link.txt
-build-and-test  Run CTest       2026-11-04T20:15:05.9846017Z                 progress.make
-build-and-test  Run CTest       2026-11-04T20:15:05.9846203Z                 main.cpp.o
-build-and-test  Run CTest       2026-11-04T20:15:05.9846381Z                 flags.make
-build-and-test  Run CTest       2026-11-04T20:15:05.9846559Z                 DependInfo.cmake
-build-and-test  Run CTest       2026-11-04T20:15:05.9846904Z                 Settings.cpp.o.d
-build-and-test  Run CTest       2026-11-04T20:15:05.9847106Z                 Computation.cpp.o.d
-build-and-test  Run CTest       2026-11-04T20:15:05.9847310Z                 link.d
-build-and-test  Run CTest       2026-11-04T20:15:05.9847481Z                 main.cpp.o.d
-build-and-test  Run CTest       2026-11-04T20:15:05.9847666Z                 Array2D/
-build-and-test  Run CTest       2026-11-04T20:15:05.9847852Z                     Array2d.cpp.o
-build-and-test  Run CTest       2026-11-04T20:15:05.9848060Z                     FieldVariable.cpp.o.d
-build-and-test  Run CTest       2026-11-04T20:15:05.9848278Z                     Array2d.cpp.o.d
-build-and-test  Run CTest       2026-11-04T20:15:05.9848488Z                     FieldVariable.cpp.o
-build-and-test  Run CTest       2026-11-04T20:15:05.9848706Z                 OutputWriter/
-build-and-test  Run CTest       2026-11-04T20:15:05.9848914Z                     OutputWriterText.cpp.o.d
-build-and-test  Run CTest       2026-11-04T20:15:05.9849316Z                     OutputWriter.cpp.o
-build-and-test  Run CTest       2026-11-04T20:15:05.9849547Z                     OutputWriterParaview.cpp.o.d
-build-and-test  Run CTest       2026-11-04T20:15:05.9849796Z                     OutputWriterText.cpp.o
-build-and-test  Run CTest       2026-11-04T20:15:05.9850140Z                     OutputWriterParaview.cpp.o
-build-and-test  Run CTest       2026-11-04T20:15:05.9850374Z                     OutputWriter.cpp.o.d
-build-and-test  Run CTest       2026-11-04T20:15:05.9850585Z                 StaggeredGrid/
-build-and-test  Run CTest       2026-11-04T20:15:05.9850792Z                     StaggeredGrid.cpp.o
-build-and-test  Run CTest       2026-11-04T20:15:05.9851009Z                     Discretization.cpp.o.d
-build-and-test  Run CTest       2026-11-04T20:15:05.9851219Z                     DonorCell.cpp.o
-build-and-test  Run CTest       2026-11-04T20:15:05.9851424Z                     StaggeredGrid.cpp.o.d
-build-and-test  Run CTest       2026-11-04T20:15:05.9851665Z                     CentralDifferences.cpp.o.d
-build-and-test  Run CTest       2026-11-04T20:15:05.9851897Z                     DonorCell.cpp.o.d
-build-and-test  Run CTest       2026-11-04T20:15:05.9852119Z                     CentralDifferences.cpp.o
-build-and-test  Run CTest       2026-11-04T20:15:05.9852341Z                     Discretization.cpp.o
-build-and-test  Run CTest       2026-11-04T20:15:05.9852580Z                 PressureSolver/
-build-and-test  Run CTest       2026-11-04T20:15:05.9852792Z                     PressureSolver.cpp.o
-build-and-test  Run CTest       2026-11-04T20:15:05.9853005Z                     SOR.cpp.o
-build-and-test  Run CTest       2026-11-04T20:15:05.9853195Z                     GaussSeidel.cpp.o
-build-and-test  Run CTest       2026-11-04T20:15:05.9853409Z                     PressureSolver.cpp.o.d
-build-and-test  Run CTest       2026-11-04T20:15:05.9853632Z                     SOR.cpp.o.d
-build-and-test  Run CTest       2026-11-04T20:15:05.9853824Z                     GaussSeidel.cpp.o.d
-build-and-test  Run CTest       2026-11-04T20:15:05.9854033Z ----------------------------------------
-build-and-test  Run CTest       2026-11-04T20:15:05.9854192Z 
-build-and-test  Run CTest       2026-11-04T20:15:05.9854196Z 
-build-and-test  Run CTest       2026-11-04T20:15:05.9854297Z Errors while running CTest
-build-and-test  Run CTest       2026-11-04T20:15:05.9854417Z 
-build-and-test  Run CTest       2026-11-04T20:15:05.9854512Z 50% tests passed, 2 tests failed out of 4
-build-and-test  Run CTest       2026-11-04T20:15:05.9854660Z 
-build-and-test  Run CTest       2026-11-04T20:15:05.9854743Z Total Test time (real) =   0.53 sec
-build-and-test  Run CTest       2026-11-04T20:15:05.9854881Z 
-build-and-test  Run CTest       2026-11-04T20:15:05.9854956Z The following tests FAILED:
-build-and-test  Run CTest       2026-11-04T20:15:05.9855167Z      2 - CompareScenario0 (Failed)
-build-and-test  Run CTest       2026-11-04T20:15:05.9855379Z      4 - CompareScenario3 (Failed)
-build-and-test  Run CTest       2026-11-04T20:15:06.0254357Z ##[error]Process completed with exit code 8.
-main@UltrabookJulienH:~/Documents/Career/1_Studium/1_SimTech_MSc/1_WS26/Numerische_Simulation/UE$ 
+Final time step!
+Computed time step width: 0.025
++++++++++++++++++++++++
+current Time: 10
++++++++++++++++++++++++
+Computed preliminary velocities
+Computed right hand side
+SOR: 26 with a residuum of 9.27264e-11 from target 1e-10
+Computed pressure
+Computed velocities
+Writing output...
+Simulation finished!!
+-------------------------------------------------
+main@UltrabookJulienH:~/Documents/Career/1_Studium/1_SimTech_MSc/1_WS26/Numerische_Simulation/UE/build$ python3 ../test/tools/compare_vti_outputs.py ../te
+st/0_driven_cavity/reference_output out_
+Warning: File count mismatch (384 vs 400)
+output_0000.vti | Pressure Max Diff: 3.469e-17 | Velocity Max Diff: 7.994e-15
+output_0001.vti | Pressure Max Diff: 8.275e-09 | Velocity Max Diff: 2.778e-06
+output_0002.vti | Pressure Max Diff: 1.331e-07 | Velocity Max Diff: 7.393e-06
+output_0003.vti | Pressure Max Diff: 4.522e-07 | Velocity Max Diff: 1.468e-05
+output_0004.vti | Pressure Max Diff: 9.902e-07 | Velocity Max Diff: 2.430e-05
+output_0005.vti | Pressure Max Diff: 1.773e-06 | Velocity Max Diff: 3.620e-05
+output_0006.vti | Pressure Max Diff: 2.831e-06 | Velocity Max Diff: 5.032e-05
+output_0007.vti | Pressure Max Diff: 4.190e-06 | Velocity Max Diff: 6.660e-05
+output_0008.vti | Pressure Max Diff: 5.877e-06 | Velocity Max Diff: 8.499e-05
+output_0009.vti | Pressure Max Diff: 8.115e-06 | Velocity Max Diff: 1.055e-04
+output_0010.vti | Pressure Max Diff: 1.015e-05 | Velocity Max Diff: 1.279e-04
+output_0011.vti | Pressure Max Diff: 1.305e-05 | Velocity Max Diff: 1.523e-04
+output_0012.vti | Pressure Max Diff: 1.629e-05 | Velocity Max Diff: 1.786e-04
+output_0013.vti | Pressure Max Diff: 1.988e-05 | Velocity Max Diff: 2.067e-04
+output_0014.vti | Pressure Max Diff: 2.409e-05 | Velocity Max Diff: 2.365e-04
+output_0015.vti | Pressure Max Diff: 2.816e-05 | Velocity Max Diff: 2.681e-04
+output_0016.vti | Pressure Max Diff: 3.314e-05 | Velocity Max Diff: 3.013e-04
+output_0017.vti | Pressure Max Diff: 3.868e-05 | Velocity Max Diff: 3.362e-04
+output_0018.vti | Pressure Max Diff: 4.405e-05 | Velocity Max Diff: 3.725e-04
+output_0019.vti | Pressure Max Diff: 5.051e-05 | Velocity Max Diff: 4.105e-04
+output_0020.vti | Pressure Max Diff: 5.697e-05 | Velocity Max Diff: 4.499e-04
+output_0021.vti | Pressure Max Diff: 6.372e-05 | Velocity Max Diff: 4.907e-04
+output_0022.vti | Pressure Max Diff: 7.147e-05 | Velocity Max Diff: 5.328e-04
+output_0023.vti | Pressure Max Diff: 7.916e-05 | Velocity Max Diff: 5.762e-04
+output_0024.vti | Pressure Max Diff: 8.707e-05 | Velocity Max Diff: 6.208e-04
+output_0025.vti | Pressure Max Diff: 9.577e-05 | Velocity Max Diff: 6.665e-04
+output_0026.vti | Pressure Max Diff: 1.049e-04 | Velocity Max Diff: 7.134e-04
+output_0027.vti | Pressure Max Diff: 1.140e-04 | Velocity Max Diff: 7.613e-04
+output_0028.vti | Pressure Max Diff: 1.235e-04 | Velocity Max Diff: 8.102e-04
+output_0029.vti | Pressure Max Diff: 1.331e-04 | Velocity Max Diff: 8.600e-04
+output_0030.vti | Pressure Max Diff: 1.434e-04 | Velocity Max Diff: 9.107e-04
+output_0031.vti | Pressure Max Diff: 1.540e-04 | Velocity Max Diff: 9.622e-04
+output_0032.vti | Pressure Max Diff: 1.643e-04 | Velocity Max Diff: 1.015e-03
+output_0033.vti | Pressure Max Diff: 1.754e-04 | Velocity Max Diff: 1.069e-03
+output_0034.vti | Pressure Max Diff: 1.863e-04 | Velocity Max Diff: 1.123e-03
+output_0035.vti | Pressure Max Diff: 1.974e-04 | Velocity Max Diff: 1.178e-03
+output_0036.vti | Pressure Max Diff: 2.085e-04 | Velocity Max Diff: 1.234e-03
+output_0037.vti | Pressure Max Diff: 2.202e-04 | Velocity Max Diff: 1.290e-03
+output_0038.vti | Pressure Max Diff: 2.314e-04 | Velocity Max Diff: 1.347e-03
+output_0039.vti | Pressure Max Diff: 2.433e-04 | Velocity Max Diff: 1.404e-03
+output_0040.vti | Pressure Max Diff: 2.546e-04 | Velocity Max Diff: 1.463e-03
+output_0041.vti | Pressure Max Diff: 2.664e-04 | Velocity Max Diff: 1.522e-03
+output_0042.vti | Pressure Max Diff: 2.777e-04 | Velocity Max Diff: 1.582e-03
+output_0043.vti | Pressure Max Diff: 2.896e-04 | Velocity Max Diff: 1.642e-03
+output_0044.vti | Pressure Max Diff: 3.008e-04 | Velocity Max Diff: 1.702e-03
+output_0045.vti | Pressure Max Diff: 3.124e-04 | Velocity Max Diff: 1.763e-03
+output_0046.vti | Pressure Max Diff: 3.236e-04 | Velocity Max Diff: 1.826e-03
+output_0047.vti | Pressure Max Diff: 3.347e-04 | Velocity Max Diff: 1.889e-03
+output_0048.vti | Pressure Max Diff: 3.457e-04 | Velocity Max Diff: 1.953e-03
+output_0049.vti | Pressure Max Diff: 3.566e-04 | Velocity Max Diff: 2.017e-03
+output_0050.vti | Pressure Max Diff: 3.748e-04 | Velocity Max Diff: 2.084e-03
+output_0051.vti | Pressure Max Diff: 3.941e-04 | Velocity Max Diff: 2.152e-03
+output_0052.vti | Pressure Max Diff: 4.138e-04 | Velocity Max Diff: 2.220e-03
+output_0053.vti | Pressure Max Diff: 4.338e-04 | Velocity Max Diff: 2.289e-03
+output_0054.vti | Pressure Max Diff: 4.547e-04 | Velocity Max Diff: 2.363e-03
+output_0055.vti | Pressure Max Diff: 4.752e-04 | Velocity Max Diff: 2.438e-03
+output_0056.vti | Pressure Max Diff: 4.968e-04 | Velocity Max Diff: 2.513e-03
+output_0057.vti | Pressure Max Diff: 5.186e-04 | Velocity Max Diff: 2.589e-03
+output_0058.vti | Pressure Max Diff: 5.407e-04 | Velocity Max Diff: 2.666e-03
+output_0059.vti | Pressure Max Diff: 5.630e-04 | Velocity Max Diff: 2.743e-03
+output_0060.vti | Pressure Max Diff: 5.861e-04 | Velocity Max Diff: 2.820e-03
+output_0061.vti | Pressure Max Diff: 6.091e-04 | Velocity Max Diff: 2.902e-03
+output_0062.vti | Pressure Max Diff: 6.329e-04 | Velocity Max Diff: 2.989e-03
+output_0063.vti | Pressure Max Diff: 6.567e-04 | Velocity Max Diff: 3.076e-03
+output_0064.vti | Pressure Max Diff: 6.807e-04 | Velocity Max Diff: 3.164e-03
+output_0065.vti | Pressure Max Diff: 7.053e-04 | Velocity Max Diff: 3.253e-03
+output_0066.vti | Pressure Max Diff: 7.302e-04 | Velocity Max Diff: 3.343e-03
+output_0067.vti | Pressure Max Diff: 7.552e-04 | Velocity Max Diff: 3.433e-03
+output_0068.vti | Pressure Max Diff: 7.805e-04 | Velocity Max Diff: 3.524e-03
+output_0069.vti | Pressure Max Diff: 8.059e-04 | Velocity Max Diff: 3.615e-03
+output_0070.vti | Pressure Max Diff: 8.318e-04 | Velocity Max Diff: 3.707e-03
+output_0071.vti | Pressure Max Diff: 8.581e-04 | Velocity Max Diff: 3.800e-03
+output_0072.vti | Pressure Max Diff: 8.842e-04 | Velocity Max Diff: 3.893e-03
+output_0073.vti | Pressure Max Diff: 9.104e-04 | Velocity Max Diff: 3.986e-03
+output_0074.vti | Pressure Max Diff: 9.371e-04 | Velocity Max Diff: 4.080e-03
+output_0075.vti | Pressure Max Diff: 9.641e-04 | Velocity Max Diff: 4.174e-03
+output_0076.vti | Pressure Max Diff: 9.908e-04 | Velocity Max Diff: 4.268e-03
+output_0077.vti | Pressure Max Diff: 1.018e-03 | Velocity Max Diff: 4.363e-03
+output_0078.vti | Pressure Max Diff: 1.045e-03 | Velocity Max Diff: 4.458e-03
+output_0079.vti | Pressure Max Diff: 1.072e-03 | Velocity Max Diff: 4.553e-03
+output_0080.vti | Pressure Max Diff: 1.100e-03 | Velocity Max Diff: 4.648e-03
+output_0081.vti | Pressure Max Diff: 1.127e-03 | Velocity Max Diff: 4.743e-03
+output_0082.vti | Pressure Max Diff: 1.155e-03 | Velocity Max Diff: 4.838e-03
+output_0083.vti | Pressure Max Diff: 1.183e-03 | Velocity Max Diff: 4.933e-03
+output_0084.vti | Pressure Max Diff: 1.210e-03 | Velocity Max Diff: 5.027e-03
+output_0085.vti | Pressure Max Diff: 1.238e-03 | Velocity Max Diff: 5.122e-03
+output_0086.vti | Pressure Max Diff: 1.266e-03 | Velocity Max Diff: 5.216e-03
+output_0087.vti | Pressure Max Diff: 1.293e-03 | Velocity Max Diff: 5.310e-03
+output_0088.vti | Pressure Max Diff: 1.320e-03 | Velocity Max Diff: 5.404e-03
+output_0089.vti | Pressure Max Diff: 1.348e-03 | Velocity Max Diff: 5.497e-03
+output_0090.vti | Pressure Max Diff: 1.375e-03 | Velocity Max Diff: 5.590e-03
+output_0091.vti | Pressure Max Diff: 1.402e-03 | Velocity Max Diff: 5.682e-03
+output_0092.vti | Pressure Max Diff: 1.429e-03 | Velocity Max Diff: 5.773e-03
+output_0093.vti | Pressure Max Diff: 1.456e-03 | Velocity Max Diff: 5.864e-03
+output_0094.vti | Pressure Max Diff: 1.483e-03 | Velocity Max Diff: 5.954e-03
+output_0095.vti | Pressure Max Diff: 1.509e-03 | Velocity Max Diff: 6.043e-03
+output_0096.vti | Pressure Max Diff: 1.535e-03 | Velocity Max Diff: 6.131e-03
+output_0097.vti | Pressure Max Diff: 1.561e-03 | Velocity Max Diff: 6.218e-03
+output_0098.vti | Pressure Max Diff: 1.587e-03 | Velocity Max Diff: 6.305e-03
+output_0099.vti | Pressure Max Diff: 1.613e-03 | Velocity Max Diff: 6.390e-03
+output_0100.vti | Pressure Max Diff: 1.638e-03 | Velocity Max Diff: 6.474e-03
+output_0101.vti | Pressure Max Diff: 1.663e-03 | Velocity Max Diff: 6.556e-03
+output_0102.vti | Pressure Max Diff: 1.688e-03 | Velocity Max Diff: 6.638e-03
+output_0103.vti | Pressure Max Diff: 1.713e-03 | Velocity Max Diff: 6.718e-03
+output_0104.vti | Pressure Max Diff: 1.736e-03 | Velocity Max Diff: 6.797e-03
+output_0105.vti | Pressure Max Diff: 1.760e-03 | Velocity Max Diff: 6.874e-03
+output_0106.vti | Pressure Max Diff: 1.783e-03 | Velocity Max Diff: 6.949e-03
+output_0107.vti | Pressure Max Diff: 1.805e-03 | Velocity Max Diff: 7.023e-03
+output_0108.vti | Pressure Max Diff: 1.828e-03 | Velocity Max Diff: 7.095e-03
+output_0109.vti | Pressure Max Diff: 1.849e-03 | Velocity Max Diff: 7.165e-03
+output_0110.vti | Pressure Max Diff: 1.870e-03 | Velocity Max Diff: 7.232e-03
+output_0111.vti | Pressure Max Diff: 1.891e-03 | Velocity Max Diff: 7.298e-03
+output_0112.vti | Pressure Max Diff: 1.912e-03 | Velocity Max Diff: 7.361e-03
+output_0113.vti | Pressure Max Diff: 1.931e-03 | Velocity Max Diff: 7.422e-03
+output_0114.vti | Pressure Max Diff: 1.951e-03 | Velocity Max Diff: 7.531e-03
+output_0115.vti | Pressure Max Diff: 1.970e-03 | Velocity Max Diff: 7.644e-03
+output_0116.vti | Pressure Max Diff: 1.989e-03 | Velocity Max Diff: 7.757e-03
+output_0117.vti | Pressure Max Diff: 2.007e-03 | Velocity Max Diff: 7.868e-03
+output_0118.vti | Pressure Max Diff: 2.024e-03 | Velocity Max Diff: 7.979e-03
+output_0119.vti | Pressure Max Diff: 2.042e-03 | Velocity Max Diff: 8.088e-03
+output_0120.vti | Pressure Max Diff: 2.058e-03 | Velocity Max Diff: 8.196e-03
+output_0121.vti | Pressure Max Diff: 2.074e-03 | Velocity Max Diff: 8.302e-03
+output_0122.vti | Pressure Max Diff: 2.089e-03 | Velocity Max Diff: 8.407e-03
+output_0123.vti | Pressure Max Diff: 2.104e-03 | Velocity Max Diff: 8.511e-03
+output_0124.vti | Pressure Max Diff: 2.119e-03 | Velocity Max Diff: 8.613e-03
+output_0125.vti | Pressure Max Diff: 2.132e-03 | Velocity Max Diff: 8.713e-03
+output_0126.vti | Pressure Max Diff: 2.145e-03 | Velocity Max Diff: 8.811e-03
+output_0127.vti | Pressure Max Diff: 2.158e-03 | Velocity Max Diff: 8.908e-03
+output_0128.vti | Pressure Max Diff: 2.170e-03 | Velocity Max Diff: 9.002e-03
+output_0129.vti | Pressure Max Diff: 2.181e-03 | Velocity Max Diff: 9.094e-03
+output_0130.vti | Pressure Max Diff: 2.192e-03 | Velocity Max Diff: 9.185e-03
+output_0131.vti | Pressure Max Diff: 2.206e-03 | Velocity Max Diff: 9.272e-03
+output_0132.vti | Pressure Max Diff: 2.219e-03 | Velocity Max Diff: 9.356e-03
+output_0133.vti | Pressure Max Diff: 2.233e-03 | Velocity Max Diff: 9.437e-03
+output_0134.vti | Pressure Max Diff: 2.248e-03 | Velocity Max Diff: 9.514e-03
+output_0135.vti | Pressure Max Diff: 2.266e-03 | Velocity Max Diff: 9.587e-03
+output_0136.vti | Pressure Max Diff: 2.279e-03 | Velocity Max Diff: 9.657e-03
+output_0137.vti | Pressure Max Diff: 2.291e-03 | Velocity Max Diff: 9.725e-03
+output_0138.vti | Pressure Max Diff: 2.303e-03 | Velocity Max Diff: 9.789e-03
+output_0139.vti | Pressure Max Diff: 2.311e-03 | Velocity Max Diff: 9.851e-03
+output_0140.vti | Pressure Max Diff: 2.314e-03 | Velocity Max Diff: 9.910e-03
+output_0141.vti | Pressure Max Diff: 2.317e-03 | Velocity Max Diff: 9.965e-03
+output_0142.vti | Pressure Max Diff: 2.319e-03 | Velocity Max Diff: 1.002e-02
+output_0143.vti | Pressure Max Diff: 2.320e-03 | Velocity Max Diff: 1.007e-02
+output_0144.vti | Pressure Max Diff: 2.321e-03 | Velocity Max Diff: 1.011e-02
+output_0145.vti | Pressure Max Diff: 2.321e-03 | Velocity Max Diff: 1.015e-02
+output_0146.vti | Pressure Max Diff: 2.320e-03 | Velocity Max Diff: 1.019e-02
+output_0147.vti | Pressure Max Diff: 2.319e-03 | Velocity Max Diff: 1.023e-02
+output_0148.vti | Pressure Max Diff: 2.317e-03 | Velocity Max Diff: 1.026e-02
+output_0149.vti | Pressure Max Diff: 2.315e-03 | Velocity Max Diff: 1.029e-02
+output_0150.vti | Pressure Max Diff: 2.311e-03 | Velocity Max Diff: 1.032e-02
+output_0151.vti | Pressure Max Diff: 2.307e-03 | Velocity Max Diff: 1.034e-02
+output_0152.vti | Pressure Max Diff: 2.303e-03 | Velocity Max Diff: 1.039e-02
+output_0153.vti | Pressure Max Diff: 2.298e-03 | Velocity Max Diff: 1.049e-02
+output_0154.vti | Pressure Max Diff: 2.292e-03 | Velocity Max Diff: 1.058e-02
+output_0155.vti | Pressure Max Diff: 2.287e-03 | Velocity Max Diff: 1.067e-02
+output_0156.vti | Pressure Max Diff: 2.280e-03 | Velocity Max Diff: 1.076e-02
+output_0157.vti | Pressure Max Diff: 2.272e-03 | Velocity Max Diff: 1.085e-02
+output_0158.vti | Pressure Max Diff: 2.265e-03 | Velocity Max Diff: 1.093e-02
+output_0159.vti | Pressure Max Diff: 2.256e-03 | Velocity Max Diff: 1.102e-02
+output_0160.vti | Pressure Max Diff: 2.247e-03 | Velocity Max Diff: 1.109e-02
+output_0161.vti | Pressure Max Diff: 2.238e-03 | Velocity Max Diff: 1.117e-02
+output_0162.vti | Pressure Max Diff: 2.228e-03 | Velocity Max Diff: 1.124e-02
+output_0163.vti | Pressure Max Diff: 2.218e-03 | Velocity Max Diff: 1.131e-02
+output_0164.vti | Pressure Max Diff: 2.207e-03 | Velocity Max Diff: 1.138e-02
+output_0165.vti | Pressure Max Diff: 2.196e-03 | Velocity Max Diff: 1.144e-02
+output_0166.vti | Pressure Max Diff: 2.183e-03 | Velocity Max Diff: 1.150e-02
+output_0167.vti | Pressure Max Diff: 2.171e-03 | Velocity Max Diff: 1.156e-02
+output_0168.vti | Pressure Max Diff: 2.159e-03 | Velocity Max Diff: 1.161e-02
+output_0169.vti | Pressure Max Diff: 2.145e-03 | Velocity Max Diff: 1.166e-02
+output_0170.vti | Pressure Max Diff: 2.132e-03 | Velocity Max Diff: 1.171e-02
+output_0171.vti | Pressure Max Diff: 2.118e-03 | Velocity Max Diff: 1.176e-02
+output_0172.vti | Pressure Max Diff: 2.104e-03 | Velocity Max Diff: 1.180e-02
+output_0173.vti | Pressure Max Diff: 2.089e-03 | Velocity Max Diff: 1.183e-02
+output_0174.vti | Pressure Max Diff: 2.074e-03 | Velocity Max Diff: 1.187e-02
+output_0175.vti | Pressure Max Diff: 2.059e-03 | Velocity Max Diff: 1.190e-02
+output_0176.vti | Pressure Max Diff: 2.043e-03 | Velocity Max Diff: 1.193e-02
+output_0177.vti | Pressure Max Diff: 2.027e-03 | Velocity Max Diff: 1.195e-02
+output_0178.vti | Pressure Max Diff: 2.011e-03 | Velocity Max Diff: 1.197e-02
+output_0179.vti | Pressure Max Diff: 1.994e-03 | Velocity Max Diff: 1.199e-02
+output_0180.vti | Pressure Max Diff: 1.978e-03 | Velocity Max Diff: 1.200e-02
+output_0181.vti | Pressure Max Diff: 1.976e-03 | Velocity Max Diff: 1.201e-02
+output_0182.vti | Pressure Max Diff: 1.983e-03 | Velocity Max Diff: 1.202e-02
+output_0183.vti | Pressure Max Diff: 1.989e-03 | Velocity Max Diff: 1.203e-02
+output_0184.vti | Pressure Max Diff: 1.994e-03 | Velocity Max Diff: 1.203e-02
+output_0185.vti | Pressure Max Diff: 1.999e-03 | Velocity Max Diff: 1.207e-02
+output_0186.vti | Pressure Max Diff: 2.002e-03 | Velocity Max Diff: 1.216e-02
+output_0187.vti | Pressure Max Diff: 2.005e-03 | Velocity Max Diff: 1.224e-02
+output_0188.vti | Pressure Max Diff: 2.008e-03 | Velocity Max Diff: 1.232e-02
+output_0189.vti | Pressure Max Diff: 2.009e-03 | Velocity Max Diff: 1.240e-02
+output_0190.vti | Pressure Max Diff: 2.010e-03 | Velocity Max Diff: 1.248e-02
+output_0191.vti | Pressure Max Diff: 2.009e-03 | Velocity Max Diff: 1.255e-02
+output_0192.vti | Pressure Max Diff: 2.008e-03 | Velocity Max Diff: 1.262e-02
+output_0193.vti | Pressure Max Diff: 2.006e-03 | Velocity Max Diff: 1.269e-02
+output_0194.vti | Pressure Max Diff: 2.004e-03 | Velocity Max Diff: 1.275e-02
+output_0195.vti | Pressure Max Diff: 2.000e-03 | Velocity Max Diff: 1.281e-02
+output_0196.vti | Pressure Max Diff: 1.996e-03 | Velocity Max Diff: 1.287e-02
+output_0197.vti | Pressure Max Diff: 1.991e-03 | Velocity Max Diff: 1.293e-02
+output_0198.vti | Pressure Max Diff: 1.985e-03 | Velocity Max Diff: 1.298e-02
+output_0199.vti | Pressure Max Diff: 1.979e-03 | Velocity Max Diff: 1.302e-02
+output_0200.vti | Pressure Max Diff: 1.972e-03 | Velocity Max Diff: 1.307e-02
+output_0201.vti | Pressure Max Diff: 1.964e-03 | Velocity Max Diff: 1.311e-02
+output_0202.vti | Pressure Max Diff: 1.955e-03 | Velocity Max Diff: 1.314e-02
+output_0203.vti | Pressure Max Diff: 1.945e-03 | Velocity Max Diff: 1.318e-02
+output_0204.vti | Pressure Max Diff: 1.935e-03 | Velocity Max Diff: 1.321e-02
+output_0205.vti | Pressure Max Diff: 1.924e-03 | Velocity Max Diff: 1.324e-02
+output_0206.vti | Pressure Max Diff: 1.912e-03 | Velocity Max Diff: 1.326e-02
+output_0207.vti | Pressure Max Diff: 1.899e-03 | Velocity Max Diff: 1.328e-02
+output_0208.vti | Pressure Max Diff: 1.885e-03 | Velocity Max Diff: 1.330e-02
+output_0209.vti | Pressure Max Diff: 1.873e-03 | Velocity Max Diff: 1.331e-02
+output_0210.vti | Pressure Max Diff: 1.884e-03 | Velocity Max Diff: 1.332e-02
+output_0211.vti | Pressure Max Diff: 1.894e-03 | Velocity Max Diff: 1.333e-02
+output_0212.vti | Pressure Max Diff: 1.904e-03 | Velocity Max Diff: 1.333e-02
+output_0213.vti | Pressure Max Diff: 1.913e-03 | Velocity Max Diff: 1.333e-02
+output_0214.vti | Pressure Max Diff: 1.921e-03 | Velocity Max Diff: 1.333e-02
+output_0215.vti | Pressure Max Diff: 1.929e-03 | Velocity Max Diff: 1.332e-02
+output_0216.vti | Pressure Max Diff: 1.936e-03 | Velocity Max Diff: 1.331e-02
+output_0217.vti | Pressure Max Diff: 1.942e-03 | Velocity Max Diff: 1.330e-02
+output_0218.vti | Pressure Max Diff: 1.948e-03 | Velocity Max Diff: 1.336e-02
+output_0219.vti | Pressure Max Diff: 1.953e-03 | Velocity Max Diff: 1.344e-02
+output_0220.vti | Pressure Max Diff: 1.957e-03 | Velocity Max Diff: 1.351e-02
+output_0221.vti | Pressure Max Diff: 1.961e-03 | Velocity Max Diff: 1.358e-02
+output_0222.vti | Pressure Max Diff: 1.964e-03 | Velocity Max Diff: 1.365e-02
+output_0223.vti | Pressure Max Diff: 1.968e-03 | Velocity Max Diff: 1.371e-02
+output_0224.vti | Pressure Max Diff: 1.971e-03 | Velocity Max Diff: 1.377e-02
+output_0225.vti | Pressure Max Diff: 1.974e-03 | Velocity Max Diff: 1.383e-02
+output_0226.vti | Pressure Max Diff: 1.976e-03 | Velocity Max Diff: 1.389e-02
+output_0227.vti | Pressure Max Diff: 1.977e-03 | Velocity Max Diff: 1.394e-02
+output_0228.vti | Pressure Max Diff: 1.977e-03 | Velocity Max Diff: 1.398e-02
+output_0229.vti | Pressure Max Diff: 1.978e-03 | Velocity Max Diff: 1.402e-02
+output_0230.vti | Pressure Max Diff: 1.977e-03 | Velocity Max Diff: 1.406e-02
+output_0231.vti | Pressure Max Diff: 1.975e-03 | Velocity Max Diff: 1.410e-02
+output_0232.vti | Pressure Max Diff: 1.972e-03 | Velocity Max Diff: 1.413e-02
+output_0233.vti | Pressure Max Diff: 1.968e-03 | Velocity Max Diff: 1.416e-02
+output_0234.vti | Pressure Max Diff: 1.963e-03 | Velocity Max Diff: 1.419e-02
+output_0235.vti | Pressure Max Diff: 1.957e-03 | Velocity Max Diff: 1.421e-02
+output_0236.vti | Pressure Max Diff: 1.950e-03 | Velocity Max Diff: 1.422e-02
+output_0237.vti | Pressure Max Diff: 1.943e-03 | Velocity Max Diff: 1.424e-02
+output_0238.vti | Pressure Max Diff: 1.935e-03 | Velocity Max Diff: 1.425e-02
+output_0239.vti | Pressure Max Diff: 1.926e-03 | Velocity Max Diff: 1.426e-02
+output_0240.vti | Pressure Max Diff: 1.917e-03 | Velocity Max Diff: 1.426e-02
+output_0241.vti | Pressure Max Diff: 1.906e-03 | Velocity Max Diff: 1.426e-02
+output_0242.vti | Pressure Max Diff: 1.896e-03 | Velocity Max Diff: 1.426e-02
+output_0243.vti | Pressure Max Diff: 1.884e-03 | Velocity Max Diff: 1.425e-02
+output_0244.vti | Pressure Max Diff: 1.873e-03 | Velocity Max Diff: 1.425e-02
+output_0245.vti | Pressure Max Diff: 1.860e-03 | Velocity Max Diff: 1.423e-02
+output_0246.vti | Pressure Max Diff: 1.859e-03 | Velocity Max Diff: 1.422e-02
+output_0247.vti | Pressure Max Diff: 1.869e-03 | Velocity Max Diff: 1.420e-02
+output_0248.vti | Pressure Max Diff: 1.878e-03 | Velocity Max Diff: 1.418e-02
+output_0249.vti | Pressure Max Diff: 1.887e-03 | Velocity Max Diff: 1.416e-02
+output_0250.vti | Pressure Max Diff: 1.895e-03 | Velocity Max Diff: 1.413e-02
+output_0251.vti | Pressure Max Diff: 1.903e-03 | Velocity Max Diff: 1.411e-02
+output_0252.vti | Pressure Max Diff: 1.910e-03 | Velocity Max Diff: 1.417e-02
+output_0253.vti | Pressure Max Diff: 1.916e-03 | Velocity Max Diff: 1.423e-02
+output_0254.vti | Pressure Max Diff: 1.922e-03 | Velocity Max Diff: 1.428e-02
+output_0255.vti | Pressure Max Diff: 1.927e-03 | Velocity Max Diff: 1.433e-02
+output_0256.vti | Pressure Max Diff: 1.932e-03 | Velocity Max Diff: 1.438e-02
+output_0257.vti | Pressure Max Diff: 1.936e-03 | Velocity Max Diff: 1.443e-02
+output_0258.vti | Pressure Max Diff: 1.939e-03 | Velocity Max Diff: 1.447e-02
+output_0259.vti | Pressure Max Diff: 1.942e-03 | Velocity Max Diff: 1.451e-02
+output_0260.vti | Pressure Max Diff: 1.944e-03 | Velocity Max Diff: 1.454e-02
+output_0261.vti | Pressure Max Diff: 1.946e-03 | Velocity Max Diff: 1.458e-02
+output_0262.vti | Pressure Max Diff: 1.947e-03 | Velocity Max Diff: 1.460e-02
+output_0263.vti | Pressure Max Diff: 1.947e-03 | Velocity Max Diff: 1.463e-02
+output_0264.vti | Pressure Max Diff: 1.947e-03 | Velocity Max Diff: 1.465e-02
+output_0265.vti | Pressure Max Diff: 1.946e-03 | Velocity Max Diff: 1.467e-02
+output_0266.vti | Pressure Max Diff: 1.945e-03 | Velocity Max Diff: 1.469e-02
+output_0267.vti | Pressure Max Diff: 1.943e-03 | Velocity Max Diff: 1.470e-02
+output_0268.vti | Pressure Max Diff: 1.941e-03 | Velocity Max Diff: 1.471e-02
+output_0269.vti | Pressure Max Diff: 1.938e-03 | Velocity Max Diff: 1.472e-02
+output_0270.vti | Pressure Max Diff: 1.934e-03 | Velocity Max Diff: 1.472e-02
+output_0271.vti | Pressure Max Diff: 1.930e-03 | Velocity Max Diff: 1.472e-02
+output_0272.vti | Pressure Max Diff: 1.925e-03 | Velocity Max Diff: 1.472e-02
+output_0273.vti | Pressure Max Diff: 1.919e-03 | Velocity Max Diff: 1.471e-02
+output_0274.vti | Pressure Max Diff: 1.913e-03 | Velocity Max Diff: 1.470e-02
+output_0275.vti | Pressure Max Diff: 1.906e-03 | Velocity Max Diff: 1.469e-02
+output_0276.vti | Pressure Max Diff: 1.899e-03 | Velocity Max Diff: 1.468e-02
+output_0277.vti | Pressure Max Diff: 1.891e-03 | Velocity Max Diff: 1.466e-02
+output_0278.vti | Pressure Max Diff: 1.882e-03 | Velocity Max Diff: 1.464e-02
+output_0279.vti | Pressure Max Diff: 1.873e-03 | Velocity Max Diff: 1.462e-02
+output_0280.vti | Pressure Max Diff: 1.864e-03 | Velocity Max Diff: 1.460e-02
+output_0281.vti | Pressure Max Diff: 1.854e-03 | Velocity Max Diff: 1.457e-02
+output_0282.vti | Pressure Max Diff: 1.844e-03 | Velocity Max Diff: 1.454e-02
+output_0283.vti | Pressure Max Diff: 1.833e-03 | Velocity Max Diff: 1.451e-02
+output_0284.vti | Pressure Max Diff: 1.822e-03 | Velocity Max Diff: 1.447e-02
+output_0285.vti | Pressure Max Diff: 1.816e-03 | Velocity Max Diff: 1.443e-02
+output_0286.vti | Pressure Max Diff: 1.824e-03 | Velocity Max Diff: 1.439e-02
+output_0287.vti | Pressure Max Diff: 1.831e-03 | Velocity Max Diff: 1.438e-02
+output_0288.vti | Pressure Max Diff: 1.839e-03 | Velocity Max Diff: 1.442e-02
+output_0289.vti | Pressure Max Diff: 1.845e-03 | Velocity Max Diff: 1.446e-02
+output_0290.vti | Pressure Max Diff: 1.851e-03 | Velocity Max Diff: 1.449e-02
+output_0291.vti | Pressure Max Diff: 1.857e-03 | Velocity Max Diff: 1.452e-02
+output_0292.vti | Pressure Max Diff: 1.862e-03 | Velocity Max Diff: 1.455e-02
+output_0293.vti | Pressure Max Diff: 1.866e-03 | Velocity Max Diff: 1.457e-02
+output_0294.vti | Pressure Max Diff: 1.870e-03 | Velocity Max Diff: 1.460e-02
+output_0295.vti | Pressure Max Diff: 1.873e-03 | Velocity Max Diff: 1.462e-02
+output_0296.vti | Pressure Max Diff: 1.876e-03 | Velocity Max Diff: 1.463e-02
+output_0297.vti | Pressure Max Diff: 1.878e-03 | Velocity Max Diff: 1.465e-02
+output_0298.vti | Pressure Max Diff: 1.880e-03 | Velocity Max Diff: 1.466e-02
+output_0299.vti | Pressure Max Diff: 1.880e-03 | Velocity Max Diff: 1.467e-02
+output_0300.vti | Pressure Max Diff: 1.880e-03 | Velocity Max Diff: 1.467e-02
+output_0301.vti | Pressure Max Diff: 1.880e-03 | Velocity Max Diff: 1.467e-02
+output_0302.vti | Pressure Max Diff: 1.879e-03 | Velocity Max Diff: 1.467e-02
+output_0303.vti | Pressure Max Diff: 1.878e-03 | Velocity Max Diff: 1.467e-02
+output_0304.vti | Pressure Max Diff: 1.877e-03 | Velocity Max Diff: 1.467e-02
+output_0305.vti | Pressure Max Diff: 1.875e-03 | Velocity Max Diff: 1.466e-02
+output_0306.vti | Pressure Max Diff: 1.872e-03 | Velocity Max Diff: 1.465e-02
+output_0307.vti | Pressure Max Diff: 1.869e-03 | Velocity Max Diff: 1.463e-02
+output_0308.vti | Pressure Max Diff: 1.866e-03 | Velocity Max Diff: 1.462e-02
+output_0309.vti | Pressure Max Diff: 1.864e-03 | Velocity Max Diff: 1.460e-02
+output_0310.vti | Pressure Max Diff: 1.862e-03 | Velocity Max Diff: 1.458e-02
+output_0311.vti | Pressure Max Diff: 1.861e-03 | Velocity Max Diff: 1.456e-02
+output_0312.vti | Pressure Max Diff: 1.858e-03 | Velocity Max Diff: 1.453e-02
+output_0313.vti | Pressure Max Diff: 1.856e-03 | Velocity Max Diff: 1.451e-02
+output_0314.vti | Pressure Max Diff: 1.853e-03 | Velocity Max Diff: 1.448e-02
+output_0315.vti | Pressure Max Diff: 1.850e-03 | Velocity Max Diff: 1.445e-02
+output_0316.vti | Pressure Max Diff: 1.846e-03 | Velocity Max Diff: 1.442e-02
+output_0317.vti | Pressure Max Diff: 1.843e-03 | Velocity Max Diff: 1.438e-02
+output_0318.vti | Pressure Max Diff: 1.838e-03 | Velocity Max Diff: 1.434e-02
+output_0319.vti | Pressure Max Diff: 1.834e-03 | Velocity Max Diff: 1.430e-02
+output_0320.vti | Pressure Max Diff: 1.829e-03 | Velocity Max Diff: 1.426e-02
+output_0321.vti | Pressure Max Diff: 1.824e-03 | Velocity Max Diff: 1.422e-02
+output_0322.vti | Pressure Max Diff: 1.819e-03 | Velocity Max Diff: 1.418e-02
+output_0323.vti | Pressure Max Diff: 1.813e-03 | Velocity Max Diff: 1.413e-02
+output_0324.vti | Pressure Max Diff: 1.807e-03 | Velocity Max Diff: 1.408e-02
+output_0325.vti | Pressure Max Diff: 1.801e-03 | Velocity Max Diff: 1.403e-02
+output_0326.vti | Pressure Max Diff: 1.794e-03 | Velocity Max Diff: 1.403e-02
+output_0327.vti | Pressure Max Diff: 1.787e-03 | Velocity Max Diff: 1.405e-02
+output_0328.vti | Pressure Max Diff: 1.780e-03 | Velocity Max Diff: 1.407e-02
+output_0329.vti | Pressure Max Diff: 1.772e-03 | Velocity Max Diff: 1.408e-02
+output_0330.vti | Pressure Max Diff: 1.764e-03 | Velocity Max Diff: 1.409e-02
+output_0331.vti | Pressure Max Diff: 1.764e-03 | Velocity Max Diff: 1.410e-02
+output_0332.vti | Pressure Max Diff: 1.770e-03 | Velocity Max Diff: 1.411e-02
+output_0333.vti | Pressure Max Diff: 1.775e-03 | Velocity Max Diff: 1.411e-02
+output_0334.vti | Pressure Max Diff: 1.780e-03 | Velocity Max Diff: 1.412e-02
+output_0335.vti | Pressure Max Diff: 1.785e-03 | Velocity Max Diff: 1.412e-02
+output_0336.vti | Pressure Max Diff: 1.790e-03 | Velocity Max Diff: 1.412e-02
+output_0337.vti | Pressure Max Diff: 1.794e-03 | Velocity Max Diff: 1.411e-02
+output_0338.vti | Pressure Max Diff: 1.798e-03 | Velocity Max Diff: 1.411e-02
+output_0339.vti | Pressure Max Diff: 1.801e-03 | Velocity Max Diff: 1.410e-02
+output_0340.vti | Pressure Max Diff: 1.805e-03 | Velocity Max Diff: 1.409e-02
+output_0341.vti | Pressure Max Diff: 1.807e-03 | Velocity Max Diff: 1.408e-02
+output_0342.vti | Pressure Max Diff: 1.810e-03 | Velocity Max Diff: 1.406e-02
+output_0343.vti | Pressure Max Diff: 1.812e-03 | Velocity Max Diff: 1.405e-02
+output_0344.vti | Pressure Max Diff: 1.814e-03 | Velocity Max Diff: 1.403e-02
+output_0345.vti | Pressure Max Diff: 1.816e-03 | Velocity Max Diff: 1.401e-02
+output_0346.vti | Pressure Max Diff: 1.817e-03 | Velocity Max Diff: 1.399e-02
+output_0347.vti | Pressure Max Diff: 1.819e-03 | Velocity Max Diff: 1.396e-02
+output_0348.vti | Pressure Max Diff: 1.819e-03 | Velocity Max Diff: 1.394e-02
+output_0349.vti | Pressure Max Diff: 1.820e-03 | Velocity Max Diff: 1.391e-02
+output_0350.vti | Pressure Max Diff: 1.820e-03 | Velocity Max Diff: 1.389e-02
+output_0351.vti | Pressure Max Diff: 1.820e-03 | Velocity Max Diff: 1.386e-02
+output_0352.vti | Pressure Max Diff: 1.820e-03 | Velocity Max Diff: 1.383e-02
+output_0353.vti | Pressure Max Diff: 1.819e-03 | Velocity Max Diff: 1.380e-02
+output_0354.vti | Pressure Max Diff: 1.819e-03 | Velocity Max Diff: 1.376e-02
+output_0355.vti | Pressure Max Diff: 1.817e-03 | Velocity Max Diff: 1.373e-02
+output_0356.vti | Pressure Max Diff: 1.816e-03 | Velocity Max Diff: 1.369e-02
+output_0357.vti | Pressure Max Diff: 1.814e-03 | Velocity Max Diff: 1.365e-02
+output_0358.vti | Pressure Max Diff: 1.812e-03 | Velocity Max Diff: 1.362e-02
+output_0359.vti | Pressure Max Diff: 1.810e-03 | Velocity Max Diff: 1.358e-02
+output_0360.vti | Pressure Max Diff: 1.807e-03 | Velocity Max Diff: 1.354e-02
+output_0361.vti | Pressure Max Diff: 1.804e-03 | Velocity Max Diff: 1.350e-02
+output_0362.vti | Pressure Max Diff: 1.800e-03 | Velocity Max Diff: 1.345e-02
+output_0363.vti | Pressure Max Diff: 1.797e-03 | Velocity Max Diff: 1.341e-02
+output_0364.vti | Pressure Max Diff: 1.793e-03 | Velocity Max Diff: 1.337e-02
+output_0365.vti | Pressure Max Diff: 1.788e-03 | Velocity Max Diff: 1.332e-02
+output_0366.vti | Pressure Max Diff: 1.784e-03 | Velocity Max Diff: 1.327e-02
+output_0367.vti | Pressure Max Diff: 1.779e-03 | Velocity Max Diff: 1.323e-02
+output_0368.vti | Pressure Max Diff: 1.774e-03 | Velocity Max Diff: 1.318e-02
+output_0369.vti | Pressure Max Diff: 1.769e-03 | Velocity Max Diff: 1.313e-02
+output_0370.vti | Pressure Max Diff: 1.763e-03 | Velocity Max Diff: 1.312e-02
+output_0371.vti | Pressure Max Diff: 1.757e-03 | Velocity Max Diff: 1.312e-02
+output_0372.vti | Pressure Max Diff: 1.751e-03 | Velocity Max Diff: 1.312e-02
+output_0373.vti | Pressure Max Diff: 1.745e-03 | Velocity Max Diff: 1.312e-02
+output_0374.vti | Pressure Max Diff: 1.739e-03 | Velocity Max Diff: 1.312e-02
+output_0375.vti | Pressure Max Diff: 1.732e-03 | Velocity Max Diff: 1.311e-02
+output_0376.vti | Pressure Max Diff: 1.725e-03 | Velocity Max Diff: 1.311e-02
+output_0377.vti | Pressure Max Diff: 1.718e-03 | Velocity Max Diff: 1.310e-02
+output_0378.vti | Pressure Max Diff: 1.710e-03 | Velocity Max Diff: 1.309e-02
+output_0379.vti | Pressure Max Diff: 1.703e-03 | Velocity Max Diff: 1.308e-02
+output_0380.vti | Pressure Max Diff: 1.697e-03 | Velocity Max Diff: 1.307e-02
+output_0381.vti | Pressure Max Diff: 1.701e-03 | Velocity Max Diff: 1.305e-02
+output_0382.vti | Pressure Max Diff: 1.704e-03 | Velocity Max Diff: 1.304e-02
+output_0383.vti | Pressure Max Diff: 1.705e-03 | Velocity Max Diff: 1.265e-02
+
+--- Time Series Analysis ---
+Run 1 - Fixed time step: False (dt approx: 0.025031117385956668)
+Run 2 - Fixed time step: True (dt approx: 0.025)
+Time series status: MISMATCH
+Diagnosis: Time steps are irregular or diverging progressively.
+
+Plot generated and saved successfully as 'comparison_plot.png'.

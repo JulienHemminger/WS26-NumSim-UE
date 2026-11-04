@@ -2,19 +2,21 @@
 
 void writeParaviewOutput(int fileNo, std::string uID)
 {
+  const std::string outputDirectory = uID.empty() ? "out" : "out_" + uID;
+
   // create "out" subdirectory if it does not yet exist
   std::string command = "mkdir -p ";
-  std::string folder_name = "out_"  + uID;
+  std::string folder_name = outputDirectory;
   int returnValue = system((command + folder_name).c_str());
   if (returnValue != 0)
-    std::cout << "Could not create subdirectory \"out_"  << uID << "\"." << std::endl;
+    std::cout << "Could not create subdirectory \"" << outputDirectory << "\"." << std::endl;
 
   // Create a vtkWriter
   vtkSmartPointer<vtkXMLImageDataWriter> vtkWriter = vtkSmartPointer<vtkXMLImageDataWriter>::New();
 
   // Assemble the filename
   std::stringstream fileName;
-  fileName << "out_" << uID << "/output_" << std::setw(4) << setfill('0') << fileNo << "." << vtkWriter->GetDefaultFileExtension();
+  fileName << outputDirectory << "/output_" << std::setw(4) << setfill('0') << fileNo << "." << vtkWriter->GetDefaultFileExtension();
 
   std::cout << "Write file \"" << fileName.str() << "\"." << std::endl;
 

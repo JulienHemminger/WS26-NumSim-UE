@@ -31,10 +31,12 @@ cmake --build build
 ctest --test-dir build --output-on-failure
 ```
 
-Each test clears `build/out` before running its scenario. The scenarios run in order
-because they share that output directory. The CI workflow downloads the reference
-archive from the `v1.0.0` release; locally, keep the reference directories in the
-locations above.
+Runs without a `uID` setting write to `build/out`. Each CTest case clears that
+directory before running; the two scenarios run sequentially because they share it.
+The comparator aligns frames by their recorded physical time, checks the mean time
+step within 5%, and allows a maximum absolute pressure or velocity difference of
+`1e-2`. The CI workflow downloads the reference archive from the `v1.0.0` release;
+locally, keep the reference directories in the locations above.
 
 ### Troubleshooting
 

@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.8)
-project(NumSimProject)
+project(numsim_root)
 
 enable_testing()
 

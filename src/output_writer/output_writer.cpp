@@ -4,13 +4,13 @@
 #include <iostream>
 
 OutputWriter::OutputWriter(std::shared_ptr<Discretization> discretization, std::string uID)
- : discretization_(discretization), fileNo_(0)
+ : discretization_(discretization), fileNo_(0),
+   outputDirectory_(uID.empty() ? "out" : "out_" + uID)
 {
-  // create "out" subdirectory if it does not yet exist
+  // create the output subdirectory if it does not yet exist
   std::string command = "mkdir -p ";
-  std::string folder_name = "out_"  + uID;
+  std::string folder_name = outputDirectory_;
   int returnValue = system((command + folder_name).c_str());
   if (returnValue != 0)
-    std::cout << "Could not create subdirectory \"out_"  << uID << "\"." << std::endl;
-  uID_ = uID;
+    std::cout << "Could not create subdirectory \"" << outputDirectory_ << "\"." << std::endl;
 }
