@@ -27,7 +27,7 @@ jobs:
         key: ref-data-v1.0.0
 
     - name: Fetch Reference Data from Release
-      if: steps:cache-ref-data.outputs.cache-hit != 'true'
+      if: steps.cache-ref-data.outputs.cache-hit != 'true'
       run: |
         mkdir -p test/reference_data
         curl -L -o ref_data.zip "https://github.com/JulienHemminger/WS26-NumSim-UE/releases/download/v1.0.0/reference_data.zip"
