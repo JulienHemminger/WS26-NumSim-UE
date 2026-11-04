@@ -1,29 +1,39 @@
-#include <cstdlib>
 #include <iostream>
+#include <cstdlib>
 
-#include "Settings.h"
+#include "settings.h"
+#include "computation.h"
 
-int main(int argc, char* argv[]) {
-    // if the number of given command line arguments is only 1 (= the program name), print out usage
-    // information and exit
-    if (argc == 1) {
-        std::cout << "usage: " << argv[0] << " <filename>" << std::endl;
+int main(int argc, char *argv[])
+{
+  // if the number of given command line arguments is only 1 (= the program name), print out usage information and exit
+  if (argc == 1)
+  {
+    std::cout << "usage: " << argv[0] << " <filename>" << std::endl;
 
-        return EXIT_FAILURE;
-    }
+    return EXIT_FAILURE;
+  }
+  std::cout << std::endl;
+  std::cout << "-------------------------------------------------" << std::endl;
+  std::cout << "Parsing paramter file..." << std::endl;
+  std::cout << std::endl;
+  
+  // construct computation obj: parses parameter file and prints settings
+  Computation computation = Computation();
+  computation.initialize(argc, argv);
+  
+  std::cout << std::endl;
+  std::cout << "-------------------------------------------------" << std::endl;
+  std::cout << "Starting simulation ..."  << std::endl;
+  std::cout << std::endl;
+  
+  // // start simulating
+  computation.runSimulation();
 
-    // read in the first argument
-    std::string filename = argv[1];
+  // test some stuff
+  //computation.runTest();
 
-    // print message
-    std::cout << "Filename: \"" << filename << "\"" << std::endl;
-
-    Settings settings;
-    // load settings from file
-    settings.loadFromFile(filename);
-
-    // display all settings on console
-    settings.printSettings();
-
-    return EXIT_SUCCESS;
+  std::cout << "-------------------------------------------------" << std::endl;
+  
+  return EXIT_SUCCESS;
 }

@@ -16,8 +16,25 @@ make install
 Bash
 
 ```
-./numsim ../test/0_lid_driven_cavity/lid_driven_cavity.txt
+./numsim ../test/0_driven_cavity/input_parameters.txt
 ```
+
+### 3. Run the reference tests
+
+The reference tests compare the generated VTI files with the data in
+`test/0_driven_cavity/reference_output` and
+`test/3_varying_params/reference_output`. Configure and build the project, then run:
+
+```bash
+cmake -S . -B build -DCMAKE_BUILD_TYPE=Release
+cmake --build build
+ctest --test-dir build --output-on-failure
+```
+
+Each test clears `build/out` before running its scenario. The scenarios run in order
+because they share that output directory. The CI workflow downloads the reference
+archive from the `v1.0.0` release; locally, keep the reference directories in the
+locations above.
 
 ### Troubleshooting
 
@@ -29,4 +46,3 @@ Bash
 echo 'export LD_LIBRARY_PATH=/usr/lib/jvm/java-11-openjdk-amd64/lib:/usr/lib/jvm/java-11-openjdk-amd64/lib/server:$LD_LIBRARY_PATH' >> ~/.bashrc
 source ~/.bashrc
 ```
-

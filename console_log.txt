@@ -1,0 +1,273 @@
+main@UltrabookJulienH:~/Documents/Career/1_Studium/1_SimTech_MSc/1_WS26/Numerische_Simulation/UE$ gh run list
+STATUS  NAME                                                                             WORKFLOW         BRANCH      EVENT  ID           ELAPSED  AGE
+X       21.10                                                                            C++ CI Pipeline  julien-dev  push   41904092535  4m25s    13m
+X       21.06                                                                            C++ CI Pipeline  julien-dev  push   41903488765  2m15s    17m
+X       20.57                                                                            C++ CI Pipeline  julien-dev  push   41902016941  1m11s    26m
+X       20.53                                                                            C++ CI Pipeline  julien-dev  push   41901404710  1m13s    30m
+X       print tree for debugging                                                         C++ CI Pipeline  julien-dev  push   41900468366  1m44s    36m
+X       20.17                                                                            C++ CI Pipeline  julien-dev  push   41895599764  9m17s    1h
+X       update compare_vti                                                               C++ CI Pipeline  julien-dev  push   41894174108  1m7s     1h
+X       reset                                                                            C++ CI Pipeline  julien-dev  push   41892771327  1m18s    1h
+X       add default-jdk                                                                  CI               julien-dev  push   41885729867  1m29s    2h
+X       new ci.yaml to cache installed depencendies - im fkin done bro                   CI               julien-dev  push   41884674575  2m30s    2h
+X       sudo apt-get install -y libvtk9-dev qtbase5-dev libqt5opengl5-dev python3-numpy  CI               julien-dev  push   41883897237  10m23s   2h
+X       sudo apt-get install -y libvtk9-dev python3-numpy qtbase5-dev                    CI               julien-dev  push   41882682074  5m29s    2h
+X       sudo apt-get install -y libvtk9-dev python3-numpy                                CI               julien-dev  push   41881593365  1m32s    2h
+X       18.50                                                                            CI               julien-dev  push   41881166843  29s      2h
+X       sudo apt-get install -y python3-numpy                                            CI               julien-dev  push   41880963670  21s      2h
+X       18.31                                                                            CI               julien-dev  push   41878316963  11m55s   2h
+X       18.21                                                                            CI               julien-dev  push   41876890057  24m17s   3h
+X       typo                                                                             CI               julien-dev  push   41876348334  1m49s    3h
+X       another try                                                                      CI               julien-dev  push   41875859598  1m35s    3h
+X       new dependency: default-jdk                                                      CI               julien-dev  push   41867177541  1m40s    3h
+
+For details on a run, try: gh run view <run-id>
+main@UltrabookJulienH:~/Documents/Career/1_Studium/1_SimTech_MSc/1_WS26/Numerische_Simulation/UE$ gh run view --log-failed
+? Select a workflow run X 21.10, C++ CI Pipeline (julien-dev) 13m36s ago
+build-and-test  Run CTest       2026-11-04T20:15:05.0058950Z ##[group]Run ctest --test-dir build --output-on-failure
+build-and-test  Run CTest       2026-11-04T20:15:05.0059615Z ctest --test-dir build --output-on-failure
+build-and-test  Run CTest       2026-11-04T20:15:05.0076949Z shell: /usr/bin/bash -e {0}
+build-and-test  Run CTest       2026-11-04T20:15:05.0077176Z ##[endgroup]
+build-and-test  Run CTest       2026-11-04T20:15:05.3819688Z Internal ctest changing into directory: /home/runner/work/WS26-NumSim-UE/WS26-NumSim-UE/build
+build-and-test  Run CTest       2026-11-04T20:15:05.4513232Z Test project /home/runner/work/WS26-NumSim-UE/WS26-NumSim-UE/build
+build-and-test  Run CTest       2026-11-04T20:15:05.5184980Z     Start 1: RunScenario0
+build-and-test  Run CTest       2026-11-04T20:15:05.6685185Z 1/4 Test #1: RunScenario0 .....................   Passed    0.14 sec
+build-and-test  Run CTest       2026-11-04T20:15:05.6751591Z     Start 2: CompareScenario0
+build-and-test  Run CTest       2026-11-04T20:15:05.7905139Z 2/4 Test #2: CompareScenario0 .................***Failed    0.12 sec
+build-and-test  Run CTest       2026-11-04T20:15:05.7905554Z 
+build-and-test  Run CTest       2026-11-04T20:15:05.7906065Z Comparing reference directory: /home/runner/work/WS26-NumSim-UE/WS26-NumSim-UE/test/reference_data/scenario0_lid_driven_cavity
+build-and-test  Run CTest       2026-11-04T20:15:05.7907178Z Against generated directory:  /home/runner/work/WS26-NumSim-UE/WS26-NumSim-UE/build/out
+build-and-test  Run CTest       2026-11-04T20:15:05.7908003Z ERROR: Generated output directory does not exist: /home/runner/work/WS26-NumSim-UE/WS26-NumSim-UE/build/out
+build-and-test  Run CTest       2026-11-04T20:15:05.7908662Z Hint: Did the simulation executable fail to run or write output?
+build-and-test  Run CTest       2026-11-04T20:15:05.7908975Z 
+build-and-test  Run CTest       2026-11-04T20:15:05.7909442Z --- Directory Tree for: /home/runner/work/WS26-NumSim-UE/WS26-NumSim-UE/build ---
+build-and-test  Run CTest       2026-11-04T20:15:05.7909757Z build/
+build-and-test  Run CTest       2026-11-04T20:15:05.7909925Z     CTestTestfile.cmake
+build-and-test  Run CTest       2026-11-04T20:15:05.7910104Z     Makefile
+build-and-test  Run CTest       2026-11-04T20:15:05.7910275Z     CMakeCache.txt
+build-and-test  Run CTest       2026-11-04T20:15:05.7910448Z     cmake_install.cmake
+build-and-test  Run CTest       2026-11-04T20:15:05.7910635Z     Testing/
+build-and-test  Run CTest       2026-11-04T20:15:05.7910796Z         Temporary/
+build-and-test  Run CTest       2026-11-04T20:15:05.7910975Z             CTestCheckpoint.txt
+build-and-test  Run CTest       2026-11-04T20:15:05.7911203Z             LastTest.log.tmp
+build-and-test  Run CTest       2026-11-04T20:15:05.7911395Z     test/
+build-and-test  Run CTest       2026-11-04T20:15:05.7911557Z         CTestTestfile.cmake
+build-and-test  Run CTest       2026-11-04T20:15:05.7911750Z         Makefile
+build-and-test  Run CTest       2026-11-04T20:15:05.7911926Z         cmake_install.cmake
+build-and-test  Run CTest       2026-11-04T20:15:05.7912108Z         CMakeFiles/
+build-and-test  Run CTest       2026-11-04T20:15:05.7912288Z             progress.marks
+build-and-test  Run CTest       2026-11-04T20:15:05.7912502Z             CMakeDirectoryInformation.cmake
+build-and-test  Run CTest       2026-11-04T20:15:05.7912735Z     CMakeFiles/
+build-and-test  Run CTest       2026-11-04T20:15:05.7912913Z         Makefile.cmake
+build-and-test  Run CTest       2026-11-04T20:15:05.7913100Z         TargetDirectories.txt
+build-and-test  Run CTest       2026-11-04T20:15:05.7913353Z         progress.marks
+build-and-test  Run CTest       2026-11-04T20:15:05.7913601Z         Makefile2
+build-and-test  Run CTest       2026-11-04T20:15:05.7913856Z         cmake.check_cache
+build-and-test  Run CTest       2026-11-04T20:15:05.7914153Z         CMakeConfigureLog.yaml
+build-and-test  Run CTest       2026-11-04T20:15:05.7914484Z         CMakeDirectoryInformation.cmake
+build-and-test  Run CTest       2026-11-04T20:15:05.7914826Z         FindMPI/
+build-and-test  Run CTest       2026-11-04T20:15:05.7915088Z             test_mpi_C.bin
+build-and-test  Run CTest       2026-11-04T20:15:05.7915330Z         3.31.6/
+build-and-test  Run CTest       2026-11-04T20:15:05.7915543Z             CMakeSystem.cmake
+build-and-test  Run CTest       2026-11-04T20:15:05.7915810Z             CMakeCCompiler.cmake
+build-and-test  Run CTest       2026-11-04T20:15:05.7916130Z             CMakeDetermineCompilerABI_CXX.bin
+build-and-test  Run CTest       2026-11-04T20:15:05.7916422Z             CMakeCXXCompiler.cmake
+build-and-test  Run CTest       2026-11-04T20:15:05.7916650Z             CMakeDetermineCompilerABI_C.bin
+build-and-test  Run CTest       2026-11-04T20:15:05.7916876Z             CompilerIdCXX/
+build-and-test  Run CTest       2026-11-04T20:15:05.7917053Z                 a.out
+build-and-test  Run CTest       2026-11-04T20:15:05.7917240Z                 CMakeCXXCompilerId.cpp
+build-and-test  Run CTest       2026-11-04T20:15:05.7917448Z                 tmp/
+build-and-test  Run CTest       2026-11-04T20:15:05.7917626Z             CompilerIdC/
+build-and-test  Run CTest       2026-11-04T20:15:05.7917803Z                 a.out
+build-and-test  Run CTest       2026-11-04T20:15:05.7917987Z                 CMakeCCompilerId.c
+build-and-test  Run CTest       2026-11-04T20:15:05.7918184Z                 tmp/
+build-and-test  Run CTest       2026-11-04T20:15:05.7918349Z         CMakeScratch/
+build-and-test  Run CTest       2026-11-04T20:15:05.7918515Z         pkgRedirects/
+build-and-test  Run CTest       2026-11-04T20:15:05.7918689Z     src/
+build-and-test  Run CTest       2026-11-04T20:15:05.7918856Z         CTestTestfile.cmake
+build-and-test  Run CTest       2026-11-04T20:15:05.7919263Z         numsim
+build-and-test  Run CTest       2026-11-04T20:15:05.7919453Z         Makefile
+build-and-test  Run CTest       2026-11-04T20:15:05.7919624Z         cmake_install.cmake
+build-and-test  Run CTest       2026-11-04T20:15:05.7919811Z         CMakeFiles/
+build-and-test  Run CTest       2026-11-04T20:15:05.7919991Z             progress.marks
+build-and-test  Run CTest       2026-11-04T20:15:05.7920441Z             CMakeDirectoryInformation.cmake
+build-and-test  Run CTest       2026-11-04T20:15:05.7920678Z             hdf5/
+build-and-test  Run CTest       2026-11-04T20:15:05.7920851Z                 a.out
+build-and-test  Run CTest       2026-11-04T20:15:05.7921029Z                 cmake_hdf5_test.c
+build-and-test  Run CTest       2026-11-04T20:15:05.7921231Z                 cmake_hdf5_test.o
+build-and-test  Run CTest       2026-11-04T20:15:05.7921419Z                 CMakeFiles/
+build-and-test  Run CTest       2026-11-04T20:15:05.7921611Z                     CMakeTmp/
+build-and-test  Run CTest       2026-11-04T20:15:05.7921802Z             numsim.dir/
+build-and-test  Run CTest       2026-11-04T20:15:05.7921980Z                 Settings.cpp.o
+build-and-test  Run CTest       2026-11-04T20:15:05.7922177Z                 compiler_depend.ts
+build-and-test  Run CTest       2026-11-04T20:15:05.7922385Z                 Computation.cpp.o
+build-and-test  Run CTest       2026-11-04T20:15:05.7922577Z                 build.make
+build-and-test  Run CTest       2026-11-04T20:15:05.7922759Z                 cmake_clean.cmake
+build-and-test  Run CTest       2026-11-04T20:15:05.7922945Z                 depend.make
+build-and-test  Run CTest       2026-11-04T20:15:05.7923141Z                 compiler_depend.make
+build-and-test  Run CTest       2026-11-04T20:15:05.7923355Z                 link.txt
+build-and-test  Run CTest       2026-11-04T20:15:05.7923648Z                 progress.make
+build-and-test  Run CTest       2026-11-04T20:15:05.7923837Z                 main.cpp.o
+build-and-test  Run CTest       2026-11-04T20:15:05.7924020Z                 flags.make
+build-and-test  Run CTest       2026-11-04T20:15:05.7924210Z                 DependInfo.cmake
+build-and-test  Run CTest       2026-11-04T20:15:05.7924410Z                 Settings.cpp.o.d
+build-and-test  Run CTest       2026-11-04T20:15:05.7924605Z                 Computation.cpp.o.d
+build-and-test  Run CTest       2026-11-04T20:15:05.7924806Z                 link.d
+build-and-test  Run CTest       2026-11-04T20:15:05.7924989Z                 main.cpp.o.d
+build-and-test  Run CTest       2026-11-04T20:15:05.7925173Z                 Array2D/
+build-and-test  Run CTest       2026-11-04T20:15:05.7925356Z                     Array2d.cpp.o
+build-and-test  Run CTest       2026-11-04T20:15:05.7925560Z                     FieldVariable.cpp.o.d
+build-and-test  Run CTest       2026-11-04T20:15:05.7925777Z                     Array2d.cpp.o.d
+build-and-test  Run CTest       2026-11-04T20:15:05.7925993Z                     FieldVariable.cpp.o
+build-and-test  Run CTest       2026-11-04T20:15:05.7926209Z                 OutputWriter/
+build-and-test  Run CTest       2026-11-04T20:15:05.7926410Z                     OutputWriterText.cpp.o.d
+build-and-test  Run CTest       2026-11-04T20:15:05.7926642Z                     OutputWriter.cpp.o
+build-and-test  Run CTest       2026-11-04T20:15:05.7926878Z                     OutputWriterParaview.cpp.o.d
+build-and-test  Run CTest       2026-11-04T20:15:05.7927125Z                     OutputWriterText.cpp.o
+build-and-test  Run CTest       2026-11-04T20:15:05.7927360Z                     OutputWriterParaview.cpp.o
+build-and-test  Run CTest       2026-11-04T20:15:05.7927587Z                     OutputWriter.cpp.o.d
+build-and-test  Run CTest       2026-11-04T20:15:05.7927804Z                 StaggeredGrid/
+build-and-test  Run CTest       2026-11-04T20:15:05.7928030Z                     StaggeredGrid.cpp.o
+build-and-test  Run CTest       2026-11-04T20:15:05.7928248Z                     Discretization.cpp.o.d
+build-and-test  Run CTest       2026-11-04T20:15:05.7928463Z                     DonorCell.cpp.o
+build-and-test  Run CTest       2026-11-04T20:15:05.7928684Z                     StaggeredGrid.cpp.o.d
+build-and-test  Run CTest       2026-11-04T20:15:05.7928907Z                     CentralDifferences.cpp.o.d
+build-and-test  Run CTest       2026-11-04T20:15:05.7929374Z                     DonorCell.cpp.o.d
+build-and-test  Run CTest       2026-11-04T20:15:05.7929598Z                     CentralDifferences.cpp.o
+build-and-test  Run CTest       2026-11-04T20:15:05.7929828Z                     Discretization.cpp.o
+build-and-test  Run CTest       2026-11-04T20:15:05.7930035Z                 PressureSolver/
+build-and-test  Run CTest       2026-11-04T20:15:05.7930271Z                     PressureSolver.cpp.o
+build-and-test  Run CTest       2026-11-04T20:15:05.7930478Z                     SOR.cpp.o
+build-and-test  Run CTest       2026-11-04T20:15:05.7930677Z                     GaussSeidel.cpp.o
+build-and-test  Run CTest       2026-11-04T20:15:05.7930889Z                     PressureSolver.cpp.o.d
+build-and-test  Run CTest       2026-11-04T20:15:05.7931098Z                     SOR.cpp.o.d
+build-and-test  Run CTest       2026-11-04T20:15:05.7931290Z                     GaussSeidel.cpp.o.d
+build-and-test  Run CTest       2026-11-04T20:15:05.7931498Z ----------------------------------------
+build-and-test  Run CTest       2026-11-04T20:15:05.7931648Z 
+build-and-test  Run CTest       2026-11-04T20:15:05.7931653Z 
+build-and-test  Run CTest       2026-11-04T20:15:05.7931736Z     Start 3: RunScenario3
+build-and-test  Run CTest       2026-11-04T20:15:05.8911646Z 3/4 Test #3: RunScenario3 .....................   Passed    0.10 sec
+build-and-test  Run CTest       2026-11-04T20:15:05.8913227Z     Start 4: CompareScenario3
+build-and-test  Run CTest       2026-11-04T20:15:05.9828061Z 4/4 Test #4: CompareScenario3 .................***Failed    0.09 sec
+build-and-test  Run CTest       2026-11-04T20:15:05.9828504Z 
+build-and-test  Run CTest       2026-11-04T20:15:05.9829196Z Comparing reference directory: /home/runner/work/WS26-NumSim-UE/WS26-NumSim-UE/test/reference_data/scenario3_vary_everything
+build-and-test  Run CTest       2026-11-04T20:15:05.9830020Z Against generated directory:  /home/runner/work/WS26-NumSim-UE/WS26-NumSim-UE/build/out
+build-and-test  Run CTest       2026-11-04T20:15:05.9830755Z ERROR: Generated output directory does not exist: /home/runner/work/WS26-NumSim-UE/WS26-NumSim-UE/build/out
+build-and-test  Run CTest       2026-11-04T20:15:05.9831654Z Hint: Did the simulation executable fail to run or write output?
+build-and-test  Run CTest       2026-11-04T20:15:05.9831960Z 
+build-and-test  Run CTest       2026-11-04T20:15:05.9832239Z --- Directory Tree for: /home/runner/work/WS26-NumSim-UE/WS26-NumSim-UE/build ---
+build-and-test  Run CTest       2026-11-04T20:15:05.9832685Z build/
+build-and-test  Run CTest       2026-11-04T20:15:05.9832888Z     CTestTestfile.cmake
+build-and-test  Run CTest       2026-11-04T20:15:05.9833071Z     Makefile
+build-and-test  Run CTest       2026-11-04T20:15:05.9833237Z     CMakeCache.txt
+build-and-test  Run CTest       2026-11-04T20:15:05.9833416Z     cmake_install.cmake
+build-and-test  Run CTest       2026-11-04T20:15:05.9833587Z     Testing/
+build-and-test  Run CTest       2026-11-04T20:15:05.9833736Z         Temporary/
+build-and-test  Run CTest       2026-11-04T20:15:05.9833906Z             CTestCheckpoint.txt
+build-and-test  Run CTest       2026-11-04T20:15:05.9834121Z             LastTest.log.tmp
+build-and-test  Run CTest       2026-11-04T20:15:05.9834312Z     test/
+build-and-test  Run CTest       2026-11-04T20:15:05.9834479Z         CTestTestfile.cmake
+build-and-test  Run CTest       2026-11-04T20:15:05.9834663Z         Makefile
+build-and-test  Run CTest       2026-11-04T20:15:05.9834832Z         cmake_install.cmake
+build-and-test  Run CTest       2026-11-04T20:15:05.9835169Z         CMakeFiles/
+build-and-test  Run CTest       2026-11-04T20:15:05.9835418Z             progress.marks
+build-and-test  Run CTest       2026-11-04T20:15:05.9835727Z             CMakeDirectoryInformation.cmake
+build-and-test  Run CTest       2026-11-04T20:15:05.9836065Z     CMakeFiles/
+build-and-test  Run CTest       2026-11-04T20:15:05.9836316Z         Makefile.cmake
+build-and-test  Run CTest       2026-11-04T20:15:05.9836568Z         TargetDirectories.txt
+build-and-test  Run CTest       2026-11-04T20:15:05.9836849Z         progress.marks
+build-and-test  Run CTest       2026-11-04T20:15:05.9837019Z         Makefile2
+build-and-test  Run CTest       2026-11-04T20:15:05.9837191Z         cmake.check_cache
+build-and-test  Run CTest       2026-11-04T20:15:05.9837388Z         CMakeConfigureLog.yaml
+build-and-test  Run CTest       2026-11-04T20:15:05.9837601Z         CMakeDirectoryInformation.cmake
+build-and-test  Run CTest       2026-11-04T20:15:05.9837819Z         FindMPI/
+build-and-test  Run CTest       2026-11-04T20:15:05.9837990Z             test_mpi_C.bin
+build-and-test  Run CTest       2026-11-04T20:15:05.9838244Z         3.31.6/
+build-and-test  Run CTest       2026-11-04T20:15:05.9838489Z             CMakeSystem.cmake
+build-and-test  Run CTest       2026-11-04T20:15:05.9838729Z             CMakeCCompiler.cmake
+build-and-test  Run CTest       2026-11-04T20:15:05.9838955Z             CMakeDetermineCompilerABI_CXX.bin
+build-and-test  Run CTest       2026-11-04T20:15:05.9839381Z             CMakeCXXCompiler.cmake
+build-and-test  Run CTest       2026-11-04T20:15:05.9839613Z             CMakeDetermineCompilerABI_C.bin
+build-and-test  Run CTest       2026-11-04T20:15:05.9839838Z             CompilerIdCXX/
+build-and-test  Run CTest       2026-11-04T20:15:05.9840019Z                 a.out
+build-and-test  Run CTest       2026-11-04T20:15:05.9840211Z                 CMakeCXXCompilerId.cpp
+build-and-test  Run CTest       2026-11-04T20:15:05.9840420Z                 tmp/
+build-and-test  Run CTest       2026-11-04T20:15:05.9840598Z             CompilerIdC/
+build-and-test  Run CTest       2026-11-04T20:15:05.9840777Z                 a.out
+build-and-test  Run CTest       2026-11-04T20:15:05.9840949Z                 CMakeCCompilerId.c
+build-and-test  Run CTest       2026-11-04T20:15:05.9841147Z                 tmp/
+build-and-test  Run CTest       2026-11-04T20:15:05.9841308Z         CMakeScratch/
+build-and-test  Run CTest       2026-11-04T20:15:05.9841478Z         pkgRedirects/
+build-and-test  Run CTest       2026-11-04T20:15:05.9841648Z     src/
+build-and-test  Run CTest       2026-11-04T20:15:05.9841818Z         CTestTestfile.cmake
+build-and-test  Run CTest       2026-11-04T20:15:05.9842006Z         numsim
+build-and-test  Run CTest       2026-11-04T20:15:05.9842168Z         Makefile
+build-and-test  Run CTest       2026-11-04T20:15:05.9842332Z         cmake_install.cmake
+build-and-test  Run CTest       2026-11-04T20:15:05.9842522Z         CMakeFiles/
+build-and-test  Run CTest       2026-11-04T20:15:05.9842711Z             progress.marks
+build-and-test  Run CTest       2026-11-04T20:15:05.9842919Z             CMakeDirectoryInformation.cmake
+build-and-test  Run CTest       2026-11-04T20:15:05.9843139Z             hdf5/
+build-and-test  Run CTest       2026-11-04T20:15:05.9843307Z                 a.out
+build-and-test  Run CTest       2026-11-04T20:15:05.9843488Z                 cmake_hdf5_test.c
+build-and-test  Run CTest       2026-11-04T20:15:05.9843687Z                 cmake_hdf5_test.o
+build-and-test  Run CTest       2026-11-04T20:15:05.9843875Z                 CMakeFiles/
+build-and-test  Run CTest       2026-11-04T20:15:05.9844058Z                     CMakeTmp/
+build-and-test  Run CTest       2026-11-04T20:15:05.9844260Z             numsim.dir/
+build-and-test  Run CTest       2026-11-04T20:15:05.9844442Z                 Settings.cpp.o
+build-and-test  Run CTest       2026-11-04T20:15:05.9844640Z                 compiler_depend.ts
+build-and-test  Run CTest       2026-11-04T20:15:05.9844850Z                 Computation.cpp.o
+build-and-test  Run CTest       2026-11-04T20:15:05.9845046Z                 build.make
+build-and-test  Run CTest       2026-11-04T20:15:05.9845240Z                 cmake_clean.cmake
+build-and-test  Run CTest       2026-11-04T20:15:05.9845434Z                 depend.make
+build-and-test  Run CTest       2026-11-04T20:15:05.9845628Z                 compiler_depend.make
+build-and-test  Run CTest       2026-11-04T20:15:05.9845831Z                 link.txt
+build-and-test  Run CTest       2026-11-04T20:15:05.9846017Z                 progress.make
+build-and-test  Run CTest       2026-11-04T20:15:05.9846203Z                 main.cpp.o
+build-and-test  Run CTest       2026-11-04T20:15:05.9846381Z                 flags.make
+build-and-test  Run CTest       2026-11-04T20:15:05.9846559Z                 DependInfo.cmake
+build-and-test  Run CTest       2026-11-04T20:15:05.9846904Z                 Settings.cpp.o.d
+build-and-test  Run CTest       2026-11-04T20:15:05.9847106Z                 Computation.cpp.o.d
+build-and-test  Run CTest       2026-11-04T20:15:05.9847310Z                 link.d
+build-and-test  Run CTest       2026-11-04T20:15:05.9847481Z                 main.cpp.o.d
+build-and-test  Run CTest       2026-11-04T20:15:05.9847666Z                 Array2D/
+build-and-test  Run CTest       2026-11-04T20:15:05.9847852Z                     Array2d.cpp.o
+build-and-test  Run CTest       2026-11-04T20:15:05.9848060Z                     FieldVariable.cpp.o.d
+build-and-test  Run CTest       2026-11-04T20:15:05.9848278Z                     Array2d.cpp.o.d
+build-and-test  Run CTest       2026-11-04T20:15:05.9848488Z                     FieldVariable.cpp.o
+build-and-test  Run CTest       2026-11-04T20:15:05.9848706Z                 OutputWriter/
+build-and-test  Run CTest       2026-11-04T20:15:05.9848914Z                     OutputWriterText.cpp.o.d
+build-and-test  Run CTest       2026-11-04T20:15:05.9849316Z                     OutputWriter.cpp.o
+build-and-test  Run CTest       2026-11-04T20:15:05.9849547Z                     OutputWriterParaview.cpp.o.d
+build-and-test  Run CTest       2026-11-04T20:15:05.9849796Z                     OutputWriterText.cpp.o
+build-and-test  Run CTest       2026-11-04T20:15:05.9850140Z                     OutputWriterParaview.cpp.o
+build-and-test  Run CTest       2026-11-04T20:15:05.9850374Z                     OutputWriter.cpp.o.d
+build-and-test  Run CTest       2026-11-04T20:15:05.9850585Z                 StaggeredGrid/
+build-and-test  Run CTest       2026-11-04T20:15:05.9850792Z                     StaggeredGrid.cpp.o
+build-and-test  Run CTest       2026-11-04T20:15:05.9851009Z                     Discretization.cpp.o.d
+build-and-test  Run CTest       2026-11-04T20:15:05.9851219Z                     DonorCell.cpp.o
+build-and-test  Run CTest       2026-11-04T20:15:05.9851424Z                     StaggeredGrid.cpp.o.d
+build-and-test  Run CTest       2026-11-04T20:15:05.9851665Z                     CentralDifferences.cpp.o.d
+build-and-test  Run CTest       2026-11-04T20:15:05.9851897Z                     DonorCell.cpp.o.d
+build-and-test  Run CTest       2026-11-04T20:15:05.9852119Z                     CentralDifferences.cpp.o
+build-and-test  Run CTest       2026-11-04T20:15:05.9852341Z                     Discretization.cpp.o
+build-and-test  Run CTest       2026-11-04T20:15:05.9852580Z                 PressureSolver/
+build-and-test  Run CTest       2026-11-04T20:15:05.9852792Z                     PressureSolver.cpp.o
+build-and-test  Run CTest       2026-11-04T20:15:05.9853005Z                     SOR.cpp.o
+build-and-test  Run CTest       2026-11-04T20:15:05.9853195Z                     GaussSeidel.cpp.o
+build-and-test  Run CTest       2026-11-04T20:15:05.9853409Z                     PressureSolver.cpp.o.d
+build-and-test  Run CTest       2026-11-04T20:15:05.9853632Z                     SOR.cpp.o.d
+build-and-test  Run CTest       2026-11-04T20:15:05.9853824Z                     GaussSeidel.cpp.o.d
+build-and-test  Run CTest       2026-11-04T20:15:05.9854033Z ----------------------------------------
+build-and-test  Run CTest       2026-11-04T20:15:05.9854192Z 
+build-and-test  Run CTest       2026-11-04T20:15:05.9854196Z 
+build-and-test  Run CTest       2026-11-04T20:15:05.9854297Z Errors while running CTest
+build-and-test  Run CTest       2026-11-04T20:15:05.9854417Z 
+build-and-test  Run CTest       2026-11-04T20:15:05.9854512Z 50% tests passed, 2 tests failed out of 4
+build-and-test  Run CTest       2026-11-04T20:15:05.9854660Z 
+build-and-test  Run CTest       2026-11-04T20:15:05.9854743Z Total Test time (real) =   0.53 sec
+build-and-test  Run CTest       2026-11-04T20:15:05.9854881Z 
+build-and-test  Run CTest       2026-11-04T20:15:05.9854956Z The following tests FAILED:
+build-and-test  Run CTest       2026-11-04T20:15:05.9855167Z      2 - CompareScenario0 (Failed)
+build-and-test  Run CTest       2026-11-04T20:15:05.9855379Z      4 - CompareScenario3 (Failed)
+build-and-test  Run CTest       2026-11-04T20:15:06.0254357Z ##[error]Process completed with exit code 8.
+main@UltrabookJulienH:~/Documents/Career/1_Studium/1_SimTech_MSc/1_WS26/Numerische_Simulation/UE$ 

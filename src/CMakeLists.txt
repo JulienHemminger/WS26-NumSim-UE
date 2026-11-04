@@ -1,34 +1,38 @@
 cmake_minimum_required(VERSION 3.8)
 
 # Define the project name.
-project(numsim)
+project(finalproject)
 
 # Specify the name of the executable (${PROJECT_NAME} which is equal to what was set in the project() command).
 # Also specify the source files.
 add_executable(${PROJECT_NAME}
-    main.cpp
-    Settings.cpp
-    Computation.cpp
-    Array2D/Array2d.cpp
-    Array2D/FieldVariable.cpp
-    OutputWriter/OutputWriter.cpp
-    OutputWriter/OutputWriterParaview.cpp
-    OutputWriter/OutputWriterText.cpp
-    PressureSolver/GaussSeidel.cpp
-    PressureSolver/PressureSolver.cpp
-    PressureSolver/SOR.cpp
-    StaggeredGrid/CentralDifferences.cpp
-    StaggeredGrid/Discretization.cpp
-    StaggeredGrid/DonorCell.cpp
-    StaggeredGrid/StaggeredGrid.cpp
+   
+   main.cpp
+   computation.cpp
+   settings.cpp
+   
+   pressure_solver/0_pressure_solver.cpp
+   pressure_solver/1_gauss_seidel.cpp
+   pressure_solver/1_sor.cpp
+   pressure_solver/1_cg_solver.cpp
+   
+   discretization/0_staggered_grid.cpp
+   discretization/1_discretization.cpp
+   discretization/2_central_differences.cpp
+   discretization/2_donor_cell
+  
+   storage/array2D.cpp
+   storage/field_variable.cpp
+  
+   output_writer/output_writer_paraview.cpp
+   output_writer/output_writer_text.cpp
+   output_writer/output_writer.cpp
+   output_writer/write_paraview_output.cpp
+   
 )
 
 # Add the project directory to include directories, to be able to include all project header files from anywhere
 target_include_directories(${PROJECT_NAME} PUBLIC ${PROJECT_SOURCE_DIR})
-
-
-# Find Qt5 components required by the system's VTK build
-find_package(Qt5 COMPONENTS Core Gui Widgets OpenGL REQUIRED)
 
 # Search for the external package "VTK"
 find_package(VTK)
@@ -55,3 +59,4 @@ set(CMAKE_CXX_STANDARD 14)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 message("CMAKE_BUILD_TYPE: ${CMAKE_BUILD_TYPE}")
+

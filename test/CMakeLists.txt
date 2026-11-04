@@ -1,31 +1,36 @@
-enable_testing()
+find_package(Python3 REQUIRED COMPONENTS Interpreter)
 
-set(REF_DATA_DIR "${CMAKE_CURRENT_SOURCE_DIR}/reference_data" CACHE PATH "Path to reference data directory")
+set(NUMSIM_REFERENCE_ROOT "${CMAKE_CURRENT_SOURCE_DIR}" CACHE PATH
+    "Directory containing the scenario reference outputs")
 
-add_test(
-    NAME RunScenario0
-    COMMAND numsim ${CMAKE_CURRENT_SOURCE_DIR}/scenario0_lid_driven_cavity/input_parameter.txt
-)
-set_tests_properties(RunScenario0 PROPERTIES WORKING_DIRECTORY "${CMAKE_BINARY_DIR}")
+function(add_reference_test scenario test_id)
+    set(input_file "${CMAKE_CURRENT_SOURCE_DIR}/${scenario}/input_parameters.txt")
+    set(reference_dir "${NUMSIM_REFERENCE_ROOT}/${scenario}/reference_output")
 
-add_test(
-    NAME CompareScenario0
-    COMMAND python3 ${CMAKE_CURRENT_SOURCE_DIR}/compare_vti.py 
-            ${REF_DATA_DIR}/scenario0_lid_driven_cavity 
-            ${CMAKE_BINARY_DIR}/out
-)
-set_tests_properties(CompareScenario0 PROPERTIES DEPENDS RunScenario0)
+    add_test(
+        NAME Clean${test_id}
+        COMMAND "${CMAKE_COMMAND}" -E rm -rf "${CMAKE_BINARY_DIR}/out"
+    )
 
-add_test(
-    NAME RunScenario3
-    COMMAND numsim ${CMAKE_CURRENT_SOURCE_DIR}/scenario3_vary_everything/input_parameter.txt
-)
-set_tests_properties(RunScenario3 PROPERTIES WORKING_DIRECTORY "${CMAKE_BINARY_DIR}")
+    add_test(
+        NAME Run${test_id}
+        COMMAND $<TARGET_FILE:numsim> "${input_file}"
+    )
+    set_tests_properties(Run${test_id} PROPERTIES
+        DEPENDS Clean${test_id}
+        WORKING_DIRECTORY "${CMAKE_BINARY_DIR}"
+    )
 
-add_test(
-    NAME CompareScenario3
-    COMMAND python3 ${CMAKE_CURRENT_SOURCE_DIR}/compare_vti.py 
-            ${REF_DATA_DIR}/scenario3_vary_everything 
-            ${CMAKE_BINARY_DIR}/out
-)
-set_tests_properties(CompareScenario3 PROPERTIES DEPENDS RunScenario3)
+    add_test(
+        NAME Compare${test_id}
+        COMMAND "${Python3_EXECUTABLE}"
+                "${CMAKE_CURRENT_SOURCE_DIR}/compare_vti.py"
+                "${reference_dir}"
+                "${CMAKE_BINARY_DIR}/out"
+    )
+    set_tests_properties(Compare${test_id} PROPERTIES DEPENDS Run${test_id})
+endfunction()
+
+add_reference_test("0_driven_cavity" "Scenario0")
+add_reference_test("3_varying_params" "Scenario3")
+set_tests_properties(CleanScenario3 PROPERTIES DEPENDS CompareScenario0)
