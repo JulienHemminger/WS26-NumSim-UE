@@ -5,12 +5,19 @@ import subprocess
 import numpy as np
 import xml.etree.ElementTree as ET
 
-def dump_tree():
+def print_dir_tree(path):
+    print(f"\n--- Directory Tree for: {path} ---")
     try:
-        with open("file_structure.txt", "w") as f:
-            subprocess.run(["tree"], stdout=f, stderr=subprocess.STDOUT)
-    except Exception as e:
-        print(f"Error running tree: {e}")
+        subprocess.run(["tree", path], check=True)
+    except (subprocess.SubprocessError, FileNotFoundError):
+        for root, dirs, files in os.walk(path):
+            level = root.replace(path, '').count(os.sep)
+            indent = ' ' * 4 * level
+            print(f"{indent}{os.path.basename(root)}/")
+            subindent = ' ' * 4 * (level + 1)
+            for f in files:
+                print(f"{subindent}{f}")
+    print("----------------------------------------\n")
 
 def parse_vti_arrays(filepath):
     try:
@@ -36,14 +43,12 @@ def compare_directories(ref_dir, gen_dir, tol=1e-5):
     
     if not os.path.exists(ref_dir):
         print(f"ERROR: Reference directory does not exist: {ref_dir}")
-        dump_tree()
-        print("Directory tree saved to file_structure.txt")
+        print_dir_tree(os.path.dirname(os.path.abspath(ref_dir)) or '.')
         sys.exit(1)
     if not os.path.exists(gen_dir):
         print(f"ERROR: Generated output directory does not exist: {gen_dir}")
         print("Hint: Did the simulation executable fail to run or write output?")
-        dump_tree()
-        print("Directory tree saved to file_structure.txt")
+        print_dir_tree(os.path.dirname(os.path.abspath(gen_dir)) or '.')
         sys.exit(1)
 
     ref_files = sorted(glob.glob(os.path.join(ref_dir, "*.vti")))
@@ -51,18 +56,16 @@ def compare_directories(ref_dir, gen_dir, tol=1e-5):
     
     if not ref_files:
         print(f"ERROR: No .vti reference files found in {ref_dir}")
-        dump_tree()
-        print("Directory tree saved to file_structure.txt")
+        print_dir_tree(ref_dir)
         sys.exit(1)
     if not gen_files:
         print(f"ERROR: No .vti generated output files found in {gen_dir}")
-        dump_tree()
-        print("Directory tree saved to file_structure.txt")
+        print_dir_tree(gen_dir)
         sys.exit(1)
     if len(ref_files) != len(gen_files):
         print(f"WARNING / ERROR: File count mismatch! Reference has {len(ref_files)} files, generated has {len(gen_files)} files.")
-        dump_tree()
-        print("Directory tree saved to file_structure.txt")
+        print_dir_tree(ref_dir)
+        print_dir_tree(gen_dir)
         sys.exit(1)
     overall_success = True
     for i, (ref_f, gen_f) in enumerate(zip(ref_files, gen_files)):
