@@ -8,7 +8,7 @@ import xml.etree.ElementTree as ET
 def print_dir_tree(path):
     print(f"\n--- Directory Tree for: {path} ---")
     try:
-        subprocess.run(["tree", path], check=True)
+        subprocess.run(["tree ..", path], check=True)
     except (subprocess.SubprocessError, FileNotFoundError):
         for root, dirs, files in os.walk(path):
             level = root.replace(path, '').count(os.sep)
