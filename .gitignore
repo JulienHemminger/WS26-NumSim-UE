@@ -32,6 +32,3 @@ out/
 *.swp
 *.swo
 .DS_Store
-
-# --- CUSTOM ---
-JULIEN_localonly/

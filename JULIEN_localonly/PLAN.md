@@ -1,0 +1,42 @@
+## setup the "tests" it needs to pass für Problem1: DONE
+
+* tested on Lid-driven cavity + 4 more scenarios: <https://numsim-exercises.readthedocs.io/en/latest/exercise1/hints.html#reference-solution>
+
+  * [input: parameters.txt, output: “.vti” files (.txt files are not required, just useful for debugging)](https://numsim-exercises.readthedocs.io/en/latest/exercise1/submission.html)
+
+## suche in nextcloud, etc nach passenden "vorlagen": DONE
+
+## how to eval "vorlagen"?: DONE
+
+`python3 Exercise1/Submission/test/tools/compare_vti_outputs.py JULIEN_localonly/test/0_lid_driven_cavity/out JULIEN_localonly/TEMPLATES/Abschlussprojekt_official_WS21/build/out_`
+
+## eval these  "vorlagen": DONE
+
+###### Abgabe1\_student\_WS18: runs, DONT USE (large errors, outdated apis, ..)
+
+###### NumSim\_official\_WS21: runs, DONT USE(contains paralellizations, decent 1e-2/1e-3 errors)
+
+###### Abschlussprojekt\_official\_WS21: runs. USE (decent 1e-2/1e-3 errors,)
+
+* **TODO**
+
+  * more tests (hard asserts?c - e.g. google test (gtest) for unit tests?)&#x20;
+
+    * all 5 scenarios (driven cavity, varying Re, etc.)
+
+      * scenario1: compare against given ground truth
+      * scenario 2-5: compare against values computed by **Abschlussprojekt\_official\_WS21**
+* i want my julien-dev branch to be: main + experiments (
+
+### implement stuff (with **Abschlussprojekt\_official\_WS21 as reference**): TODO
+
+* **refactor AbschProj: YES**
+
+  * source code hiding: e.g. renaming variables, restructuring
+  * but try to keep the API the same (function names, arguments, etc) so i can easilybolt on stuff for Problem2, Problem3, etc later
+  * output hiding: e.g. change orders of summations, maybe even subtle changes as long as they dont mess up the 1e-2/1e-3 accuracy
+* **then port needed parts to NumSimUE: YES**
+
+  * only parts that are strictly required by Problem1 (e.g. no voluntary stuff). is there a way to cleanly turn off/remove features that would only be implemented in Task2, Task3,...?)
+
+##
