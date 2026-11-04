@@ -5,7 +5,6 @@
 Bash
 
 ```
-cd ../Exercise1/Submission/
 rm -rf build
 mkdir -p build && cd build
 cmake -DCMAKE_BUILD_TYPE=Release ..
