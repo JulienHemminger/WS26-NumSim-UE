@@ -26,7 +26,7 @@
 
       * scenario1: compare against given ground truth
       * scenario 2-5: compare against values computed by **Abschlussprojekt\_official\_WS21**
-* i want my julien-dev branch to be: main + experiments (
+  * test what happens when uploading to the cluster. then decide for testing do i use cluster or github actions?
 
 ### implement stuff (with **Abschlussprojekt\_official\_WS21 as reference**): TODO
 
