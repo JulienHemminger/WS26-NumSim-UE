@@ -1,4 +1,4 @@
-#include "1_cg_solver.h"
+#include "_CGSolver.h"
 
 CGSolver::CGSolver(std::shared_ptr<Discretization> discretization, double epsilon, int maximumNumberOfIterations, bool outflowBottom, bool outflowTop, bool outflowLeft, bool outflowRight) :
   PressureSolver(discretization, epsilon, maximumNumberOfIterations, outflowBottom, outflowTop, outflowLeft, outflowRight),

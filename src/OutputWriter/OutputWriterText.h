@@ -1,6 +1,6 @@
 #pragma once
 
-#include "output_writer/output_writer.h"
+#include "OutputWriter/OutputWriter.h"
 
 /** Write *.txt files that are useful for debugging.
  *  All values are written to the file as they are stored in the field variables,

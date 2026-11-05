@@ -8,26 +8,26 @@ project(numsim)
 add_executable(${PROJECT_NAME}
    
    main.cpp
-   computation.cpp
-   settings.cpp
+   Computation.cpp
+   Settings.cpp
    
-   pressure_solver/0_pressure_solver.cpp
-   pressure_solver/1_gauss_seidel.cpp
-   pressure_solver/1_sor.cpp
-   pressure_solver/1_cg_solver.cpp
+   PressureSolver/PressureSolver.cpp
+   PressureSolver/GaussSeidel.cpp
+   PressureSolver/SOR.cpp
+   PressureSolver/_CGSolver.cpp
    
-   discretization/0_staggered_grid.cpp
-   discretization/1_discretization.cpp
-   discretization/2_central_differences.cpp
-   discretization/2_donor_cell
+   StaggeredGrid/StaggeredGrid.cpp
+   StaggeredGrid/Discretization.cpp
+   StaggeredGrid/CentralDifferences.cpp
+   StaggeredGrid/DonorCell.cpp
   
-   storage/array2D.cpp
-   storage/field_variable.cpp
+   Array2D/Array2d.cpp
+   Array2D/FieldVariable.cpp
   
-   output_writer/output_writer_paraview.cpp
-   output_writer/output_writer_text.cpp
-   output_writer/output_writer.cpp
-   output_writer/write_paraview_output.cpp
+   OutputWriter/OutputWriterParaview.cpp
+   OutputWriter/OutputWriterText.cpp
+   OutputWriter/OutputWriter.cpp
+   OutputWriter/_WriteParaviewOutput.cpp
    
 )
 
@@ -59,4 +59,3 @@ set(CMAKE_CXX_STANDARD 14)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 message("CMAKE_BUILD_TYPE: ${CMAKE_BUILD_TYPE}")
-

@@ -1,8 +1,8 @@
 #include <iostream>
 #include <cstdlib>
 
-#include "settings.h"
-#include "computation.h"
+#include "Settings.h"
+#include "Computation.h"
 
 int main(int argc, char *argv[])
 {

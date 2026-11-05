@@ -1,4 +1,4 @@
-#include "storage/field_variable.h"
+#include "Array2D/FieldVariable.h"
 
 FieldVariable::FieldVariable(std::array<int,2> size, std::array<double,2> origin, std::array<double,2> meshWidth) :
 Array2D(size), 
@@ -38,7 +38,7 @@ double FieldVariable::interpolateAt(double x, double y) const // with x, y only 
     const double xr2 = dx - xr1;   // distance right_edge - x
     const double yr2 = dy - yr1;   // distance upper edge - y
 
-    // transform to x, y coordinates when directly accessing the array2D
+    // transform to x, y coordinates when directly accessing the Array2D
     int xLeftEdge = iLeftEdge;
     int yLowerEdge = jLowerEdge;
 

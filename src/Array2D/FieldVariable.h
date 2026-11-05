@@ -4,7 +4,7 @@
 #include <cmath>
 #include <cassert>
 
-#include "storage/array2D.h"
+#include "Array2D/Array2D.h"
 
 /** A field variable is the discretization of a scalar function f(x) with x in the computational domain.
  *  More specifically, a scalar value is stored at discrete nodes/points. The nodes are arranged in an equidistant mesh

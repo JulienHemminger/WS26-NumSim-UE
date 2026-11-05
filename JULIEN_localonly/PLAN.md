@@ -33,11 +33,7 @@
 
 `./numsim ../test/0_driven_cavity/input_parameters.txt`
 
-
-
 `python3 ../test/tools/compare_vti_outputs.py ../test/0_driven_cavity/reference_output/ out/`
-
-
 
 `Reference: ../test/0_driven_cavity/reference_output/`
 
@@ -51,19 +47,11 @@
 
 `SUCCESS: Reference comparison passed.`
 
-
-
 * **then port needed parts to NumSimUE: YES**
 
   * only parts that are strictly required by Problem1 (e.g. no voluntary stuff). is there a way to cleanly turn off/remove features that would only be implemented in Task2, Task3,...?)
 
-
-
 * push to main, instruct e.g. Nico to work on it (improving accuracy to 1e-4)
-
-
-
-
 
 * fix GitHub actions test
 

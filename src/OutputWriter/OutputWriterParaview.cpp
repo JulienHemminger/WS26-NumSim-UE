@@ -1,4 +1,4 @@
-#include "output_writer/output_writer_paraview.h"
+#include "OutputWriter/OutputWriterParaview.h"
 
 OutputWriterParaview::OutputWriterParaview(std::shared_ptr<Discretization> discretization, std::string uID) :
    OutputWriter(discretization, uID)

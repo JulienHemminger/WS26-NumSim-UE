@@ -1,5 +1,5 @@
 
-#include "1_discretization.h"
+#include "Discretization.h"
 
 // Constructor
 Discretization::Discretization(std::array<int,2> nCells, std::array<double,2> meshWidth) :
@@ -54,4 +54,3 @@ double Discretization::computeDpDy(int i, int j) const
     // return 1st derivative at top edge of cell i,j
     return 1./dy() * (p(i,j+1) - p(i,j));
 }
-

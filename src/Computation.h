@@ -1,14 +1,14 @@
 #pragma once
 
-#include "settings.h"
-#include "discretization/2_central_differences.h"
-#include "discretization/2_donor_cell.h"
-#include "pressure_solver/1_sor.h"
-#include "pressure_solver/1_gauss_seidel.h"
-#include "pressure_solver/1_cg_solver.h"
-#include "output_writer/output_writer_paraview.h"
-#include "output_writer/output_writer_text.h"
-#include "storage/field_variable.h"
+#include "Settings.h"
+#include "StaggeredGrid/CentralDifferences.h"
+#include "StaggeredGrid/DonorCell.h"
+#include "PressureSolver/SOR.h"
+#include "PressureSolver/GaussSeidel.h"
+#include "PressureSolver/_CGSolver.h"
+#include "OutputWriter/OutputWriterParaview.h"
+#include "OutputWriter/OutputWriterText.h"
+#include "Array2D/FieldVariable.h"
 
 #include <memory>
 #include <iostream>  // for cout

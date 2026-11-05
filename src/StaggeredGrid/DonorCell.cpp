@@ -1,4 +1,4 @@
-#include "discretization/2_donor_cell.h"
+#include "StaggeredGrid/DonorCell.h"
 
 //! constructor 
 DonorCell::DonorCell(std::array<int,2> nCells, std::array<double,2> meshWidth, double alpha) :

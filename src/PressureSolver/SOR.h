@@ -1,6 +1,6 @@
 #pragma once
 
-#include "pressure_solver/0_pressure_solver.h"
+#include "PressureSolver/PressureSolver.h"
 
 #include <cmath>
 

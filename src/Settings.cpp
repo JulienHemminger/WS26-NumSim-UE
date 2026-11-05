@@ -1,4 +1,4 @@
-#include "settings.h"
+#include "Settings.h"
 #include <fstream>   // for file operations
 #include <iostream>  // for cout
 
@@ -219,4 +219,3 @@ void Settings::loadFromFile(std::string filename)
   }
   std::cout << "Reading is complete." << std::endl;
 }
-

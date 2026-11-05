@@ -1,5 +1,5 @@
-#include "output_writer/output_writer_text.h"
-#include "discretization/1_discretization.h"
+#include "OutputWriter/OutputWriterText.h"
+#include "StaggeredGrid/Discretization.h"
 
 #include <iostream>
 #include <fstream>

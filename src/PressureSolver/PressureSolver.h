@@ -2,7 +2,7 @@
 
 #include <memory>
 
-#include "discretization/1_discretization.h"
+#include "StaggeredGrid/Discretization.h"
 
 class PressureSolver {
 public:

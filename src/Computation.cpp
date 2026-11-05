@@ -1,4 +1,4 @@
-#include "computation.h"
+#include "Computation.h"
 
 void Computation::initialize(int argc, char* argv[]) {
     // parse the parameters

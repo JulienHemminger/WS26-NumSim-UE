@@ -1,4 +1,4 @@
-#include "0_staggered_grid.h"
+#include "StaggeredGrid.h"
 
 StaggeredGrid::StaggeredGrid(std::array<int,2> nCells, std::array<double,2> meshWidth) :
   u_({nCells[0] + 1, nCells[1] + 2},   {0.0,      meshWidth[1]/2.}, meshWidth),
