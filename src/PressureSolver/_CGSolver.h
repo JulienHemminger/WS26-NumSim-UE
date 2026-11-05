@@ -1,18 +1,19 @@
 #pragma once
 
+#include <cmath>
+#include <vector>
+
 #include "PressureSolver/PressureSolver.h"
 
-#include <vector>
-#include <cmath>
-
-class CGSolver: public PressureSolver
-{
-public:
-    CGSolver(std::shared_ptr<Discretization> discretization, double epsilon, int maximumNumberOfIterations, bool outflowBottom, bool outflowTop, bool outflowLeft, bool outflowRight);
+class CGSolver : public PressureSolver {
+   public:
+    CGSolver(std::shared_ptr<Discretization> discretization, double epsilon,
+             int maximumNumberOfIterations, bool outflowBottom, bool outflowTop, bool outflowLeft,
+             bool outflowRight);
 
     void solve();
     void calculateInitialResidual();
 
-private:
+   private:
     FieldVariable res;
 };
