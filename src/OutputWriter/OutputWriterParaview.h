@@ -10,6 +10,7 @@
 #include <vtkPointData.h>
 
 #include <memory>
+#include <string>
 
 /** Write *.vti files that can be viewed with ParaView.
  *  The mesh that can be visualized in ParaView corresponds to the mesh of the computational domain.
@@ -31,3 +32,6 @@ private:
 
   vtkSmartPointer<vtkXMLImageDataWriter> vtkWriter_;   //< vtk writer to write ImageData
 };
+
+//! Write a demonstration VTI file with an artificial pressure field.
+void writeParaviewOutput(int fileNo, std::string uID);

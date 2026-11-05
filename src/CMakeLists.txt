@@ -27,7 +27,6 @@ add_executable(${PROJECT_NAME}
    OutputWriter/OutputWriterParaview.cpp
    OutputWriter/OutputWriterText.cpp
    OutputWriter/OutputWriter.cpp
-   OutputWriter/_WriteParaviewOutput.cpp
    
 )
 

@@ -23,6 +23,8 @@
 * **refactor AbschProj: YES**
 
   * source code hiding: e.g. renaming variables, restructuring
+  * run formatter over all src files
+  * renaming in-file stuff (functions, variables...)
   * but try to keep the API the same (function names, arguments, etc) so i can easilybolt on stuff for Problem2, Problem3, etc later
   * output hiding: e.g. change orders of summations, maybe even subtle changes as long as they dont mess up the 1e-2/1e-3 accuracy
 
@@ -49,7 +51,9 @@
 
 * **then port needed parts to NumSimUE: YES**
 
-  * only parts that are strictly required by Problem1 (e.g. no voluntary stuff). is there a way to cleanly turn off/remove features that would only be implemented in Task2, Task3,...?)
+* keep the "full" AbschlussProj in my julien-dev branch (for later submissions)
+
+- only parts that are strictly required by Problem1 (e.g. no voluntary stuff). is there a way to cleanly turn off/remove features that would only be implemented in Task2, Task3,...?)
 
 * push to main, instruct e.g. Nico to work on it (improving accuracy to 1e-4)
 
