@@ -17,7 +17,7 @@ class Array2D {
     std::array<int, 2> size() const;
 
     //! access the value at coordinate (i,j), declared not const, i.e. the value can be changed
-    double &operator()(int i, int j);
+    double& operator()(int i, int j);
 
     //! get the value at coordinate (i,j), declared const, i.e. it is not possible to change the
     //! value

@@ -3,7 +3,6 @@
 #include "StaggeredGrid/Discretization.h"
 
 class CentralDifferences : public Discretization {
-    //! use constructor of base class
     using Discretization::Discretization;
 
     //! compute the 1st derivative ∂ u^2 / ∂x
