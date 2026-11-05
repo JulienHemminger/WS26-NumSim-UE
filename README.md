@@ -25,7 +25,7 @@ The reference tests compare the generated VTI files with the data in
 `test/0_driven_cavity/reference_output` and
 `test/3_varying_params/reference_output`. Configure and build the project, then run:
 
-```bash
+```Shell
 cmake -S . -B build -DCMAKE_BUILD_TYPE=Release
 cmake --build build
 ctest --test-dir build --output-on-failure
@@ -48,3 +48,4 @@ Bash
 echo 'export LD_LIBRARY_PATH=/usr/lib/jvm/java-11-openjdk-amd64/lib:/usr/lib/jvm/java-11-openjdk-amd64/lib/server:$LD_LIBRARY_PATH' >> ~/.bashrc
 source ~/.bashrc
 ```
+
