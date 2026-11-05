@@ -10,7 +10,7 @@
 
 `python3 Exercise1/Submission/test/tools/compare_vti_outputs.py JULIEN_localonly/test/0_lid_driven_cavity/out JULIEN_localonly/TEMPLATES/Abschlussprojekt_official_WS21/build/out_`
 
-## eval these  "vorlagen": DONE
+## eval these "vorlagen": DONE
 
 ###### Abgabe1\_student\_WS18: runs, DONT USE (large errors, outdated apis, ..)
 
@@ -30,6 +30,10 @@
 `mkdir -p build && cd build`\
 `cmake -DCMAKE_BUILD_TYPE=Release ..`\
 `make install`
+
+`./numsim ../test/0_driven_cavity/input_parameters.txt`
+
+
 
 `python3 ../test/tools/compare_vti_outputs.py ../test/0_driven_cavity/reference_output/ out/`
 
