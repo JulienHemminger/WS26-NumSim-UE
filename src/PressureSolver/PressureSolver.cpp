@@ -110,9 +110,6 @@ void PressureSolver::setBoundaryValuesBottom() {
 }
 
 double PressureSolver::calculateResidual() {
-    int nCellsx = discretization_->nCells()[0];
-    int nCellsy = discretization_->nCells()[1];
-
     double dy = discretization_->dy();
     double dx = discretization_->dx();
     double dx2 = pow(dx, 2);

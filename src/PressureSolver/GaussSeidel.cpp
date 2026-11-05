@@ -3,9 +3,6 @@
 #include <cmath>
 
 void GaussSeidel::solve() {
-    int nCellsx = discretization_->nCells()[0];
-    int nCellsy = discretization_->nCells()[1];
-
     const double dy = discretization_->dy();
     const double dx = discretization_->dx();
     const double dx2 = dx * dx;
