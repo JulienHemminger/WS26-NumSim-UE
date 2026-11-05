@@ -27,6 +27,6 @@ class Array2D {
     void setToZero();
 
    protected:
-    std::vector<double> data_;       //< storage array values, in row-major order
-    const std::array<int, 2> size_;  //< width, height of the domain
+    std::vector<double> data_;
+    const std::array<int, 2> size_;
 };

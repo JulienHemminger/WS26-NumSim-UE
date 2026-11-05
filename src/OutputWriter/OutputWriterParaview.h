@@ -29,7 +29,7 @@ class OutputWriterParaview : public OutputWriter {
     void writeFile(double currentTime);
 
    private:
-    vtkSmartPointer<vtkXMLImageDataWriter> vtkWriter_;  //< vtk writer to write ImageData
+    vtkSmartPointer<vtkXMLImageDataWriter> vtkWriter_;
 };
 
 //! Write a demonstration VTI file with an artificial pressure field.

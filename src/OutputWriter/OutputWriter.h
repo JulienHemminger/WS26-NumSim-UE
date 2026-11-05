@@ -17,10 +17,9 @@ class OutputWriter {
     virtual void writeFile(double currentTime) = 0;
 
    protected:
-    std::shared_ptr<Discretization>
-        discretization_;  //< a shared pointer to the discretization which contains all data that
-                          //will be written to the file
-    int fileNo_;  //< a counter that increments for every file, this number is part of the file name
-                  //of output files
-    std::string outputDirectory_;  //< directory used for this run's output files
+    std::shared_ptr<Discretization> discretization_;
+
+    int fileNo_;
+
+    std::string outputDirectory_;
 };

@@ -8,7 +8,6 @@ OutputWriter::OutputWriter(std::shared_ptr<Discretization> discretization, std::
     : discretization_(discretization),
       fileNo_(0),
       outputDirectory_(uID.empty() ? "out" : "out_" + uID) {
-    // create the output subdirectory if it does not yet exist
     std::string command = "mkdir -p ";
     std::string folder_name = outputDirectory_;
     int returnValue = system((command + folder_name).c_str());

@@ -1,7 +1,7 @@
 #pragma once
 
 #include <fstream>
-#include <iostream>  // for cout
+#include <iostream>
 #include <memory>
 #include <sstream>
 #include <vector>
@@ -49,7 +49,6 @@ class StaggeredGrid {
     //! access value of rhs in element (i,j), access value of p in element (x,y)
     double& g(int i, int j);
 
-    //  - obstacle flags -
     //! value if cell is an obstacle cell: 1 if obstacle, 0 else
     const FieldVariable& isObstacleCell() const;
     //! access value in element (i,j), get const value in element (x,y)
@@ -120,12 +119,6 @@ class StaggeredGrid {
     int pJBegin() const;
     //! one after last valid index for p in y direction
     int pJEnd() const;
-
-    // - old boundary values - #badcode
-    // std::vector<double> oldBoundaryValueTop_;
-    // std::vector<double> oldBoundaryValueBottom_;
-    // std::vector<double> oldBoundaryValueLeft_;
-    // std::vector<double> oldBoundaryValueRight_;
 
    protected:
     const std::array<int, 2> nCells_;

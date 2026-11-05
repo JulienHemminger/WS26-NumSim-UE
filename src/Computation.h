@@ -2,7 +2,7 @@
 
 #include <algorithm>
 #include <cmath>
-#include <iostream>  // for cout
+#include <iostream>
 #include <memory>
 
 #include "Array2D/FieldVariable.h"
@@ -19,7 +19,7 @@ class Computation {
    public:
     //! initialize the computation object, parse the settings from file that is given as the only
     //! command line argument
-    void initialize(int argc, char *argv[]);
+    void initialize(int argc, char* argv[]);
 
     //! run the whole simulation until t_end
     void runSimulation();
@@ -57,6 +57,6 @@ class Computation {
     std::unique_ptr<OutputWriterParaview> outputWriterParaview_;
     std::unique_ptr<OutputWriterText> outputWriterText_;
 
-    std::array<double, 2> meshWidth_;  //< h_x, h_y
-    double dt_;                        //< time step
+    std::array<double, 2> meshWidth_;
+    double dt_;
 };

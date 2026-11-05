@@ -10,8 +10,6 @@ CGSolver::CGSolver(std::shared_ptr<Discretization> discretization, double epsilo
           discretization_->meshWidth()) {}
 
 void CGSolver::solve() {
-    // variables
-    // used as in wikipedia, but with x -> p and p -> c for clarity
     int n = discretization_->nCells()[0];
     int m = discretization_->nCells()[1];
     double alpha = 0;
@@ -30,13 +28,11 @@ void CGSolver::solve() {
                      {discretization_->meshWidth()[0] / 2., discretization_->meshWidth()[0] / 2},
                      discretization_->meshWidth());
 
-    // cell size
     double dy = discretization_->dy();
     double dx = discretization_->dx();
     double dx2 = pow(dx, 2);
     double dy2 = pow(dy, 2);
 
-    // calculate the number of fluid cells
     int nFluidCells = 0;
     for (int i = 0; i < n; i++) {
         for (int j = 0; j < m; j++) {
@@ -46,10 +42,8 @@ void CGSolver::solve() {
         }
     }
 
-    // compute inital residual
-    calculateInitialResidual();  // TODO: how to correctly reference
+    calculateInitialResidual();
 
-    // calculate r^2
     for (int i = 0; i < n; i++) {
         for (int j = 0; j < m; j++) {
             if (discretization_->isObstacleCell(i, j) != 1.) {
@@ -58,10 +52,8 @@ void CGSolver::solve() {
             }
         }
     }
-    // TODO divide by number of fluid cells
 
     while (iteration < maximumNumberOfIterations_) {
-        // calculate alpha
         double cAc = 0;
 
         for (int i = 0; i < n; i++) {
@@ -82,7 +74,6 @@ void CGSolver::solve() {
 
         alpha = res_pow2_sum / cAc;
 
-        // calculate iterations for p and res
         res_pow2_sum_updated = 0;
         for (int i = 0; i < n; i++) {
             for (int j = 0; j < m; j++) {
@@ -94,17 +85,13 @@ void CGSolver::solve() {
             }
         }
 
-        // break conditon
-        if ((res_pow2_sum / nFluidCells) <= pow(epsilon_, 2))  // divide by number of cells
-        {
+        if ((res_pow2_sum / nFluidCells) <= pow(epsilon_, 2)) {
             setBoundaryValues();
             break;
         }
 
-        // calculate beta
         beta = res_pow2_sum_updated / res_pow2_sum;
 
-        // calculate iteration of c
         for (int i = 0; i < n; i++) {
             for (int j = 0; j < m; j++) {
                 if (discretization_->isObstacleCell(i, j) != 1.) {
@@ -113,7 +100,6 @@ void CGSolver::solve() {
             }
         }
 
-        // update residual
         res_pow2_sum = res_pow2_sum_updated;
         iteration++;
     }
@@ -123,10 +109,9 @@ void CGSolver::solve() {
 }
 
 void CGSolver::calculateInitialResidual() {
-    int nCellsx = discretization_->nCells()[0];  // inner cells in x direction
-    int nCellsy = discretization_->nCells()[1];  // inner cells in y direction
+    int nCellsx = discretization_->nCells()[0];
+    int nCellsy = discretization_->nCells()[1];
 
-    // cell size
     double dy = discretization_->dy();
     double dx = discretization_->dx();
     double dx2 = pow(dx, 2);
@@ -135,7 +120,6 @@ void CGSolver::calculateInitialResidual() {
     for (int i = discretization_->pIBegin() + 1; i < discretization_->pIEnd() - 1; i++) {
         for (int j = discretization_->pJBegin() + 1; j < discretization_->pJEnd() - 1; j++) {
             if (discretization_->isObstacleCell(i, j) != 1.) {
-                // calculate residual
                 double pxx = (discretization_->p(i - 1, j) - 2.0 * discretization_->p(i, j) +
                               discretization_->p(i + 1, j)) /
                              (dx2);

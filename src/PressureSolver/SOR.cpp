@@ -10,10 +10,6 @@ SOR::SOR(std::shared_ptr<Discretization> discretization, double epsilon,
       omega_(omega) {}
 
 void SOR::solve() {
-    // int nCellsx = discretization_->nCells()[0]; // inner cells
-    // int nCellsy = discretization_->nCells()[1]; // inner cells
-
-    // sell size
     double dy = discretization_->dy();
     double dx = discretization_->dx();
     double dx2 = pow(dx, 2);
@@ -22,15 +18,10 @@ void SOR::solve() {
 
     int iteration = 0;
 
-    // initial residual
     applyObstacleBoundaryValues();
     double res = calculateResidual();
 
-    // setBoundaryValues();
-
-    // iterate through grid
     while (iteration < maximumNumberOfIterations_ && res > pow(epsilon_, 2)) {
-        // one solver iteration
         for (int i = discretization_->pIBegin() + 1; i < discretization_->pIEnd() - 1; i++) {
             for (int j = discretization_->pJBegin() + 1; j < discretization_->pJEnd() - 1; j++) {
                 if (discretization_->isObstacleCell(i, j) != 1.) {
@@ -47,7 +38,6 @@ void SOR::solve() {
 
         iteration += 1;
 
-        // set new boundary values
         setBoundaryValues();
 
         res = calculateResidual();

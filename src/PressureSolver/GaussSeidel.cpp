@@ -3,10 +3,9 @@
 #include <cmath>
 
 void GaussSeidel::solve() {
-    int nCellsx = discretization_->nCells()[0];  // inner cells
-    int nCellsy = discretization_->nCells()[1];  // inner cells
+    int nCellsx = discretization_->nCells()[0];
+    int nCellsy = discretization_->nCells()[1];
 
-    // cell size
     const double dy = discretization_->dy();
     const double dx = discretization_->dx();
     const double dx2 = dx * dx;
@@ -15,9 +14,7 @@ void GaussSeidel::solve() {
     int iteration = 0;
     double res = calculateResidual();
 
-    // iterate through grid
     while (iteration < maximumNumberOfIterations_ && res > pow(epsilon_, 2)) {
-        // one solver iteration
         for (int i = discretization_->pIBegin() + 1; i < discretization_->pIEnd() - 1; i++) {
             for (int j = discretization_->pJBegin() + 1; j < discretization_->pJEnd() - 1; j++) {
                 if (discretization_->isObstacleCell(i, j) != 1.) {
@@ -33,7 +30,6 @@ void GaussSeidel::solve() {
 
         iteration += 1;
 
-        // set new boundary values
         setBoundaryValues();
 
         res = calculateResidual();
