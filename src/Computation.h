@@ -10,7 +10,6 @@
 #include "OutputWriter/OutputWriterText.h"
 #include "PressureSolver/GaussSeidel.h"
 #include "PressureSolver/SOR.h"
-#include "PressureSolver/_CGSolver.h"
 #include "Settings.h"
 #include "StaggeredGrid/CentralDifferences.h"
 #include "StaggeredGrid/DonorCell.h"
