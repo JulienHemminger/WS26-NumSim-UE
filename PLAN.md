@@ -51,7 +51,7 @@
 
 * **then port needed parts to NumSimUE: YES**
 
-* keep the "full" AbschlussProj in my julien-dev branch (for later submissions)
+* keep the "full" AbschlussProject in my julien-dev branch (for later submissions)
 
 - only parts that are strictly required by Problem1 (e.g. no voluntary stuff). is there a way to cleanly turn off/remove features that would only be implemented in Task2, Task3,...?)
 
