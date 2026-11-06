@@ -35,4 +35,4 @@ out/
 
 # My output files for local testing
 test/outputs/*
-vti_deviation_plots/*
+test/plots/*
