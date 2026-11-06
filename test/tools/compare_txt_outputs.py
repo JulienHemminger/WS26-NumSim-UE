@@ -314,6 +314,9 @@ if __name__ == "__main__":
     elif len(sys.argv) == 4:
         compare_txt_directories(sys.argv[1], sys.argv[2], sys.argv[3])
 
+    else:
+        sys.exit(1)
+        
 """
 Usage:
 python3 Exercise1/Submission/test/tools/compare_txt_outputs.py path/to/first/out path/to/second/out generatePlot
