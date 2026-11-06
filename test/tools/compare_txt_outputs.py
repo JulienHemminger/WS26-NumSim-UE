@@ -178,8 +178,6 @@ def plot_deviations(all_deviations, dir1, dir2):
         print("No deviations to plot.")
         return
 
-    import textwrap
-
     filenames = list(all_deviations.keys())
     fields = [
         "t", "dx", "dy", "nCells",
@@ -195,6 +193,10 @@ def plot_deviations(all_deviations, dir1, dir2):
             dtype=int
         )
     )
+
+    # Output directory
+    output_dir = "test/plots/txt_deviation_plots"
+    os.makedirs(output_dir, exist_ok=True)
 
     for field in fields:
         absolute_errors = [
@@ -238,7 +240,20 @@ def plot_deviations(all_deviations, dir1, dir2):
 
         fig.tight_layout(rect=[0, 0, 1, 0.92])
 
-    plt.show()
+        # Save plot
+        dir1_name = os.path.basename(os.path.normpath(dir1))
+        dir2_name = os.path.basename(os.path.normpath(dir2))
+
+        plot_filename = f"{field}_deviations_{dir1_name}_vs_{dir2_name}.png"
+        fig.savefig(
+            os.path.join(output_dir, plot_filename),
+            dpi=150,
+            bbox_inches="tight"
+        )
+
+        plt.close(fig)
+
+    print(f"Plots saved to: {output_dir}")
 
 
 def compare_txt_directories(
