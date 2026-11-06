@@ -45,7 +45,7 @@ void Settings::loadFromFile(std::string filename) {
 
         if (file.eof()) break;
 
-        int first_character_idx = line.find_first_not_of(" \t\n");
+        int first_character_idx = line.find_first_not_of(" \t\n\r");
 
         if (line[0] == '#') {
             continue;
@@ -72,7 +72,7 @@ void Settings::loadFromFile(std::string filename) {
         std::string parameterName = line.substr(first_character_idx, end_idx);
 
         int first_value_idx = line.find_first_not_of(" \t", eq_idx + 1);
-        int last_value_idx = line.find_first_of(" \t\n#", first_value_idx);
+        int last_value_idx = line.find_first_of(" \t\n\r#", first_value_idx);
         std::string valueString = line.substr(first_value_idx, (last_value_idx - first_value_idx));
 
         if (parameterName == "nCellsX") {
