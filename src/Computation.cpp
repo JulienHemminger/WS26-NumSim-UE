@@ -262,73 +262,67 @@ void Computation::applyBoundaryValues() {
 void Computation::applyObstacleBoundaryValues() {
     for (int i = 0; i < discretization_->nCells()[0]; i++) {
         for (int j = 0; j < discretization_->nCells()[1]; j++) {
-            if (discretization_->isObstacleCell(i, j) == 1) {
-                if (discretization_->hasFluidNeighbourLeft(i, j) == 1) {
-                    if (discretization_->hasFluidNeighbourTop(i, j) == 1) {
-                        discretization_->u(i - 1, j) = 0;
-                        discretization_->f(i - 1, j) = 0;
-                        discretization_->v(i, j) = 0;
-                        discretization_->g(i, j) = 0;
+            if (discretization_->isObstacleCell(i, j) != 1) {
+                continue;
+            }
 
-                        discretization_->u(i, j) = -discretization_->u(i, j + 1);
-                        discretization_->v(i, j - 1) = -discretization_->v(i - 1, j - 1);
-                    } else if (discretization_->hasFluidNeighbourBottom(i, j) == 1) {
-                        discretization_->u(i - 1, j) = 0;
-                        discretization_->f(i - 1, j) = 0;
-                        discretization_->v(i, j - 1) = 0;
-                        discretization_->g(i, j - 1) = 0;
+            bool hasLeftNeighbour = discretization_->hasFluidNeighbourLeft(i, j) == 1;
+            bool hasRightNeighbour = discretization_->hasFluidNeighbourRight(i, j) == 1;
+            bool hasTopNeighbour = discretization_->hasFluidNeighbourTop(i, j) == 1;
+            bool hasBottomNeighbour = discretization_->hasFluidNeighbourBottom(i, j) == 1;
 
-                        discretization_->u(i, j) = -discretization_->u(i, j - 1);
-                        discretization_->v(i, j) = -discretization_->v(i - 1, j);
-                    } else {
-                        discretization_->u(i - 1, j) = 0;
-                        discretization_->f(i - 1, j) = 0;
+            if (hasLeftNeighbour) {
+                discretization_->u(i - 1, j) = 0;
+                discretization_->f(i - 1, j) = 0;
 
-                        discretization_->v(i, j - 1) = -discretization_->v(i - 1, j - 1);
-                        discretization_->v(i, j) = -discretization_->v(i - 1, j);
-                    }
+                if (hasTopNeighbour) {
+                    // Left and top
+                    discretization_->u(i, j) = -discretization_->u(i, j + 1);
+                    discretization_->v(i, j - 1) = -discretization_->v(i - 1, j - 1);
+                } else if (hasBottomNeighbour) {
+                    // Left and bottom
+                    discretization_->u(i, j) = -discretization_->u(i, j - 1);
+                    discretization_->v(i, j) = -discretization_->v(i - 1, j);
+                } else {
+                    // Only left
+                    discretization_->v(i, j - 1) = -discretization_->v(i - 1, j - 1);
+                    discretization_->v(i, j) = -discretization_->v(i - 1, j);
                 }
-
-                else if (discretization_->hasFluidNeighbourRight(i, j) == 1) {
-                    if (discretization_->hasFluidNeighbourTop(i, j) == 1) {
-                        discretization_->u(i, j) = 0;
-                        discretization_->f(i, j) = 0;
-                        discretization_->v(i, j) = 0;
-                        discretization_->g(i, j) = 0;
-
-                        discretization_->u(i - 1, j) = -discretization_->u(i - 1, j + 1);
-                        discretization_->v(i, j - 1) = -discretization_->v(i + 1, j - 1);
-                    } else if (discretization_->hasFluidNeighbourBottom(i, j) == 1) {
-                        discretization_->u(i, j) = 0;
-                        discretization_->f(i, j) = 0;
-                        discretization_->v(i, j - 1) = 0;
-                        discretization_->g(i, j - 1) = 0;
-
-                        discretization_->u(i - 1, j) = -discretization_->u(i - 1, j - 1);
-                        discretization_->v(i, j) = -discretization_->v(i + 1, j);
-                    } else {
-                        discretization_->u(i, j) = 0;
-                        discretization_->f(i, j) = 0;
-
-                        discretization_->v(i, j) = -discretization_->v(i + 1, j);
-                        discretization_->v(i, j - 1) = -discretization_->v(i + 1, j - 1);
-                    }
+            }
+            if (hasRightNeighbour) {
+                discretization_->u(i, j) = 0;
+                discretization_->f(i, j) = 0;
+                if (hasTopNeighbour) {
+                    // Right and top
+                    discretization_->u(i - 1, j) = -discretization_->u(i - 1, j + 1);
+                    discretization_->v(i, j - 1) = -discretization_->v(i + 1, j - 1);
+                } else if (hasBottomNeighbour) {
+                    // Right and bottom
+                    discretization_->u(i - 1, j) = -discretization_->u(i - 1, j - 1);
+                    discretization_->v(i, j) = -discretization_->v(i + 1, j);
+                } else {
+                    // Only right
+                    discretization_->v(i, j) = -discretization_->v(i + 1, j);
+                    discretization_->v(i, j - 1) = -discretization_->v(i + 1, j - 1);
                 }
+            }
 
-                else if (discretization_->hasFluidNeighbourTop(i, j) == 1) {
+            if (hasTopNeighbour) {
+                discretization_->v(i, j) = 0;
+                discretization_->g(i, j) = 0;
+                if (!hasLeftNeighbour && !hasRightNeighbour) {
+                    // Only top
                     discretization_->u(i, j) = -discretization_->u(i, j + 1);
                     discretization_->u(i - 1, j) = -discretization_->u(i - 1, j + 1);
-
-                    discretization_->v(i, j) = 0;
-                    discretization_->g(i, j) = 0;
                 }
-
-                else if (discretization_->hasFluidNeighbourBottom(i, j) == 1) {
+            }
+            if (hasBottomNeighbour) {
+                discretization_->v(i, j - 1) = 0;
+                discretization_->g(i, j - 1) = 0;
+                if (!hasLeftNeighbour && !hasRightNeighbour) {
+                    // Only bottom
                     discretization_->u(i, j) = -discretization_->u(i, j - 1);
                     discretization_->u(i - 1, j) = -discretization_->u(i - 1, j - 1);
-
-                    discretization_->v(i, j - 1) = 0;
-                    discretization_->g(i, j - 1) = 0;
                 }
             }
         }
