@@ -28,38 +28,45 @@ void PressureSolver::setBoundaryValues() {
 void PressureSolver::applyObstacleBoundaryValues() {
     for (int i = 0; i < discretization_->nCells()[0]; i++) {
         for (int j = 0; j < discretization_->nCells()[1]; j++) {
-            if (discretization_->isObstacleCell(i, j) == 1) {
-                if (discretization_->hasFluidNeighbourLeft(i, j) == 1.) {
-                    if (discretization_->hasFluidNeighbourTop(i, j) == 1.) {
-                        discretization_->p(i, j) =
-                            0.5 * (discretization_->p(i - 1, j) + discretization_->p(i, j + 1));
-                    } else if (discretization_->hasFluidNeighbourBottom(i, j) == 1) {
-                        discretization_->p(i, j) =
-                            0.5 * (discretization_->p(i - 1, j) + discretization_->p(i, j - 1));
-                    } else {
-                        discretization_->p(i, j) = discretization_->p(i - 1, j);
-                    }
-                }
+            if (discretization_->isObstacleCell(i, j) != 1) {
+                continue;
+            }
 
-                else if (discretization_->hasFluidNeighbourRight(i, j) == 1) {
-                    if (discretization_->hasFluidNeighbourTop(i, j) == 1) {
-                        discretization_->p(i, j) =
-                            0.5 * (discretization_->p(i, j + 1) + discretization_->p(i + 1, j));
-                    } else if (discretization_->hasFluidNeighbourBottom(i, j) == 1) {
-                        discretization_->p(i, j) =
-                            0.5 * (discretization_->p(i + 1, j) + discretization_->p(i, j - 1));
-                    } else {
-                        discretization_->p(i, j) = discretization_->p(i + 1, j);
-                    }
-                }
+            bool hasLeftNeighbour = discretization_->hasFluidNeighbourLeft(i, j) == 1;
+            bool hasRightNeighbour = discretization_->hasFluidNeighbourRight(i, j) == 1;
+            bool hasTopNeighbour = discretization_->hasFluidNeighbourTop(i, j) == 1;
+            bool hasBottomNeighbour = discretization_->hasFluidNeighbourBottom(i, j) == 1;
 
-                else if (discretization_->hasFluidNeighbourTop(i, j) == 1) {
-                    discretization_->p(i, j) = discretization_->p(i, j + 1);
+            if (hasLeftNeighbour) {
+                if (hasTopNeighbour) {
+                    discretization_->p(i, j) =
+                        0.5 * (discretization_->p(i - 1, j) + discretization_->p(i, j + 1));
+                } else if (hasBottomNeighbour) {
+                    discretization_->p(i, j) =
+                        0.5 * (discretization_->p(i - 1, j) + discretization_->p(i, j - 1));
+                } else {
+                    discretization_->p(i, j) = discretization_->p(i - 1, j);
                 }
+            }
 
-                else if (discretization_->hasFluidNeighbourBottom(i, j) == 1) {
-                    discretization_->p(i, j) = discretization_->p(i, j - 1);
+            else if (hasRightNeighbour) {
+                if (hasTopNeighbour) {
+                    discretization_->p(i, j) =
+                        0.5 * (discretization_->p(i, j + 1) + discretization_->p(i + 1, j));
+                } else if (hasBottomNeighbour) {
+                    discretization_->p(i, j) =
+                        0.5 * (discretization_->p(i + 1, j) + discretization_->p(i, j - 1));
+                } else {
+                    discretization_->p(i, j) = discretization_->p(i + 1, j);
                 }
+            }
+
+            else if (hasTopNeighbour) {
+                discretization_->p(i, j) = discretization_->p(i, j + 1);
+            }
+
+            else if (hasBottomNeighbour) {
+                discretization_->p(i, j) = discretization_->p(i, j - 1);
             }
         }
     }
