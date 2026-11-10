@@ -44,8 +44,8 @@ void StaggeredGrid::setObstacleFlags(std::string pathToGeometry) {
         std::stringstream rowStringStream(rowString);
 
         while (std::getline(rowStringStream, entryString, ',')) {
-            int value = int(atof(entryString.c_str()));
             if (i < nCells_[0] && j < nCells_[1]) {
+                int value = int(atof(entryString.c_str()));
                 if (value == 1) {
                     isObstacleCell(i, nCells_[1] - 1 - j) = 1.;
                     u(i, nCells_[1] - 1 - j) = NAN;
@@ -147,13 +147,13 @@ int StaggeredGrid::pJBegin() const { return -1; }
 int StaggeredGrid::pJEnd() const { return nCells_[1] + 1; }
 
 double StaggeredGrid::u(int i, int j) const {
-    if (!(i >= uIBegin() && i < uIEnd())) {
+    if (i < uIBegin() || i >= uIEnd()) {
         std::cout << "i-Index of u out of bounds error for index " << i << " in range " << uIBegin()
                   << " to " << uIEnd() << std::endl;
         throw;
     }
 
-    if (!(j >= uJBegin() && j < uJEnd())) {
+    if (j < uJBegin() || j >= uJEnd()) {
         std::cout << "j-Index of u out of bounds error for index " << j << " in range " << uJBegin()
                   << " to " << uJEnd() << std::endl;
         throw;
@@ -165,13 +165,13 @@ double StaggeredGrid::u(int i, int j) const {
 }
 
 double& StaggeredGrid::u(int i, int j) {
-    if (!(i >= uIBegin() && i < uIEnd())) {
+    if (i < uIBegin() || i >= uIEnd()) {
         std::cout << "i-Index of u out of bounds error for index " << i << " in range " << uIBegin()
                   << " to " << uIEnd() << std::endl;
         throw;
     }
 
-    if (!(j >= uJBegin() && j < uJEnd())) {
+    if (j < uJBegin() || j >= uJEnd()) {
         std::cout << "i-Index of u out of bounds error for index " << j << " in range " << uJBegin()
                   << " to " << uJEnd() << std::endl;
         throw;
@@ -183,13 +183,13 @@ double& StaggeredGrid::u(int i, int j) {
 }
 
 double StaggeredGrid::v(int i, int j) const {
-    if (!(i >= vIBegin() && i < vIEnd())) {
+    if (i < vIBegin() || i >= vIEnd()) {
         std::cout << "i-Index of v out of bounds error for index " << i << " in range " << vIBegin()
                   << " to " << vIEnd() << std::endl;
         throw;
     }
 
-    if (!(j >= vJBegin() && j < vJEnd())) {
+    if (j < vJBegin() || j >= vJEnd()) {
         std::cout << "j-Index of v out of bounds error for index " << j << " in range " << vJBegin()
                   << " to " << vJEnd() << std::endl;
         throw;
@@ -201,13 +201,13 @@ double StaggeredGrid::v(int i, int j) const {
 }
 
 double& StaggeredGrid::v(int i, int j) {
-    if (!(i >= vIBegin() && i < vIEnd())) {
+    if (i < vIBegin() || i >= vIEnd()) {
         std::cout << "i-Index of v out of bounds error for index " << i << " in range " << vIBegin()
                   << " to " << vIEnd() << std::endl;
         throw;
     }
 
-    if (!(j >= vJBegin() && j < vJEnd())) {
+    if (j < vJBegin() || j >= vJEnd()) {
         std::cout << "j-Index of v out of bounds error for index " << j << " in range " << vJBegin()
                   << " to " << vJEnd() << std::endl;
         throw;
@@ -219,13 +219,13 @@ double& StaggeredGrid::v(int i, int j) {
 }
 
 double StaggeredGrid::p(int i, int j) const {
-    if (!(i >= pIBegin() && i < pIEnd())) {
+    if (i < pIBegin() || i >= pIEnd()) {
         std::cout << "i-Index of p out of bounds error for index " << i << " in range " << pIBegin()
                   << " to " << pIEnd() << std::endl;
         throw;
     }
 
-    if (!(j >= pJBegin() && j < pJEnd())) {
+    if (j < pJBegin() || j >= pJEnd()) {
         std::cout << "j-Index of p out of bounds error for index " << j << " in range " << pJBegin()
                   << " to " << pJEnd() << std::endl;
         throw;
@@ -237,13 +237,13 @@ double StaggeredGrid::p(int i, int j) const {
 }
 
 double& StaggeredGrid::p(int i, int j) {
-    if (!(i >= pIBegin() && i < pIEnd())) {
+    if (i < pIBegin() || i >= pIEnd()) {
         std::cout << "i-Index of p out of bounds error for index " << i << " in range " << pIBegin()
                   << " to " << pIEnd() << std::endl;
         throw;
     }
 
-    if (!(j >= pJBegin() && j < pJEnd())) {
+    if (j < pJBegin() || j >= pJEnd()) {
         std::cout << "j-Index of p out of bounds error for index " << j << " in range " << pJBegin()
                   << " to " << pJEnd() << std::endl;
         throw;
@@ -255,13 +255,13 @@ double& StaggeredGrid::p(int i, int j) {
 }
 
 double& StaggeredGrid::rhs(int i, int j) {
-    if (!(i >= pIBegin() && i < pIEnd())) {
+    if (i < pIBegin() || i >= pIEnd()) {
         std::cout << "i-Index of rhs out of bounds error for index " << i << " in range "
                   << pIBegin() << " to " << pIEnd() << std::endl;
         throw;
     }
 
-    if (!(j >= pJBegin() && j < pJEnd())) {
+    if (j < pJBegin() || j >= pJEnd()) {
         std::cout << "j-Index of rhs out of bounds error for index " << j << " in range "
                   << pJBegin() << " to " << pJEnd() << std::endl;
         throw;
@@ -273,13 +273,13 @@ double& StaggeredGrid::rhs(int i, int j) {
 }
 
 double& StaggeredGrid::f(int i, int j) {
-    if (!(i >= uIBegin() && i < uIEnd())) {
+    if (i < uIBegin() || i >= uIEnd()) {
         std::cout << "i-Index of f out of bounds error for index " << i << " in range " << uIBegin()
                   << " to " << uIEnd() << std::endl;
         throw;
     }
 
-    if (!(j >= uJBegin() && j < uJEnd())) {
+    if (j < uJBegin() || j >= uJEnd()) {
         std::cout << "j-Index of f out of bounds error for index " << j << " in range " << uJBegin()
                   << " to " << uJEnd() << std::endl;
         throw;
@@ -291,13 +291,13 @@ double& StaggeredGrid::f(int i, int j) {
 }
 
 double& StaggeredGrid::g(int i, int j) {
-    if (!(i >= vIBegin() && i < vIEnd())) {
+    if (i < vIBegin() || i >= vIEnd()) {
         std::cout << "i-Index of g out of bounds error for index " << i << " in range " << vIBegin()
                   << " to " << vIEnd() << std::endl;
         throw;
     }
 
-    if (!(j >= vJBegin() && j < vJEnd())) {
+    if (j < vJBegin() || j >= vJEnd()) {
         std::cout << "j-Index of g out of bounds error for index " << j << " in range " << vJBegin()
                   << " to " << vJEnd() << std::endl;
         throw;
