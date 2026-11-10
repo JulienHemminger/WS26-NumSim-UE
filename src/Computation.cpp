@@ -86,6 +86,7 @@ void Computation::runSimulation() {
 
         std::cout << "Writing output..." << std::endl;
         outputWriterParaview_->writeFile(currentTime);
+        outputWriterText_->writeFile(currentTime);
     }
 
     std::cout << "Simulation finished!!" << std::endl;
