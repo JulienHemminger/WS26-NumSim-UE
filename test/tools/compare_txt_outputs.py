@@ -313,13 +313,13 @@ if __name__ == "__main__":
     if len(sys.argv) == 1:
         # First compare lid_driven_cavity outputs
         print("Running tests to compare the generated output of our project with the reference output for the lid driven cavity scenario.")
-        generated_output = "test\outputs\lid_driven_cavity_output"
+        generated_output = "build\out"
         reference_output = "test\outputs\lid_driven_cavity_output"
         fail_lcd = compare_txt_directories(generated_output, reference_output, True)
         
         # Second, compare scenario3 outputs
         print("Running tests to compare the generated output of our project with the reference output for scenario 3.")
-        generated_output = "test\outputs\scenario3_output"
+        generated_output = "build\out"
         reference_output = "test\outputs\scenario3_output"
         fail_s3 = compare_txt_directories(generated_output, reference_output, True)
 
