@@ -43,18 +43,18 @@ void Settings::loadFromFile(std::string filename) {
         std::string line;
         getline(file, line);
 
+        // End of file, leave loop
         if (file.eof()) break;
 
+        // Commented line (#) or character not found, skip line
         int first_character_idx = line.find_first_not_of(" \t\n\r");
-
-        if (line[0] == '#') {
-            continue;
-        } else if (!(first_character_idx != std::string::npos)) {
+        if (line[0] == '#' || first_character_idx == std::string::npos) {
             continue;
         }
 
+        // No equal sign in this line, input file must be wrong, return
         int eq_idx = line.find('=');
-        if (!(eq_idx != std::string::npos)) {
+        if (eq_idx == std::string::npos) {
             std::cout << "There is a badly defined line\"" << lineNo << " of " << filename << "\"."
                       << std::endl;
             std::cout << line << std::endl;
