@@ -188,25 +188,15 @@ def compare_vti_directories(dir1, dir2, generatePlot, tolerance=1e-6):
 
 if __name__ == "__main__":
     import sys
-
-    if len(sys.argv) == 1:
-        # First compare lid_driven_cavity outputs
-        print("Running tests to compare the generated output of our project with the reference output for the lid driven cavity scenario.")
-        generated_output = "build\out"
-        reference_output = "test\outputs\lid_driven_cavity_output"
-        fail_lcd = compare_vti_directories(generated_output, reference_output, True)
+    
+    if len(sys.argv) == 3:
+        generated_output = sys.argv[1]
+        reference_output = sys.argv[2]
         
-        # Second, compare scenario3 outputs
-        print("Running tests to compare the generated output of our project with the reference output for scenario 3.")
-        generated_output = "build\out"
-        reference_output = "test\outputs\scenario3_output"
-        fail_s3 = compare_vti_directories(generated_output, reference_output, True)
-
-        if fail_lcd or fail_s3:
+        fail = compare_vti_directories(generated_output, reference_output, True)
+        
+        if fail:
             sys.exit(1)
-        
-    elif len(sys.argv) == 4:
-        compare_vti_directories(sys.argv[1], sys.argv[2], sys.argv[3])
-
     else:
+        print("Usage: python3 test/tools/compare_vti_outputs.py <generated_output> <reference_output>")
         sys.exit(1)
