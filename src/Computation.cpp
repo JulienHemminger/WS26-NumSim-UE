@@ -93,6 +93,9 @@ void Computation::runSimulation() {
 }
 
 void Computation::computeTimeStepWidth(double currentTime) {
+    // Compute the biggest possible time step which is still stable
+
+    // Time step condition by diffusion (Reynolds number)
     double boundary_diffusion = 0.;
 
     if (meshWidth_[0] == meshWidth_[1]) {
@@ -105,6 +108,7 @@ void Computation::computeTimeStepWidth(double currentTime) {
         std::cout << settings_.re << " " << h2x << " " << h2y << std::endl;
     }
 
+    // Time step condition by convection in x/y direction with highest velocity
     double u_max = 0.;
     for (int j = discretization_->uJBegin(); j < discretization_->uJEnd(); j++) {
         for (int i = discretization_->uIBegin(); i < discretization_->uIEnd(); i++) {
@@ -128,6 +132,7 @@ void Computation::computeTimeStepWidth(double currentTime) {
     double boundary_convection_u = meshWidth_[0] / u_max;
     double boundary_convection_v = meshWidth_[1] / v_max;
 
+    // The smallest necessary time step is the important one
     double min_dt = std::min({boundary_diffusion, boundary_convection_u, boundary_convection_v});
 
     std::cout << "dt boundaries - diffusion: " << boundary_diffusion
@@ -145,6 +150,10 @@ void Computation::computeTimeStepWidth(double currentTime) {
 }
 
 void Computation::applyBoundaryValues() {
+    // Apply boundary values to the velocity fields
+
+    // If an outflow is present in a direction, set the last velocities in each row/column to the
+    // velocity of the outflow. This avoids jumps
     if (settings_.outflowTop) {
         for (int i = discretization_->uIBegin(); i < discretization_->uIEnd(); i++) {
             discretization_->u(i, discretization_->uJEnd() - 1) =
@@ -158,7 +167,11 @@ void Computation::applyBoundaryValues() {
                 discretization_->v(i, discretization_->vJEnd() - 1);
         }
 
-    } else {
+    }
+    // If no outflow is present in a direction, a wall is present and standard Dirichlet
+    // conditions can be applied. They need to be interpolated, as we are using a staggered grid and
+    // u and v may not be given at the same positions as the wall
+    else {
         for (int i = discretization_->uIBegin(); i < discretization_->uIEnd(); i++) {
             discretization_->u(i, discretization_->uJEnd() - 1) =
                 2. * settings_.dirichletBcTop[0] -
@@ -260,6 +273,8 @@ void Computation::applyBoundaryValues() {
 }
 
 void Computation::applyObstacleBoundaryValues() {
+    // Apply boundary values to the velocity fields caused by obstacles
+
     for (int i = 0; i < discretization_->nCells()[0]; i++) {
         for (int j = 0; j < discretization_->nCells()[1]; j++) {
             if (discretization_->isObstacleCell(i, j) != 1) {
@@ -271,10 +286,14 @@ void Computation::applyObstacleBoundaryValues() {
             bool hasTopNeighbour = discretization_->hasFluidNeighbourTop(i, j) == 1;
             bool hasBottomNeighbour = discretization_->hasFluidNeighbourBottom(i, j) == 1;
 
+            // Set the velocities in normal direction on the edges of the obstacle to zero. Recall
+            // the staggered grid in which u of the right neighbour is in cell (i,j)
             if (hasLeftNeighbour) {
                 discretization_->u(i - 1, j) = 0;
                 discretization_->f(i - 1, j) = 0;
 
+                // Check the surrounding of the obstacle cell and change the velocities in a way,
+                // that the interpolations to the obstacle's surface equals 0
                 if (hasTopNeighbour) {
                     // Left and top
                     discretization_->u(i, j) = -discretization_->u(i, j + 1);
