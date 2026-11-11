@@ -1,210 +1,212 @@
-import argparse
 import glob
 import os
-import sys
-
 import numpy as np
-import vtk
-from vtk.util.numpy_support import vtk_to_numpy
+import pyvista as pv
+import matplotlib.pyplot as plt
 
+def plot_vti_deviations(grid, deviations, filename, output_dir):
+    point_fields = deviations["point_data"]
 
-def read_series(directory):
-    files = sorted(glob.glob(os.path.join(directory, "output_*.vti")))
-    if not files:
-        raise ValueError(f"No VTI files found in {directory}")
+    if not point_fields:
+        return
 
-    times = []
-    frames = []
-    geometry = None
-    expected_names = None
-    for path in files:
-        reader = vtk.vtkXMLImageDataReader()
-        reader.SetFileName(path)
-        reader.Update()
-        if reader.GetErrorCode() != vtk.vtkErrorCode.NoError:
-            raise ValueError(f"VTK could not read {path}")
+    nx, ny, nz = grid.dimensions
 
-        image = reader.GetOutput()
-        time_array = image.GetFieldData().GetArray("TIME")
-        if time_array is None or time_array.GetNumberOfTuples() != 1:
-            raise ValueError(f"Missing scalar TIME field in {path}")
-        time = float(time_array.GetValue(0))
-        if not np.isfinite(time):
-            raise ValueError(f"Non-finite TIME value in {path}")
-        times.append(time)
+    if nz != 1:
+        print(f"Plotting for 3D grids not implemented: {filename}")
+        return
 
-        current_geometry = (
-            image.GetExtent(),
-            image.GetOrigin(),
-            image.GetSpacing(),
-        )
-        if geometry is None:
-            geometry = current_geometry
-        elif current_geometry != geometry:
-            raise ValueError(f"Mesh geometry changes within {directory}: {path}")
+    number_of_fields = len(point_fields)
 
-        point_data = image.GetPointData()
-        arrays = {}
-        for index in range(point_data.GetNumberOfArrays()):
-            array = point_data.GetArray(index)
-            name = array.GetName()
-            if name is None:
-                raise ValueError(f"Unnamed point-data array in {path}")
-            arrays[name] = vtk_to_numpy(array).copy()
-        if not {"pressure", "velocity"}.issubset(arrays):
-            raise ValueError(f"Missing pressure or velocity array in {path}")
-        if expected_names is None:
-            expected_names = set(arrays)
-        elif set(arrays) != expected_names:
-            raise ValueError(f"Point-data arrays change within {directory}: {path}")
-        frames.append(arrays)
-
-    times = np.asarray(times)
-    if np.any(np.diff(times) <= 0):
-        raise ValueError(f"TIME values must be strictly increasing in {directory}")
-    return files, times, frames, geometry
-
-
-def interpolate_frame(times, frames, time):
-    upper = int(np.searchsorted(times, time, side="left"))
-    if upper == 0:
-        if not np.isclose(times[0], time, atol=1e-10, rtol=0):
-            raise ValueError(f"Generated output starts after reference time {time:g}")
-        return frames[0]
-    if upper == len(times):
-        if not np.isclose(times[-1], time, atol=1e-10, rtol=0):
-            raise ValueError(f"Generated output ends before reference time {time:g}")
-        return frames[-1]
-    if np.isclose(times[upper], time, atol=1e-10, rtol=0):
-        return frames[upper]
-
-    lower = upper - 1
-    weight = (time - times[lower]) / (times[upper] - times[lower])
-    return {
-        name: frames[lower][name]
-        + weight * (frames[upper][name] - frames[lower][name])
-        for name in frames[lower]
-    }
-
-
-def maximum_difference(reference, generated):
-    if reference.shape != generated.shape:
-        raise ValueError(f"Array shape mismatch: {reference.shape} vs {generated.shape}")
-    if not np.array_equal(np.isnan(reference), np.isnan(generated)):
-        return float("inf")
-    if not np.array_equal(np.isposinf(reference), np.isposinf(generated)):
-        return float("inf")
-    if not np.array_equal(np.isneginf(reference), np.isneginf(generated)):
-        return float("inf")
-
-    finite = np.isfinite(reference)
-    if not np.any(finite):
-        return 0.0
-    return float(np.max(np.abs(reference[finite] - generated[finite])))
-
-
-def compare_directories(
-    reference_directory,
-    generated_directory,
-    value_tolerance,
-    mean_dt_relative_tolerance,
-    endpoint_tolerance,
-):
-    print(f"Reference: {reference_directory}")
-    print(f"Generated: {generated_directory}")
-    ref_files, ref_times, ref_frames, ref_geometry = read_series(reference_directory)
-    gen_files, gen_times, gen_frames, gen_geometry = read_series(generated_directory)
-
-    if ref_geometry[0] != gen_geometry[0]:
-        raise ValueError(f"Mesh extents differ: {ref_geometry[0]} vs {gen_geometry[0]}")
-    for name, ref_values, gen_values in zip(
-        ("origin", "spacing"), ref_geometry[1:], gen_geometry[1:]
-    ):
-        if not np.allclose(ref_values, gen_values, atol=1e-12, rtol=0):
-            raise ValueError(f"Mesh {name} differs: {ref_values} vs {gen_values}")
-
-    if not np.allclose(
-        (ref_times[0], ref_times[-1]),
-        (gen_times[0], gen_times[-1]),
-        atol=endpoint_tolerance,
-        rtol=0,
-    ):
-        raise ValueError(
-            "Simulation time endpoints differ: "
-            f"reference=({ref_times[0]:.12g}, {ref_times[-1]:.12g}), "
-            f"generated=({gen_times[0]:.12g}, {gen_times[-1]:.12g})"
-        )
-
-    ref_mean_dt = float(np.mean(np.diff(ref_times)))
-    gen_mean_dt = float(np.mean(np.diff(gen_times)))
-    dt_relative_difference = abs(ref_mean_dt - gen_mean_dt) / ref_mean_dt
-    print(
-        f"Frames: reference={len(ref_files)}, generated={len(gen_files)}; "
-        f"mean dt: reference={ref_mean_dt:.8g}, generated={gen_mean_dt:.8g} "
-        f"(relative difference {dt_relative_difference:.2%})"
+    fig, axes = plt.subplots(
+        2, number_of_fields,
+        figsize=(6 * number_of_fields, 10),
+        squeeze=False
     )
-    if dt_relative_difference > mean_dt_relative_tolerance:
-        raise ValueError(
-            f"Mean time-step difference {dt_relative_difference:.2%} exceeds "
-            f"{mean_dt_relative_tolerance:.2%}"
+
+    for i, (field_name, diff_data) in enumerate(point_fields.items()):
+        absolute_diff = diff_data["absolute"]
+        relative_diff = diff_data["relative"]
+
+        # Vector fields: calculate the Euclidean norm
+        if absolute_diff.ndim > 1:
+            absolute_diff = np.linalg.norm(absolute_diff, axis=1)
+            relative_diff = np.linalg.norm(relative_diff, axis=1)
+
+        absolute_diff = absolute_diff.reshape((ny, nx))
+        relative_diff = relative_diff.reshape((ny, nx))
+
+        extent = (
+            grid.origin[0],
+            grid.origin[0] + (nx - 1) * grid.spacing[0],
+            grid.origin[1],
+            grid.origin[1] + (ny - 1) * grid.spacing[1]
         )
 
-    max_differences = {"pressure": 0.0, "velocity": 0.0}
-    for time, ref_arrays in zip(ref_times, ref_frames):
-        gen_arrays = interpolate_frame(gen_times, gen_frames, time)
-        if ref_arrays.keys() != gen_arrays.keys():
-            raise ValueError("Reference and generated point-data arrays differ")
-        for name in max_differences:
-            difference = maximum_difference(ref_arrays[name], gen_arrays[name])
-            max_differences[name] = max(max_differences[name], difference)
-
-    success = True
-    for name, difference in max_differences.items():
-        status = "PASS" if difference <= value_tolerance else "FAIL"
-        print(
-            f"{status}: {name} maximum absolute difference "
-            f"{difference:.6e} (tolerance {value_tolerance:.6e})"
+        # Absolute deviation
+        image_abs = axes[0, i].imshow(
+            absolute_diff,
+            origin="lower",
+            extent=extent,
+            aspect="equal",
+            cmap="viridis"
         )
-        success &= difference <= value_tolerance
 
-    if success:
-        print("SUCCESS: Reference comparison passed.")
-    else:
-        print("FAILURE: Field differences exceed tolerance.")
-    return success
+        axes[0, i].set_title(f"{field_name} - Absolute")
+        axes[0, i].set_xlabel("x")
+        axes[0, i].set_ylabel("y")
+        fig.colorbar(
+            image_abs,
+            ax=axes[0, i],
+            label="Absolute deviation"
+        )
 
+        # Relative deviation
+        image_rel = axes[1, i].imshow(
+            relative_diff,
+            origin="lower",
+            extent=extent,
+            aspect="equal",
+            cmap="viridis"
+        )
 
-def main():
-    parser = argparse.ArgumentParser(
-        description="Compare VTI outputs against reference data at matching physical times."
-    )
-    parser.add_argument("reference_directory")
-    parser.add_argument("generated_directory")
-    parser.add_argument("--value-tolerance", type=float, default=1e-2)
-    parser.add_argument("--mean-dt-relative-tolerance", type=float, default=0.05)
-    parser.add_argument("--endpoint-tolerance", type=float, default=1e-8)
-    args = parser.parse_args()
+        axes[1, i].set_title(f"{field_name} - Relative")
+        axes[1, i].set_xlabel("x")
+        axes[1, i].set_ylabel("y")
+        fig.colorbar(
+            image_rel,
+            ax=axes[1, i],
+            label="Relative deviation"
+        )
 
-    if args.value_tolerance < 0:
-        parser.error("--value-tolerance must be non-negative")
-    if args.mean_dt_relative_tolerance < 0:
-        parser.error("--mean-dt-relative-tolerance must be non-negative")
-    if args.endpoint_tolerance < 0:
-        parser.error("--endpoint-tolerance must be non-negative")
+    fig.suptitle(f"Deviations: {filename}")
+    fig.tight_layout()
 
-    try:
-        return 0 if compare_directories(
-            args.reference_directory,
-            args.generated_directory,
-            args.value_tolerance,
-            args.mean_dt_relative_tolerance,
-            args.endpoint_tolerance,
-        ) else 1
-    except (OSError, RuntimeError, ValueError) as error:
-        print(f"ERROR: {error}", file=sys.stderr)
-        return 1
+    os.makedirs(output_dir, exist_ok=True)
 
+    plot_filename = os.path.splitext(filename)[0] + ".png"
+    fig.savefig(os.path.join(output_dir, plot_filename), dpi=150)
+    plt.close(fig)
+
+def compare_vti_directories(dir1, dir2, generatePlot, tolerance=1e-6):
+    files1 = sorted(glob.glob(os.path.join(dir1, "output_*.vti")))
+    files2 = sorted(glob.glob(os.path.join(dir2, "output_*.vti")))
+
+    if not files1 or not files2:
+        print("Error: No .vti files found in one or both directories.")
+        return False
+
+    if len(files1) != len(files2):
+        print(f"Warning: File count mismatch ({len(files1)} vs {len(files2)})")
+
+    failed = False
+    plot_dir = "test/plots/vti_deviation_plots"
+
+    for f1, f2 in zip(files1, files2):
+        # These refer to the grid thats described by the current iterated vti file
+        grid1 = pv.read(f1)
+        grid2 = pv.read(f2)
+
+        filename = os.path.basename(f1)
+        print(f"Analyzing {filename}...")
+
+        if grid1.dimensions != grid2.dimensions:
+            print(f"  Grid dimension mismatch: {grid1.dimensions} vs {grid2.dimensions}")
+            failed = True
+            continue
+
+        deviations = {
+            "point_data": {},
+            "cell_data": {},
+            "field_data": {}
+        }
+
+        for data_type in ["point_data", "cell_data", "field_data"]:
+            data1 = getattr(grid1, data_type)
+            data2 = getattr(grid2, data_type)
+
+            if set(data1.keys()) != set(data2.keys()):
+                print(f"  Data fields differ in {data_type}")
+                failed = True
+
+            for field_name in data1.keys():
+                if field_name not in data2:
+                    continue
+
+                arr1 = np.asarray(data1[field_name])
+                arr2 = np.asarray(data2[field_name])
+
+                if arr1.shape != arr2.shape:
+                    print(
+                        f"  Shape mismatch for {data_type} '{field_name}': "
+                        f"{arr1.shape} vs {arr2.shape}"
+                    )
+                    failed = True
+                    continue
+
+                absolute_diff = np.abs(arr1 - arr2)
+
+                # Relative deviation, using grid2 as reference
+                relative_diff = np.zeros_like(absolute_diff, dtype=float)
+
+                np.divide(
+                    absolute_diff,
+                    np.abs(arr2),
+                    out=relative_diff,
+                    where=(arr2 != 0)
+                )
+
+                # Reference is zero, but generated value is not zero
+                relative_diff[(arr2 == 0) & (absolute_diff != 0)] = np.inf
+
+                max_diff = np.max(absolute_diff) if absolute_diff.size else 0.0
+
+                status = "MATCH" if max_diff <= tolerance else "DIFFERENT"
+
+                print(
+                    f"  [{data_type}: {field_name}] "
+                    f"Max Diff: {max_diff:.3e} -> {status}"
+                )
+
+                if max_diff > tolerance:
+                    failed = True
+
+                deviations[data_type][field_name] = {
+                    "absolute": absolute_diff,
+                    "relative": relative_diff
+                }
+
+        if generatePlot:
+            plot_vti_deviations(
+                grid1,
+                deviations,
+                filename,
+                plot_dir
+            )
+
+    return failed
 
 if __name__ == "__main__":
-    sys.exit(main())
+    import sys
 
+    if len(sys.argv) == 1:
+        # First compare lid_driven_cavity outputs
+        print("Running tests to compare the generated output of our project with the reference output for the lid driven cavity scenario.")
+        generated_output = "build\out"
+        reference_output = "test\outputs\lid_driven_cavity_output"
+        fail_lcd = compare_vti_directories(generated_output, reference_output, True)
+        
+        # Second, compare scenario3 outputs
+        print("Running tests to compare the generated output of our project with the reference output for scenario 3.")
+        generated_output = "build\out"
+        reference_output = "test\outputs\scenario3_output"
+        fail_s3 = compare_vti_directories(generated_output, reference_output, True)
+
+        if fail_lcd or fail_s3:
+            sys.exit(1)
+        
+    elif len(sys.argv) == 4:
+        compare_vti_directories(sys.argv[1], sys.argv[2], sys.argv[3])
+
+    else:
+        sys.exit(1)

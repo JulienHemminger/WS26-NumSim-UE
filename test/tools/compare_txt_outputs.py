@@ -306,29 +306,30 @@ def compare_txt_directories(
         plot_deviations(all_deviations, dir1, dir2)
 
     return failed
-
 if __name__ == "__main__":
     import sys
 
     if len(sys.argv) == 1:
-        # First compare lid_driven_cavity outputs
         print("Running tests to compare the generated output of our project with the reference output for the lid driven cavity scenario.")
-        generated_output = "build\out"
-        reference_output = "test\outputs\lid_driven_cavity_output"
+        generated_output = "build/out"
+        reference_output = "test/outputs/lid_driven_cavity_output"
         fail_lcd = compare_txt_directories(generated_output, reference_output, True)
         
-        # Second, compare scenario3 outputs
         print("Running tests to compare the generated output of our project with the reference output for scenario 3.")
-        generated_output = "build\out"
-        reference_output = "test\outputs\scenario3_output"
+        generated_output = "build/out"
+        reference_output = "test/outputs/scenario3_output"
         fail_s3 = compare_txt_directories(generated_output, reference_output, True)
 
         if fail_lcd or fail_s3:
             sys.exit(1)
 
+    elif len(sys.argv) == 3:
+        compare_txt_directories(sys.argv[1], sys.argv[2], True)
+
     elif len(sys.argv) == 4:
-        compare_txt_directories(sys.argv[1], sys.argv[2], sys.argv[3])
+        gen_plot = sys.argv[3].lower() in ('true', '1', 't', 'yes')
+        compare_txt_directories(sys.argv[1], sys.argv[2], gen_plot)
 
     else:
+        print("Usage: python3 compare_txt_outputs.py <dir1> <dir2> [generatePlot]")
         sys.exit(1)
-        
