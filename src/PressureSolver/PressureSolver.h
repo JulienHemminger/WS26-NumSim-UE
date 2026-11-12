@@ -17,8 +17,8 @@ class PressureSolver {
     virtual void solve() = 0;
 
    protected:
-    // set the boundary values to account for homogenous Dirichlet boundary conditions, this has to
-    // be called after every iteration
+    // set the boundary values to account for homogenous Dirichlet boundary conditions (see
+    // Chapter 3.1.3), this has to be called after every iteration
     void setBoundaryValues();
     void setBoundaryValuesLeft();
     void setBoundaryValuesRight();

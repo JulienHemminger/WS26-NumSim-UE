@@ -38,6 +38,7 @@ void Computation::runSimulation() {
 
     std::cout << "Starting Time: " << currentTime << std::endl;
 
+    // see Chapter 3.2.6 "Algorithm for One Time Step"
     while (currentTime < settings_.endTime) {
         applyBoundaryValues();
 
@@ -64,9 +65,10 @@ void Computation::runSimulation() {
 }
 
 void Computation::computeTimeStepWidth() {
-    // Compute the biggest possible time step which is still stable
+    // Compute the biggest possible time step which is still stable. See Chapter 3.2.5 "Time Step –
+    // Stability Conditions"
 
-    // Time step condition by diffusion (Reynolds number)
+    // Time step condition by diffusion operator (Reynolds number)
     double boundary_diffusion = 0.;
 
     if (meshWidth_[0] == meshWidth_[1]) {
@@ -77,7 +79,7 @@ void Computation::computeTimeStepWidth() {
         boundary_diffusion = (settings_.re / 2.) * (h2x * h2y) * (1. / (h2x + h2y));
     }
 
-    // Time step condition by convection in x/y direction with highest velocity
+    // Time step condition by convection operator in x/y direction with highest velocity
     const auto maximumAbsoluteVelocity = [](int iBegin, int iEnd, int jBegin, int jEnd,
                                             const auto& velocityAt) {
         double maximum = 0.;
