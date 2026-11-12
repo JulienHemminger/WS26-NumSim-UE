@@ -151,6 +151,8 @@ void Computation::applyBoundaryValues() {
 }
 
 void Computation::computePreliminaryVelocities() {
+    // Computes the preliminary velocities f and g which will be used for the pressure equation.
+    // This uses equation (3.2).
     for (int j = discretization_->uJBegin() + 1; j < discretization_->uJEnd() - 1; j++) {
         for (int i = discretization_->uIBegin() + 1; i < discretization_->uIEnd() - 1; i++) {
             double diffusion =
@@ -175,6 +177,8 @@ void Computation::computePreliminaryVelocities() {
 }
 
 void Computation::computeRightHandSide() {
+    // Computes the right hand side of the pressure equation. This is only necessary once per time
+    // step and therefore not part of the pressure iteration. This uses equation (3.3).
     for (int j = discretization_->pJBegin() + 1; j < discretization_->pJEnd() - 1; j++) {
         for (int i = discretization_->pIBegin() + 1; i < discretization_->pIEnd() - 1; i++) {
             double difference_f =
@@ -189,6 +193,8 @@ void Computation::computeRightHandSide() {
 void Computation::solvePressure() { pressureSolver_->solve(); }
 
 void Computation::computeVelocities() {
+    // Compute the final velocities. This is done after the pressure iteration, to gain velocities
+    // fulfilling the continuum equation. This uses equations before (3.4).
     for (int j = discretization_->uJBegin() + 1; j < discretization_->uJEnd() - 1; j++) {
         for (int i = discretization_->uIBegin() + 1; i < discretization_->uIEnd() - 1; i++) {
             discretization_->u(i, j) =

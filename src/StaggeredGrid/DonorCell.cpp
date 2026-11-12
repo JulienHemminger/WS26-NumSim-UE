@@ -1,5 +1,7 @@
 #include "StaggeredGrid/DonorCell.h"
 
+// Computes discrete derivatives according to the Donor Cell Scheme. This is written in 3.2.4
+
 //! constructor
 DonorCell::DonorCell(std::array<int, 2> nCells, std::array<double, 2> meshWidth, double alpha)
     : Discretization(nCells, meshWidth), alpha_(alpha) {}

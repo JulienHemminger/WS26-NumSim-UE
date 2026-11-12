@@ -47,6 +47,10 @@ void PressureSolver::setBoundaryValuesBottom() {
 }
 
 double PressureSolver::calculateResidual() {
+    // This function computes the average squared residual of pressure values. It iterates over the
+    // cells, accumulating the squared differences between the computed pressure values and the
+    // right-hand side values, and returns the average of these squared residuals.
+
     const double dx = discretization_->dx();
     const double dy = discretization_->dy();
     const double dx2 = pow(dx, 2);
