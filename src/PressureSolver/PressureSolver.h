@@ -11,8 +11,7 @@ class PressureSolver {
    public:
     // constructor
     PressureSolver(std::shared_ptr<Discretization> discretization, double epsilon,
-                   int maximumNumberOfIterations, bool outflowBottom, bool outflowTop,
-                   bool outflowLeft, bool outflowRight);
+                   int maximumNumberOfIterations);
     // solve the Poisson problem for the pressure, using the rhs and p field variables in the
     // staggeredGrid
     virtual void solve() = 0;
@@ -26,16 +25,11 @@ class PressureSolver {
     void setBoundaryValuesTop();
     void setBoundaryValuesBottom();
 
-    void applyObstacleBoundaryValues();
-
     double calculateResidual();
 
    protected:
-    std::shared_ptr<Discretization> discretization_;  // object holding the needed field variables for rhs and p
+    std::shared_ptr<Discretization>
+        discretization_;  // object holding the needed field variables for rhs and p
     double epsilon_;
     int maximumNumberOfIterations_;
-    bool outflowBottom_;
-    bool outflowTop_;
-    bool outflowLeft_;
-    bool outflowRight_;
 };

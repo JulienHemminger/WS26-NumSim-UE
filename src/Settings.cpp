@@ -7,7 +7,6 @@ void Settings::printSettings() {
     std::cout << "Settings: " << std::endl
               << "  physicalSize: " << physicalSize[0] << " x " << physicalSize[1]
               << ", nCells: " << nCells[0] << " x " << nCells[1] << std::endl
-              << " path to file with geometry layout: " << complexGeometryPath << std::endl
               << "  endTime: " << endTime << " s, re: " << re << ", g: (" << g[0] << "," << g[1]
               << "), tau: " << tau << ", maximum dt: " << maximumDt << std::endl
               << "  dirichletBC: bottom: (" << dirichletBcBottom[0] << "," << dirichletBcBottom[1]
@@ -16,22 +15,14 @@ void Settings::printSettings() {
               << ", left: (" << dirichletBcLeft[0] << "," << dirichletBcLeft[1] << ")"
               << ", right: (" << dirichletBcRight[0] << "," << dirichletBcRight[1] << ")"
               << std::endl
-              << "  outflow: bottom: " << outflowBottom << ", top: " << outflowTop
-              << ", left: " << outflowLeft << ", right: " << outflowRight << std::endl
               << "  useDonorCell: " << std::boolalpha << useDonorCell << ", alpha: " << alpha
               << std::endl
-              << " underrelaxation constant: " << underrelaxationVelocity << std::endl
               << "  pressureSolver: " << pressureSolver << ", omega: " << omega
               << ", epsilon: " << epsilon
-              << ", maximumNumberOfIterations: " << maximumNumberOfIterations << std::endl
-              << " unique folder name: " << uID << std::endl;
+              << ", maximumNumberOfIterations: " << maximumNumberOfIterations << std::endl;
 }
 
 void Settings::loadFromFile(std::string filename) {
-    complexGeometryPath = "None";
-    underrelaxationVelocity = 1.;
-    uID = "";
-
     std::ifstream file(filename.c_str(), std::ios::in);
 
     if (!file.is_open()) {
@@ -83,8 +74,6 @@ void Settings::loadFromFile(std::string filename) {
             physicalSize[0] = atof(valueString.c_str());
         } else if (parameterName == "physicalSizeY") {
             physicalSize[1] = atof(valueString.c_str());
-        } else if (parameterName == "complexGeometryPath") {
-            complexGeometryPath = valueString;
         } else if (parameterName == "re") {
             re = atof(valueString.c_str());
         } else if (parameterName == "endTime") {
@@ -107,8 +96,6 @@ void Settings::loadFromFile(std::string filename) {
                           << std::endl;
                 return;
             }
-        } else if (parameterName == "underrelaxationVelocity") {
-            underrelaxationVelocity = atof(valueString.c_str());
         } else if (parameterName == "alpha") {
             alpha = atof(valueString.c_str());
         } else if (parameterName == "dirichletBottomX") {
@@ -127,14 +114,6 @@ void Settings::loadFromFile(std::string filename) {
             dirichletBcRight[0] = atof(valueString.c_str());
         } else if (parameterName == "dirichletRightY") {
             dirichletBcRight[1] = atof(valueString.c_str());
-        } else if (parameterName == "outflowBottom") {
-            outflowBottom = (valueString == "true");
-        } else if (parameterName == "outflowTop") {
-            outflowTop = (valueString == "true");
-        } else if (parameterName == "outflowLeft") {
-            outflowLeft = (valueString == "true");
-        } else if (parameterName == "outflowRight") {
-            outflowRight = (valueString == "true");
         } else if (parameterName == "pressureSolver") {
             pressureSolver = valueString;
         } else if (parameterName == "omega") {
@@ -143,8 +122,6 @@ void Settings::loadFromFile(std::string filename) {
             epsilon = atof(valueString.c_str());
         } else if (parameterName == "maximumNumberOfIterations") {
             maximumNumberOfIterations = int(atof(valueString.c_str()));
-        } else if (parameterName == "uID") {
-            uID = valueString;
         } else {
             std::cout << "The parameter " << parameterName << " in this line " << lineNo
                       << " could not be found in " << filename << "\"." << std::endl;

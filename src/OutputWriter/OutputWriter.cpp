@@ -2,16 +2,9 @@
 
 #include <iostream>
 
-#include "StaggeredGrid/Discretization.h"
-
-OutputWriter::OutputWriter(std::shared_ptr<Discretization> discretization, std::string uID)
-    : discretization_(discretization),
-      fileNo_(0),
-      outputDirectory_(uID.empty() ? "out" : "out_" + uID) {
+OutputWriter::OutputWriter(std::shared_ptr<Discretization> discretization)
+    : discretization_(discretization), fileNo_(0) {
     // create "out" subdirectory if it does not yet exist
-    std::string command = "mkdir -p ";
-    std::string folder_name = outputDirectory_;
-    int returnValue = system((command + folder_name).c_str());
-    if (returnValue != 0)
-        std::cout << "Could not create subdirectory \"" << outputDirectory_ << "\"." << std::endl;
+    int returnValue = system("mkdir -p out");
+    if (returnValue != 0) std::cout << "Could not create subdirectory \"out\"." << std::endl;
 }

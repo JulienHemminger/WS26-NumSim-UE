@@ -10,8 +10,7 @@ class SOR : public PressureSolver {
    public:
     // constructor
     SOR(std::shared_ptr<Discretization> discretization, double epsilon,
-        int maximumNumberOfIterations, double omega, bool outflowBottom, bool outflowTop,
-        bool outflowLeft, bool outflowRight);
+        int maximumNumberOfIterations, double omega);
 
     // solve the system of the Poisson equation for pressure
     void solve();

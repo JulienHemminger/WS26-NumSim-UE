@@ -4,7 +4,6 @@
 #include <iostream>
 #include <memory>
 #include <sstream>
-#include <vector>
 
 #include "Array2D/FieldVariable.h"
 
@@ -16,11 +15,6 @@ class StaggeredGrid {
     const std::array<double, 2> meshWidth() const;
     //! get number of cells in each coordinate direction
     const std::array<int, 2> nCells() const;
-
-    //! set obstacle flags
-    void setObstacleFlags(std::string pathToGeometry);
-    //! set flags of obstacle neighbours
-    void setObstacleNeighbourFlags();
 
     // get a reference to field variable u
     const FieldVariable& u() const;
@@ -54,45 +48,6 @@ class StaggeredGrid {
     //! access value of G in element (i,j)
     //! access value of G in element (x,y)
     double& g(int i, int j);
-
-    //! value if cell is an obstacle cell: 1 if obstacle, 0 else
-    const FieldVariable& isObstacleCell() const;
-    //! access value in element (i,j), get const value in element (x,y)
-    double isObstacleCell(int i, int j) const;
-    //! access value in element (x,y)
-    double& isObstacleCell(int i, int j);
-
-    //! value if obstacle(!) cell if left neighbour is fluid: 1 if true, else 0. Only definded for
-    //! obstacles
-    const FieldVariable& hasFluidNeighbourLeft() const;
-    //! access value in element (i,j), get const value in element (x,y)
-    double hasFluidNeighbourLeft(int i, int j) const;
-    //! access value in element (x,y)
-    double& hasFluidNeighbourLeft(int i, int j);
-
-    //! value if obstacle(!) cell if right neighbour is fluid: 1 if true, else 0. Only definded for
-    //! obstacles
-    const FieldVariable& hasFluidNeighbourRight() const;
-    //! access value in element (i,j), get const value in element (x,y)
-    double hasFluidNeighbourRight(int i, int j) const;
-    //! access value in element (x,y)
-    double& hasFluidNeighbourRight(int i, int j);
-
-    //! value if obstacle(!) cell if top neighbour is fluid: 1 if true, else 0. Only definded for
-    //! obstacles
-    const FieldVariable& hasFluidNeighbourTop() const;
-    //! access value in element (i,j), get const value in element (x,y)
-    double hasFluidNeighbourTop(int i, int j) const;
-    //! access value in element (x,y)
-    double& hasFluidNeighbourTop(int i, int j);
-
-    //! value if obstacle(!) cell if bottom neighbour is fluid: 1 if true, else 0. Only definded for
-    //! obstacles
-    const FieldVariable& hasFluidNeighbourBottom() const;
-    //! access value in element (i,j), get const value in element (x,y)
-    double hasFluidNeighbourBottom(int i, int j) const;
-    //! access value in element (x,y)
-    double& hasFluidNeighbourBottom(int i, int j);
 
     //! get the mesh width in x-direction
     double dx() const;
@@ -135,12 +90,4 @@ class StaggeredGrid {
     FieldVariable rhs_;
     FieldVariable f_;
     FieldVariable g_;
-
-    //! obstacle flags
-    FieldVariable isObstacleCell_;
-
-    FieldVariable hasFluidNeighbourLeft_;
-    FieldVariable hasFluidNeighbourRight_;
-    FieldVariable hasFluidNeighbourTop_;
-    FieldVariable hasFluidNeighbourBottom_;
 };

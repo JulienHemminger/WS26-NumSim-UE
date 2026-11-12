@@ -3,9 +3,8 @@
 #include <cstdlib>
 #include <iostream>
 
-OutputWriterParaview::OutputWriterParaview(std::shared_ptr<Discretization> discretization,
-                                           std::string uID)
-    : OutputWriter(discretization, uID) {
+OutputWriterParaview::OutputWriterParaview(std::shared_ptr<Discretization> discretization)
+    : OutputWriter(discretization) {
     // Create a vtkWriter_
     vtkWriter_ = vtkSmartPointer<vtkXMLImageDataWriter>::New();
 }
@@ -13,7 +12,7 @@ OutputWriterParaview::OutputWriterParaview(std::shared_ptr<Discretization> discr
 void OutputWriterParaview::writeFile(double currentTime) {
     // Assemble the filename
     std::stringstream fileName;
-    fileName << outputDirectory_ << "/output_" << std::setw(4) << setfill('0') << fileNo_ << "."
+    fileName << "out/output_" << std::setw(4) << setfill('0') << fileNo_ << "."
              << vtkWriter_->GetDefaultFileExtension();
 
     // increment file no.
@@ -34,7 +33,8 @@ void OutputWriterParaview::writeFile(double currentTime) {
 
     // set number of points in each dimension, 1 cell in z direction
     std::array<int, 2> nCells = discretization_->nCells();
-    dataSet->SetDimensions(nCells[0] + 1, nCells[1] + 1, 1);  // we want to have points at each corner of each cell
+    dataSet->SetDimensions(nCells[0] + 1, nCells[1] + 1,
+                           1);  // we want to have points at each corner of each cell
 
     // add pressure field variable
     // ---------------------------
@@ -43,24 +43,22 @@ void OutputWriterParaview::writeFile(double currentTime) {
     // the pressure is a scalar which means the number of components is 1
     arrayPressure->SetNumberOfComponents(1);
 
-    // Set the number of pressure values and allocate memory for it. We already know the number, it has to be the same as there are nodes in the mesh.
+    // Set the number of pressure values and allocate memory for it. We already know the number, it
+    // has to be the same as there are nodes in the mesh.
     arrayPressure->SetNumberOfTuples(dataSet->GetNumberOfPoints());
 
     arrayPressure->SetName("pressure");
 
-    // loop over the nodes of the mesh and assign the interpolated p values in the vtk data structure
-    // we only consider the cells that are the actual computational domain, not the helper values in the "halo"
+    // loop over the nodes of the mesh and assign the interpolated p values in the vtk data
+    // structure we only consider the cells that are the actual computational domain, not the helper
+    // values in the "halo"
     int index = 0;  // index for the vtk data structure, will be incremented in the inner loop
     for (int j = 0; j < nCells[1] + 1; j++) {
         for (int i = 0; i < nCells[0] + 1; i++, index++) {
-            if (discretization_->isObstacleCell(i, j) == 1.) {
-                arrayPressure->SetValue(index, NAN);
-            } else {
-                const double x = i * dx;
-                const double y = j * dy;
+            const double x = i * dx;
+            const double y = j * dy;
 
-                arrayPressure->SetValue(index, discretization_->p().interpolateAt(x, y));
-            }
+            arrayPressure->SetValue(index, discretization_->p().interpolateAt(x, y));
         }
     }
 
@@ -74,8 +72,8 @@ void OutputWriterParaview::writeFile(double currentTime) {
     // ---------------------------
     vtkSmartPointer<vtkDoubleArray> arrayVelocity = vtkDoubleArray::New();
 
-    // here we have two components (u,v), but ParaView will only allow vector glyphs if we have an ℝ^3 vector,
-    // therefore we use a 3-dimensional vector and set the 3rd component to zero
+    // here we have two components (u,v), but ParaView will only allow vector glyphs if we have an
+    // ℝ^3 vector, therefore we use a 3-dimensional vector and set the 3rd component to zero
     arrayVelocity->SetNumberOfComponents(3);
 
     // set the number of values
@@ -90,17 +88,11 @@ void OutputWriterParaview::writeFile(double currentTime) {
 
         for (int i = 0; i < nCells[0] + 1; i++, index++) {
             std::array<double, 3> velocityVector;
-            if (discretization_->isObstacleCell(i, j) == 1.) {
-                velocityVector[0] = NAN;
-                velocityVector[1] = NAN;
-                velocityVector[2] = 0.0;  // z-direction is 0
-            } else {
-                const double x = i * dx;
+            const double x = i * dx;
 
-                velocityVector[0] = discretization_->u().interpolateAt(x, y);
-                velocityVector[1] = discretization_->v().interpolateAt(x, y);
-                velocityVector[2] = 0.0;
-            }
+            velocityVector[0] = discretization_->u().interpolateAt(x, y);
+            velocityVector[1] = discretization_->v().interpolateAt(x, y);
+            velocityVector[2] = 0.0;
 
             arrayVelocity->SetTuple(index, velocityVector.data());
         }
@@ -125,15 +117,16 @@ void OutputWriterParaview::writeFile(double currentTime) {
     // Write the data
     vtkWriter_->SetInputData(dataSet);
 
-    // vtkWriter_->SetDataModeToAscii();  // comment this in to get ascii text files: those can be checked in an editor
+    // vtkWriter_->SetDataModeToAscii();  // comment this in to get ascii text files: those can be
+    // checked in an editor
     vtkWriter_->SetDataModeToBinary();  // set file mode to binary files: smaller file sizes
 
     // finally write out the data
     vtkWriter_->Write();
 }
 
-void writeParaviewOutput(int fileNo, std::string uID) {
-    const std::string outputDirectory = uID.empty() ? "out" : "out_" + uID;
+void writeParaviewOutput(int fileNo) {
+    const std::string outputDirectory = "out";
 
     std::string command = "mkdir -p ";
     std::string folder_name = outputDirectory;

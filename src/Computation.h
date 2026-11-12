@@ -33,9 +33,6 @@ class Computation {
     // set boundary values of u and v to correct values
     void applyBoundaryValues();
 
-    //!  set boundary values of u, v, F, G around obstacle cells
-    void applyObstacleBoundaryValues();
-
     //! compute the preliminary velocities, F and G
     void computePreliminaryVelocities();
 

@@ -3,11 +3,8 @@
 #include <math.h>
 
 SOR::SOR(std::shared_ptr<Discretization> discretization, double epsilon,
-         int maximumNumberOfIterations, double omega, bool outflowBottom, bool outflowTop,
-         bool outflowLeft, bool outflowRight)
-    : PressureSolver(discretization, epsilon, maximumNumberOfIterations, outflowBottom, outflowTop,
-                     outflowLeft, outflowRight),
-      omega_(omega) {}
+         int maximumNumberOfIterations, double omega)
+    : PressureSolver(discretization, epsilon, maximumNumberOfIterations), omega_(omega) {}
 
 void SOR::solve() {
     double dy = discretization_->dy();
@@ -18,21 +15,18 @@ void SOR::solve() {
 
     int iteration = 0;
 
-    applyObstacleBoundaryValues();
     double res = calculateResidual();
 
     while (iteration < maximumNumberOfIterations_ && res > pow(epsilon_, 2)) {
         for (int i = discretization_->pIBegin() + 1; i < discretization_->pIEnd() - 1; i++) {
             for (int j = discretization_->pJBegin() + 1; j < discretization_->pJEnd() - 1; j++) {
-                if (discretization_->isObstacleCell(i, j) != 1.) {
-                    double sum_x =
-                        (discretization_->p(i + 1, j) + discretization_->p(i - 1, j)) / (dx2);
-                    double sum_y =
-                        (discretization_->p(i, j + 1) + discretization_->p(i, j - 1)) / (dy2);
-                    discretization_->p(i, j) =
-                        (1 - omega_) * discretization_->p(i, j) +
-                        omega_ * factor * (sum_x + sum_y - discretization_->rhs(i, j));
-                }
+                double sum_x =
+                    (discretization_->p(i + 1, j) + discretization_->p(i - 1, j)) / (dx2);
+                double sum_y =
+                    (discretization_->p(i, j + 1) + discretization_->p(i, j - 1)) / (dy2);
+                discretization_->p(i, j) =
+                    (1 - omega_) * discretization_->p(i, j) +
+                    omega_ * factor * (sum_x + sum_y - discretization_->rhs(i, j));
             }
         }
 

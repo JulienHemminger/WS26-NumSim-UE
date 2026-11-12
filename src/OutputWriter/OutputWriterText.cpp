@@ -10,8 +10,7 @@
 void OutputWriterText::writeFile(double currentTime) {
     // Assemble the filename
     std::stringstream fileName;
-    fileName << outputDirectory_ << "/output_" << std::setw(4) << std::setfill('0') << fileNo_
-             << ".txt";
+    fileName << "out/output_" << std::setw(4) << std::setfill('0') << fileNo_ << ".txt";
 
     // increment file no.
     fileNo_++;
@@ -50,12 +49,8 @@ void OutputWriterText::writeFile(double currentTime) {
     for (int j = discretization_->uJEnd() - 1; j >= discretization_->uJBegin(); j--) {
         file << std::setw(fieldWidth) << j << "|";
         for (int i = discretization_->uIBegin(); i < discretization_->uIEnd(); i++) {
-            if (discretization_->isObstacleCell(i, j) == 1.) {
-                file << std::setw(fieldWidth) << std::setprecision(fieldWidth - 6) << NAN;
-            } else {
-                file << std::setw(fieldWidth) << std::setprecision(fieldWidth - 6)
-                     << discretization_->u(i, j);
-            }
+            file << std::setw(fieldWidth) << std::setprecision(fieldWidth - 6)
+                 << discretization_->u(i, j);
         }
         file << std::endl;
     }
@@ -77,12 +72,8 @@ void OutputWriterText::writeFile(double currentTime) {
     for (int j = discretization_->vJEnd() - 1; j >= discretization_->vJBegin(); j--) {
         file << std::setw(fieldWidth) << j << "|";
         for (int i = discretization_->vIBegin(); i < discretization_->vIEnd(); i++) {
-            if (discretization_->isObstacleCell(i, j) == 1.) {
-                file << std::setw(fieldWidth) << std::setprecision(fieldWidth - 6) << NAN;
-            } else {
-                file << std::setw(fieldWidth) << std::setprecision(fieldWidth - 6)
-                     << discretization_->v(i, j);
-            }
+            file << std::setw(fieldWidth) << std::setprecision(fieldWidth - 6)
+                 << discretization_->v(i, j);
         }
         file << std::endl;
     }
@@ -104,12 +95,8 @@ void OutputWriterText::writeFile(double currentTime) {
     for (int j = discretization_->pJEnd() - 1; j >= discretization_->pJBegin(); j--) {
         file << std::setw(fieldWidth) << j << "|";
         for (int i = discretization_->pIBegin(); i < discretization_->pIEnd(); i++) {
-            if (discretization_->isObstacleCell(i, j) == 1.) {
-                file << std::setw(fieldWidth) << std::setprecision(fieldWidth - 6) << NAN;
-            } else {
-                file << std::setw(fieldWidth) << std::setprecision(fieldWidth - 6)
-                     << discretization_->p(i, j);
-            }
+            file << std::setw(fieldWidth) << std::setprecision(fieldWidth - 6)
+                 << discretization_->p(i, j);
         }
         file << std::endl;
     }
@@ -131,12 +118,8 @@ void OutputWriterText::writeFile(double currentTime) {
     for (int j = discretization_->uJEnd() - 1; j >= discretization_->uJBegin(); j--) {
         file << std::setw(fieldWidth) << j << "|";
         for (int i = discretization_->uIBegin(); i < discretization_->uIEnd(); i++) {
-            if (discretization_->isObstacleCell(i, j) == 1.) {
-                file << std::setw(fieldWidth) << std::setprecision(fieldWidth - 6) << NAN;
-            } else {
-                file << std::setw(fieldWidth) << std::setprecision(fieldWidth - 6)
-                     << discretization_->f(i, j);
-            }
+            file << std::setw(fieldWidth) << std::setprecision(fieldWidth - 6)
+                 << discretization_->f(i, j);
         }
         file << std::endl;
     }
@@ -158,12 +141,8 @@ void OutputWriterText::writeFile(double currentTime) {
     for (int j = discretization_->vJEnd() - 1; j >= discretization_->vJBegin(); j--) {
         file << std::setw(fieldWidth) << j << "|";
         for (int i = discretization_->vIBegin(); i < discretization_->vIEnd(); i++) {
-            if (discretization_->isObstacleCell(i, j) == 1.) {
-                file << std::setw(fieldWidth) << std::setprecision(fieldWidth - 6) << NAN;
-            } else {
-                file << std::setw(fieldWidth) << std::setprecision(fieldWidth - 6)
-                     << discretization_->g(i, j);
-            }
+            file << std::setw(fieldWidth) << std::setprecision(fieldWidth - 6)
+                 << discretization_->g(i, j);
         }
         file << std::endl;
     }
@@ -185,107 +164,8 @@ void OutputWriterText::writeFile(double currentTime) {
     for (int j = discretization_->pJEnd() - 1; j >= discretization_->pJBegin(); j--) {
         file << std::setw(fieldWidth) << j << "|";
         for (int i = discretization_->pIBegin(); i < discretization_->pIEnd(); i++) {
-            if (discretization_->isObstacleCell(i, j) == 1.) {
-                file << std::setw(fieldWidth) << std::setprecision(fieldWidth - 6) << NAN;
-            } else {
-                file << std::setw(fieldWidth) << std::setprecision(fieldWidth - 6)
-                     << discretization_->rhs(i, j);
-            }
-        }
-        file << std::endl;
-    }
-    file << std::endl;
-
-    file << "isObstacleCell (" << discretization_->p().size()[0] << "x"
-         << discretization_->p().size()[1] << "): " << std::endl
-         << std::string(fieldWidth, ' ') << "|";
-    for (int i = discretization_->pIBegin(); i < discretization_->pIEnd(); i++) {
-        file << std::setw(fieldWidth) << i;
-    }
-    file << std::endl
-         << std::string(fieldWidth * (discretization_->p().size()[0] + 2) + 1, '-') << std::endl;
-
-    for (int j = discretization_->pJEnd() - 1; j >= discretization_->pJBegin(); j--) {
-        file << std::setw(fieldWidth) << j << "|";
-        for (int i = discretization_->pIBegin(); i < discretization_->pIEnd(); i++) {
             file << std::setw(fieldWidth) << std::setprecision(fieldWidth - 6)
-                 << discretization_->isObstacleCell(i, j) * 10;
-        }
-        file << std::endl;
-    }
-    file << std::endl;
-
-    file << "hasFluidNeighbourLeft (" << discretization_->p().size()[0] << "x"
-         << discretization_->p().size()[1] << "): " << std::endl
-         << std::string(fieldWidth, ' ') << "|";
-    for (int i = discretization_->pIBegin(); i < discretization_->pIEnd(); i++) {
-        file << std::setw(fieldWidth) << i;
-    }
-    file << std::endl
-         << std::string(fieldWidth * (discretization_->p().size()[0] + 2) + 1, '-') << std::endl;
-
-    for (int j = discretization_->pJEnd() - 1; j >= discretization_->pJBegin(); j--) {
-        file << std::setw(fieldWidth) << j << "|";
-        for (int i = discretization_->pIBegin(); i < discretization_->pIEnd(); i++) {
-            file << std::setw(fieldWidth) << std::setprecision(fieldWidth - 6)
-                 << discretization_->hasFluidNeighbourLeft(i, j) * 10;
-        }
-        file << std::endl;
-    }
-    file << std::endl;
-
-    file << "hasFluidNeighbourRight (" << discretization_->p().size()[0] << "x"
-         << discretization_->p().size()[1] << "): " << std::endl
-         << std::string(fieldWidth, ' ') << "|";
-    for (int i = discretization_->pIBegin(); i < discretization_->pIEnd(); i++) {
-        file << std::setw(fieldWidth) << i;
-    }
-    file << std::endl
-         << std::string(fieldWidth * (discretization_->p().size()[0] + 2) + 1, '-') << std::endl;
-
-    for (int j = discretization_->pJEnd() - 1; j >= discretization_->pJBegin(); j--) {
-        file << std::setw(fieldWidth) << j << "|";
-        for (int i = discretization_->pIBegin(); i < discretization_->pIEnd(); i++) {
-            file << std::setw(fieldWidth) << std::setprecision(fieldWidth - 6)
-                 << discretization_->hasFluidNeighbourRight(i, j) * 10;
-        }
-        file << std::endl;
-    }
-    file << std::endl;
-
-    file << "hasFluidNeighbourTop (" << discretization_->p().size()[0] << "x"
-         << discretization_->p().size()[1] << "): " << std::endl
-         << std::string(fieldWidth, ' ') << "|";
-    for (int i = discretization_->pIBegin(); i < discretization_->pIEnd(); i++) {
-        file << std::setw(fieldWidth) << i;
-    }
-    file << std::endl
-         << std::string(fieldWidth * (discretization_->p().size()[0] + 2) + 1, '-') << std::endl;
-
-    for (int j = discretization_->pJEnd() - 1; j >= discretization_->pJBegin(); j--) {
-        file << std::setw(fieldWidth) << j << "|";
-        for (int i = discretization_->pIBegin(); i < discretization_->pIEnd(); i++) {
-            file << std::setw(fieldWidth) << std::setprecision(fieldWidth - 6)
-                 << discretization_->hasFluidNeighbourTop(i, j) * 10;
-        }
-        file << std::endl;
-    }
-    file << std::endl;
-
-    file << "hasFluidNeighbourBottom (" << discretization_->p().size()[0] << "x"
-         << discretization_->p().size()[1] << "): " << std::endl
-         << std::string(fieldWidth, ' ') << "|";
-    for (int i = discretization_->pIBegin(); i < discretization_->pIEnd(); i++) {
-        file << std::setw(fieldWidth) << i;
-    }
-    file << std::endl
-         << std::string(fieldWidth * (discretization_->p().size()[0] + 2) + 1, '-') << std::endl;
-
-    for (int j = discretization_->pJEnd() - 1; j >= discretization_->pJBegin(); j--) {
-        file << std::setw(fieldWidth) << j << "|";
-        for (int i = discretization_->pIBegin(); i < discretization_->pIEnd(); i++) {
-            file << std::setw(fieldWidth) << std::setprecision(fieldWidth - 6)
-                 << discretization_->hasFluidNeighbourBottom(i, j) * 10;
+                 << discretization_->rhs(i, j);
         }
         file << std::endl;
     }
@@ -298,8 +178,7 @@ void OutputWriterText::writePressureFile() {
 
     // Assemble the filename
     std::stringstream fileName;
-    fileName << outputDirectory_ << "/pressure_" << std::setw(4) << std::setfill('0')
-             << pressurefileNo++ << ".txt";
+    fileName << "out/pressure_" << std::setw(4) << std::setfill('0') << pressurefileNo++ << ".txt";
 
     // open file
     std::ofstream file(fileName.str().c_str());
