@@ -117,31 +117,30 @@ void PressureSolver::setBoundaryValuesBottom() {
 }
 
 double PressureSolver::calculateResidual() {
-    double dy = discretization_->dy();
-    double dx = discretization_->dx();
-    double dx2 = pow(dx, 2);
-    double dy2 = pow(dy, 2);
+    const double dx = discretization_->dx();
+    const double dy = discretization_->dy();
+    const double dx2 = pow(dx, 2);
+    const double dy2 = pow(dy, 2);
 
-    double res = 0.0;
-    int nFluidCells = 0;
+    double squaredResidualSum = 0.0;
+    int fluidCellCount = 0;
 
     for (int i = discretization_->pIBegin() + 1; i < discretization_->pIEnd() - 1; i++) {
         for (int j = discretization_->pJBegin() + 1; j < discretization_->pJEnd() - 1; j++) {
             if (discretization_->isObstacleCell(i, j) != 1.) {
-                double pxx = (discretization_->p(i - 1, j) - 2.0 * discretization_->p(i, j) +
-                              discretization_->p(i + 1, j)) /
-                             (dx2);
-                double pyy = (discretization_->p(i, j - 1) - 2.0 * discretization_->p(i, j) +
-                              discretization_->p(i, j + 1)) /
-                             (dy2);
+                const double pxx = (discretization_->p(i - 1, j) - 2.0 * discretization_->p(i, j) +
+                                    discretization_->p(i + 1, j)) /
+                                   dx2;
+                const double pyy = (discretization_->p(i, j - 1) - 2.0 * discretization_->p(i, j) +
+                                    discretization_->p(i, j + 1)) /
+                                   dy2;
+                const double residual = discretization_->rhs(i, j) - pxx - pyy;
 
-                double resij = discretization_->rhs(i, j) - pxx - pyy;
-                res = res + (pow(resij, 2));
-                nFluidCells++;
+                squaredResidualSum += pow(residual, 2);
+                fluidCellCount++;
             }
         }
     }
 
-    res = res / (nFluidCells);
-    return res;
+    return squaredResidualSum / fluidCellCount;
 }

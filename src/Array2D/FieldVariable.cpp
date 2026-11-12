@@ -11,11 +11,11 @@ double FieldVariable::interpolateAt(double x, double y) const {
     int iLeftEdge = (int)std::floor((x + origin_[0]) / dx);
     int jLowerEdge = (int)std::floor((y + origin_[1]) / dy);
 
-    if ((iLeftEdge >= (*this).size_[0] - 1) || false) {
-        iLeftEdge = iLeftEdge - 1;
+    if (iLeftEdge >= size_[0] - 1) {
+        --iLeftEdge;
     }
     if (jLowerEdge >= (*this).size_[1] - 1) {
-        jLowerEdge = jLowerEdge - 1;
+        --jLowerEdge;
     }
 
     const double xr1 = x - ((meshWidth_[0] * iLeftEdge) - origin_[0]);

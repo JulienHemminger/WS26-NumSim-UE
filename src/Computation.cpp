@@ -88,25 +88,23 @@ void Computation::computeTimeStepWidth() {
     }
 
     // Time step condition by convection in x/y direction with highest velocity
-    double u_max = 0.;
-    for (int j = discretization_->uJBegin(); j < discretization_->uJEnd(); j++) {
-        for (int i = discretization_->uIBegin(); i < discretization_->uIEnd(); i++) {
-            double value = std::abs(discretization_->u(i, j));
-            if (value > u_max) {
-                u_max = value;
+    const auto maximumAbsoluteVelocity = [](int iBegin, int iEnd, int jBegin, int jEnd,
+                                            const auto& velocityAt) {
+        double maximum = 0.;
+        for (int j = jBegin; j < jEnd; j++) {
+            for (int i = iBegin; i < iEnd; i++) {
+                maximum = std::max(maximum, std::abs(velocityAt(i, j)));
             }
         }
-    }
+        return maximum;
+    };
 
-    double v_max = 0.;
-    for (int j = discretization_->vJBegin(); j < discretization_->vJEnd(); j++) {
-        for (int i = discretization_->vIBegin(); i < discretization_->vIEnd(); i++) {
-            double value = std::abs(discretization_->v(i, j));
-            if (value > v_max) {
-                v_max = value;
-            }
-        }
-    }
+    const double u_max = maximumAbsoluteVelocity(
+        discretization_->uIBegin(), discretization_->uIEnd(), discretization_->uJBegin(),
+        discretization_->uJEnd(), [&](int i, int j) { return discretization_->u(i, j); });
+    const double v_max = maximumAbsoluteVelocity(
+        discretization_->vIBegin(), discretization_->vIEnd(), discretization_->vJBegin(),
+        discretization_->vJEnd(), [&](int i, int j) { return discretization_->v(i, j); });
 
     double boundary_convection_u = meshWidth_[0] / u_max;
     double boundary_convection_v = meshWidth_[1] / v_max;
@@ -122,122 +120,63 @@ void Computation::applyBoundaryValues() {
 
     // If an outflow is present in a direction, set the last velocities in each row/column to the
     // velocity of the outflow. This avoids jumps
-    if (settings_.outflowTop) {
-        for (int i = discretization_->uIBegin(); i < discretization_->uIEnd(); i++) {
-            discretization_->u(i, discretization_->uJEnd() - 1) =
-                discretization_->u(i, discretization_->uJEnd() - 2);
-        }
-
-        for (int i = discretization_->vIBegin(); i < discretization_->vIEnd(); i++) {
-            discretization_->v(i, discretization_->vJEnd() - 1) =
-                discretization_->v(i, discretization_->vJEnd() - 2);
-            discretization_->g(i, discretization_->vJEnd() - 1) =
-                discretization_->v(i, discretization_->vJEnd() - 1);
-        }
-
-    }
     // If no outflow is present in a direction, a wall is present and standard Dirichlet
     // conditions can be applied. They need to be interpolated, as we are using a staggered grid and
     // u and v may not be given at the same positions as the wall
-    else {
+
+    const auto setHorizontalBoundary = [&](bool top, bool outflow,
+                                           const std::array<double, 2>& boundaryValues) {
+        const int uBoundary = top ? discretization_->uJEnd() - 1 : discretization_->uJBegin();
+        const int uInterior = top ? uBoundary - 1 : uBoundary + 1;
+        const int vBoundary = top ? discretization_->vJEnd() - 1 : discretization_->vJBegin();
+        const int vInterior = top ? vBoundary - 1 : vBoundary + 1;
+
         for (int i = discretization_->uIBegin(); i < discretization_->uIEnd(); i++) {
-            discretization_->u(i, discretization_->uJEnd() - 1) =
-                2. * settings_.dirichletBcTop[0] -
-                discretization_->u(i, discretization_->uJEnd() - 2);
-            discretization_->f(i, discretization_->uJEnd() - 1) =
-                discretization_->u(i, discretization_->uJEnd() - 1);
+            if (outflow) {
+                discretization_->u(i, uBoundary) = discretization_->u(i, uInterior);
+            } else {
+                discretization_->u(i, uBoundary) =
+                    2. * boundaryValues[0] - discretization_->u(i, uInterior);
+                discretization_->f(i, uBoundary) = discretization_->u(i, uBoundary);
+            }
         }
 
         for (int i = discretization_->vIBegin(); i < discretization_->vIEnd(); i++) {
-            discretization_->v(i, discretization_->vJEnd() - 1) = settings_.dirichletBcTop[1];
-            discretization_->g(i, discretization_->vJEnd() - 1) =
-                discretization_->v(i, discretization_->vJEnd() - 1);
+            discretization_->v(i, vBoundary) =
+                outflow ? discretization_->v(i, vInterior) : boundaryValues[1];
+            discretization_->g(i, vBoundary) = discretization_->v(i, vBoundary);
         }
-    }
+    };
 
-    if (settings_.outflowBottom) {
-        for (int i = discretization_->uIBegin(); i < discretization_->uIEnd(); i++) {
-            discretization_->u(i, discretization_->uJBegin()) =
-                discretization_->u(i, discretization_->uJBegin() + 1);
-        }
+    setHorizontalBoundary(true, settings_.outflowTop, settings_.dirichletBcTop);
+    setHorizontalBoundary(false, settings_.outflowBottom, settings_.dirichletBcBottom);
 
-        for (int i = discretization_->vIBegin(); i < discretization_->vIEnd(); i++) {
-            discretization_->v(i, discretization_->vJBegin()) =
-                discretization_->v(i, discretization_->vJBegin() + 1);
-            discretization_->g(i, discretization_->vJBegin()) =
-                discretization_->v(i, discretization_->vJBegin());
-        }
-    } else {
-        for (int i = discretization_->uIBegin(); i < discretization_->uIEnd(); i++) {
-            discretization_->u(i, discretization_->uJBegin()) =
-                2. * settings_.dirichletBcBottom[0] -
-                discretization_->u(i, discretization_->uJBegin() + 1);
-            discretization_->f(i, discretization_->uJBegin()) =
-                discretization_->u(i, discretization_->uJBegin());
-        }
+    const auto setVerticalBoundary = [&](bool left, bool outflow,
+                                         const std::array<double, 2>& boundaryValues) {
+        const int uBoundary = left ? discretization_->uIBegin() : discretization_->uIEnd() - 1;
+        const int uInterior = left ? uBoundary + 1 : uBoundary - 1;
+        const int vBoundary = left ? discretization_->vIBegin() : discretization_->vIEnd() - 1;
+        const int vInterior = left ? vBoundary + 1 : vBoundary - 1;
 
-        for (int i = discretization_->vIBegin(); i < discretization_->vIEnd(); i++) {
-            discretization_->v(i, discretization_->vJBegin()) = settings_.dirichletBcBottom[1];
-            discretization_->g(i, discretization_->vJBegin()) =
-                discretization_->v(i, discretization_->vJBegin());
-        }
-    }
-
-    if (settings_.outflowLeft) {
         for (int j = discretization_->uJBegin(); j < discretization_->uJEnd(); j++) {
-            discretization_->u(discretization_->uIBegin(), j) =
-                discretization_->u(discretization_->uIBegin() + 1, j);
-            discretization_->f(discretization_->uIBegin(), j) =
-                discretization_->u(discretization_->uIBegin(), j);
+            discretization_->u(uBoundary, j) =
+                outflow ? discretization_->u(uInterior, j) : boundaryValues[0];
+            discretization_->f(uBoundary, j) = discretization_->u(uBoundary, j);
         }
 
         for (int j = discretization_->vJBegin(); j < discretization_->vJEnd(); j++) {
-            discretization_->v(discretization_->vIBegin(), j) =
-                discretization_->v(discretization_->vIBegin() + 1, j);
+            if (outflow) {
+                discretization_->v(vBoundary, j) = discretization_->v(vInterior, j);
+            } else {
+                discretization_->v(vBoundary, j) =
+                    2. * boundaryValues[1] - discretization_->v(vInterior, j);
+                discretization_->g(vBoundary, j) = discretization_->v(vBoundary, j);
+            }
         }
-    } else {
-        for (int j = discretization_->uJBegin(); j < discretization_->uJEnd(); j++) {
-            discretization_->u(discretization_->uIBegin(), j) = settings_.dirichletBcLeft[0];
-            discretization_->f(discretization_->uIBegin(), j) =
-                discretization_->u(discretization_->uIBegin(), j);
-        }
+    };
 
-        for (int j = discretization_->vJBegin(); j < discretization_->vJEnd(); j++) {
-            discretization_->v(discretization_->vIBegin(), j) =
-                2. * settings_.dirichletBcLeft[1] -
-                discretization_->v(discretization_->vIBegin() + 1, j);
-            discretization_->g(discretization_->vIBegin(), j) =
-                discretization_->v(discretization_->vIBegin(), j);
-        }
-    }
-
-    if (settings_.outflowRight) {
-        for (int j = discretization_->uJBegin(); j < discretization_->uJEnd(); j++) {
-            discretization_->u(discretization_->uIEnd() - 1, j) =
-                discretization_->u(discretization_->uIEnd() - 2, j);
-            discretization_->f(discretization_->uIEnd() - 1, j) =
-                discretization_->u(discretization_->uIEnd() - 1, j);
-        }
-
-        for (int j = discretization_->vJBegin(); j < discretization_->vJEnd(); j++) {
-            discretization_->v(discretization_->vIEnd() - 1, j) =
-                discretization_->v(discretization_->vIEnd() - 2, j);
-        }
-    } else {
-        for (int j = discretization_->uJBegin(); j < discretization_->uJEnd(); j++) {
-            discretization_->u(discretization_->uIEnd() - 1, j) = settings_.dirichletBcRight[0];
-            discretization_->f(discretization_->uIEnd() - 1, j) =
-                discretization_->u(discretization_->uIEnd() - 1, j);
-        }
-
-        for (int j = discretization_->vJBegin(); j < discretization_->vJEnd(); j++) {
-            discretization_->v(discretization_->vIEnd() - 1, j) =
-                2. * settings_.dirichletBcRight[1] -
-                discretization_->v(discretization_->vIEnd() - 2, j);
-            discretization_->g(discretization_->vIEnd() - 1, j) =
-                discretization_->v(discretization_->vIEnd() - 1, j);
-        }
-    }
+    setVerticalBoundary(true, settings_.outflowLeft, settings_.dirichletBcLeft);
+    setVerticalBoundary(false, settings_.outflowRight, settings_.dirichletBcRight);
 }
 
 void Computation::applyObstacleBoundaryValues() {
