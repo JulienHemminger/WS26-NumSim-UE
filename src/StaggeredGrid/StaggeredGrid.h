@@ -10,7 +10,7 @@
 
 class StaggeredGrid {
    public:
-    //! construct staggered grid
+    // Constructor
     StaggeredGrid(std::array<int, 2> nCells, std::array<double, 2> meshWidth);
     //! get the mesh width, i.e. the length of a single cell in x and y direction
     const std::array<double, 2> meshWidth() const;
@@ -22,31 +22,37 @@ class StaggeredGrid {
     //! set flags of obstacle neighbours
     void setObstacleNeighbourFlags();
 
-    //! get a reference to field variable u
+    // get a reference to field variable u
     const FieldVariable& u() const;
-    //! get a reference to field variable u
+    // get a reference to field variable v
     const FieldVariable& v() const;
-    //! get a reference to field variable u
+    // get a reference to field variable p
     const FieldVariable& p() const;
 
     //! access value of u in element (i,j)
+    //! get const value of u in element (x,y)
     double u(int i, int j) const;
     //! access value of u in element (x,y)
     double& u(int i, int j);
-    //! access value of v in element (i,j), get const value of v in element (x,y)
+    //! access value of v in element (i,j)
+    //! get const value of v in element (x,y)
     double v(int i, int j) const;
     //! access value of v in element (x,y)
     double& v(int i, int j);
-    //! access value of p in element (i,j), get const value of p in element (x,y)
+    //! access value of p in element (i,j)
+    //! get const value of p in element (x,y)
     double p(int i, int j) const;
     //! access value of p in element (x,y)
     double& p(int i, int j);
 
-    //! access value of rhs in element (i,j), access value of p in element (x,y)
+    //! acces value of rhs in element (i,j)
+    //! access value of rhs in element (x,y)
     double& rhs(int i, int j);
-    //! access value of rhs in element (i,j), access value of p in element (x,y)
+    //! access value of F in element (i,j)
+    //! access value of F in element (x,y)
     double& f(int i, int j);
-    //! access value of rhs in element (i,j), access value of p in element (x,y)
+    //! access value of G in element (i,j)
+    //! access value of G in element (x,y)
     double& g(int i, int j);
 
     //! value if cell is an obstacle cell: 1 if obstacle, 0 else
@@ -88,9 +94,9 @@ class StaggeredGrid {
     //! access value in element (x,y)
     double& hasFluidNeighbourBottom(int i, int j);
 
-    //! get the mesh width in x-direction, δx
+    //! get the mesh width in x-direction
     double dx() const;
-    //! get the mesh width in y-direction, δy
+    //! get the mesh width in y-direction
     double dy() const;
 
     //! first valid index for u in x direction
@@ -113,7 +119,7 @@ class StaggeredGrid {
 
     //! first valid index for p in x direction
     int pIBegin() const;
-    //! one after last palid index for p in x direction
+    //! one after last valid index for p in x direction
     int pIEnd() const;
     //! first valid index for p in y direction
     int pJBegin() const;

@@ -52,7 +52,8 @@ void Computation::runSimulation() {
 
         applyObstacleBoundaryValues();
 
-        computeTimeStepWidth(currentTime);
+        computeTimeStepWidth();
+        dt_ = std::min(dt_, settings_.endTime - currentTime);
         currentTime += dt_;
 
         std::cout << "Current Time: " << currentTime << " with time step " << dt_ << std::endl;
@@ -61,7 +62,7 @@ void Computation::runSimulation() {
 
         computeRightHandSide();
 
-        computePressure();
+        solvePressure();
 
         computeVelocities();
 
@@ -72,7 +73,7 @@ void Computation::runSimulation() {
     std::cout << "Simulation completed" << std::endl;
 }
 
-void Computation::computeTimeStepWidth(double currentTime) {
+void Computation::computeTimeStepWidth() {
     // Compute the biggest possible time step which is still stable
 
     // Time step condition by diffusion (Reynolds number)
@@ -114,10 +115,6 @@ void Computation::computeTimeStepWidth(double currentTime) {
     double min_dt = std::min({boundary_diffusion, boundary_convection_u, boundary_convection_v});
 
     dt_ = std::min(min_dt * settings_.tau, settings_.maximumDt);
-
-    if (currentTime + dt_ > settings_.endTime) {
-        dt_ = settings_.endTime - currentTime;
-    }
 }
 
 void Computation::applyBoundaryValues() {
@@ -363,7 +360,7 @@ void Computation::computeRightHandSide() {
     }
 }
 
-void Computation::computePressure() { pressureSolver_->solve(); }
+void Computation::solvePressure() { pressureSolver_->solve(); }
 
 void Computation::computeVelocities() {
     for (int j = discretization_->uJBegin() + 1; j < discretization_->uJEnd() - 1; j++) {

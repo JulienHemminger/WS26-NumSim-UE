@@ -13,10 +13,10 @@ class DonorCell : public Discretization {
     //! compute the 1st derivative ∂ v^2 / ∂x
     virtual double computeDv2Dy(int i, int j) const;
 
-    //! compute the 1st derivative ∂ (uv) / ∂x
+    //! compute the 1st derivative ∂ uv / ∂x
     virtual double computeDuvDx(int i, int j) const;
 
-    //! compute the 1st derivative ∂ (uv) / ∂y
+    //! compute the 1st derivative ∂ uv / ∂y
     virtual double computeDuvDy(int i, int j) const;
 
    private:

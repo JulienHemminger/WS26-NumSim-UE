@@ -13,27 +13,27 @@ class Discretization : public StaggeredGrid {
     //! compute the 1st derivative ∂ v^2 / ∂x
     virtual double computeDv2Dy(int i, int j) const = 0;
 
-    //! compute the 1st derivative ∂ (uv) / ∂x
+    //! compute the 1st derivative ∂ uv / ∂x
     virtual double computeDuvDx(int i, int j) const = 0;
 
-    //! compute the 1st derivative ∂ (uv) / ∂y
+    //! compute the 1st derivative ∂ uv / ∂y
     virtual double computeDuvDy(int i, int j) const = 0;
 
-    //! compute the 1st derivative ∂^2 u / ∂x^2
+    //! compute the 2nd derivative ∂^2 u / ∂x^2
     virtual double computeD2uDx2(int i, int j) const;
 
-    //! compute the 1st derivative ∂^2 u / ∂y^2
+    //! compute the 2nd derivative ∂^2 u / ∂y^2
     virtual double computeD2uDy2(int i, int j) const;
 
-    //! compute the 1st derivative ∂^2 v / ∂x^2
+    //! compute the 2nd derivative ∂^2 v / ∂x^2
     virtual double computeD2vDx2(int i, int j) const;
 
-    //! compute the 1st derivative ∂^2 v / ∂y^2
+    //! compute the 2nd derivative ∂^2 v / ∂y^2
     virtual double computeD2vDy2(int i, int j) const;
 
-    //! compute the 1st derivative ∂p / ∂x
+    //! compute the 1st derivative ∂ p / ∂x
     virtual double computeDpDx(int i, int j) const;
 
-    //! compute the 1st derivative ∂p / ∂y
+    //! compute the 1st derivative ∂ p / ∂y
     virtual double computeDpDy(int i, int j) const;
 };

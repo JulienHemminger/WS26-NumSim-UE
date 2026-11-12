@@ -4,7 +4,7 @@
 #include "Computation.h"
 #include "Settings.h"
 
-int main(int argc, char *argv[]) {
+int main(int argc, char* argv[]) {
     if (argc == 1) {
         std::cout << "usage: " << argv[0] << " <filename>" << std::endl;
 
