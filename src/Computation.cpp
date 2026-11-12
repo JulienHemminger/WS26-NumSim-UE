@@ -6,8 +6,6 @@ void Computation::initialize(int argc, char* argv[]) {
 
     for (int i = 0; i < 2; i++) {
         meshWidth_[i] = settings_.physicalSize[i] / settings_.nCells[i];
-        std::cout << "computed mesh width " << i << ": " << meshWidth_[i] << " "
-                  << settings_.physicalSize[i] << " " << settings_.nCells[i] << std::endl;
     }
 
     if (settings_.useDonorCell) {
@@ -28,8 +26,7 @@ void Computation::initialize(int argc, char* argv[]) {
             settings_.outflowBottom, settings_.outflowTop, settings_.outflowLeft,
             settings_.outflowRight);
     } else {
-        std::cout << "The name of the pressure solver is not understood" << settings_.pressureSolver
-                  << std::endl;
+        std::cout << "Invalid pressure solver name: " << settings_.pressureSolver << std::endl;
         throw;
     }
 
@@ -48,48 +45,31 @@ void Computation::initialize(int argc, char* argv[]) {
 void Computation::runSimulation() {
     double currentTime = 0;
 
-    std::cout << "+++++++++++++++++++++++" << std::endl;
-    std::cout << "Starting at time: " << currentTime << std::endl;
-    std::cout << "+++++++++++++++++++++++" << std::endl;
+    std::cout << "Starting Time: " << currentTime << std::endl;
 
     while (currentTime < settings_.endTime) {
         applyBoundaryValues();
-        std::cout << "Applied boundary values for u/v and F/G." << std::endl;
 
         applyObstacleBoundaryValues();
-        std::cout << "Applied obstacle boundary values for u/v and F/G." << std::endl;
 
         computeTimeStepWidth(currentTime);
-
-        std::cout << "Computed time step width: " << dt_ << std::endl;
         currentTime += dt_;
 
-        std::cout << "+++++++++++++++++++++++" << std::endl;
-        std::cout << "current Time: " << currentTime << std::endl;
-        std::cout << "+++++++++++++++++++++++" << std::endl;
+        std::cout << "Current Time: " << currentTime << " with time step " << dt_ << std::endl;
 
         computePreliminaryVelocities();
 
-        std::cout << "Computed preliminary velocities" << std::endl;
-
         computeRightHandSide();
-
-        std::cout << "Computed right hand side" << std::endl;
 
         computePressure();
 
-        std::cout << "Computed pressure" << std::endl;
-
         computeVelocities();
 
-        std::cout << "Computed velocities" << std::endl;
-
-        std::cout << "Writing output..." << std::endl;
         outputWriterParaview_->writeFile(currentTime);
         outputWriterText_->writeFile(currentTime);
     }
 
-    std::cout << "Simulation finished!!" << std::endl;
+    std::cout << "Simulation completed" << std::endl;
 }
 
 void Computation::computeTimeStepWidth(double currentTime) {
@@ -104,8 +84,6 @@ void Computation::computeTimeStepWidth(double currentTime) {
         double h2x = meshWidth_[0] * meshWidth_[0];
         double h2y = meshWidth_[1] * meshWidth_[1];
         boundary_diffusion = (settings_.re / 2.) * (h2x * h2y) * (1. / (h2x + h2y));
-
-        std::cout << settings_.re << " " << h2x << " " << h2y << std::endl;
     }
 
     // Time step condition by convection in x/y direction with highest velocity
@@ -135,17 +113,10 @@ void Computation::computeTimeStepWidth(double currentTime) {
     // The smallest necessary time step is the important one
     double min_dt = std::min({boundary_diffusion, boundary_convection_u, boundary_convection_v});
 
-    std::cout << "dt boundaries - diffusion: " << boundary_diffusion
-              << " convection_u: " << boundary_convection_u
-              << " convection_v: " << boundary_convection_v << std::endl;
-
     dt_ = std::min(min_dt * settings_.tau, settings_.maximumDt);
 
     if (currentTime + dt_ > settings_.endTime) {
         dt_ = settings_.endTime - currentTime;
-
-        std::cout << std::endl;
-        std::cout << "Final time step!" << std::endl;
     }
 }
 
@@ -418,71 +389,4 @@ void Computation::computeVelocities() {
             }
         }
     }
-}
-
-void Computation::runTest() {
-    std::cout << settings_.pressureSolver << " " << settings_.useDonorCell << std::endl;
-
-    std::cout << "+++++++++++++++++++++++++++++++++++ TASK 1" << std::endl;
-    int fieldWidth = 9;
-    for (int j = discretization_->pJEnd() - 1; j >= discretization_->pJBegin(); j--) {
-        std::cout << std::setw(fieldWidth) << j << "|";
-        for (int i = discretization_->pIBegin(); i < discretization_->pIEnd(); i++) {
-            std::cout << std::setw(fieldWidth) << std::setprecision(fieldWidth - 6)
-                      << discretization_->p(i, j);
-        }
-        std::cout << std::endl;
-    }
-    std::cout << std::endl;
-
-    for (int j = discretization_->pJBegin() + 1; j < discretization_->pJEnd() - 1; j++) {
-        for (int i = discretization_->pIBegin() + 1; i < discretization_->pIEnd() - 1; i++) {
-            discretization_->rhs(i, j) = 0;
-            discretization_->p(i, j) = 1;
-        }
-    }
-    std::cout << "+++++++++++++++++++++++++++++++++++" << std::endl;
-
-    pressureSolver_->solve();
-    for (int j = discretization_->pJEnd() - 1; j >= discretization_->pJBegin(); j--) {
-        std::cout << std::setw(fieldWidth) << j << "|";
-        for (int i = discretization_->pIBegin(); i < discretization_->pIEnd(); i++) {
-            std::cout << std::setw(fieldWidth) << std::setprecision(fieldWidth - 6)
-                      << discretization_->p(i, j);
-        }
-        std::cout << std::endl;
-    }
-    std::cout << std::endl;
-
-    std::cout << settings_.pressureSolver << " " << settings_.useDonorCell << std::endl;
-
-    std::cout << "+++++++++++++++++++++++++++++++++++ TASK 2" << std::endl;
-    for (int j = discretization_->pJEnd() - 1; j >= discretization_->pJBegin(); j--) {
-        std::cout << std::setw(fieldWidth) << j << "|";
-        for (int i = discretization_->pIBegin(); i < discretization_->pIEnd(); i++) {
-            std::cout << std::setw(fieldWidth) << std::setprecision(fieldWidth - 6)
-                      << discretization_->p(i, j);
-        }
-        std::cout << std::endl;
-    }
-    std::cout << std::endl;
-
-    for (int j = discretization_->pJBegin() + 1; j < discretization_->pJEnd() - 1; j++) {
-        for (int i = discretization_->pIBegin() + 1; i < discretization_->pIEnd() - 1; i++) {
-            discretization_->rhs(i, j) = 1;
-            discretization_->p(i, j) = 0;
-        }
-    }
-    std::cout << "+++++++++++++++++++++++++++++++++++" << std::endl;
-
-    pressureSolver_->solve();
-    for (int j = discretization_->pJEnd() - 1; j >= discretization_->pJBegin(); j--) {
-        std::cout << std::setw(fieldWidth) << j << "|";
-        for (int i = discretization_->pIBegin(); i < discretization_->pIEnd(); i++) {
-            std::cout << std::setw(fieldWidth) << std::setprecision(fieldWidth - 6)
-                      << discretization_->p(i, j);
-        }
-        std::cout << std::endl;
-    }
-    std::cout << std::endl;
 }

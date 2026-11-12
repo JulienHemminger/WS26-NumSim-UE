@@ -23,9 +23,6 @@ class Computation {
     //! run the whole simulation until t_end
     void runSimulation();
 
-    //! test the simulation, especially the pressure solver
-    void runTest();
-
    private:
     //! compute the time step width dt from maximum velocities
     void computeTimeStepWidth(double currentTime);
