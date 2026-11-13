@@ -18,6 +18,7 @@ Bash
 ```
 ./numsim ../test/0_driven_cavity/input_parameters.txt
 
+cd ..
 python3 test/tools/compare_vti_outputs.py build/out test/0_driven_cavity/reference_output
 python3 test/tools/compare_txt_outputs.py build/out test/0_driven_cavity/reference_output
 ```
