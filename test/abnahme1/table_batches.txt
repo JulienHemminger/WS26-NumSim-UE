@@ -1,0 +1,21 @@
+Average runtimes (relative values are mean runtime / mean 20x20 runtime):
+| resolution (n x n) | average runtime [s] | relative to 20x20 baseline |
+| --- | ---: | ---: |
+| 5 x 5 | 0.278 | 0.16x |
+| 10 x 10 | 0.398 | 0.23x |
+| 15 x 15 | 0.799 | 0.47x |
+| 20 x 20 | 1.717 | 1.00x |
+| 25 x 25 | 3.510 | 2.04x |
+| 30 x 30 | 7.074 | 4.12x |
+| 35 x 35 | 13.654 | 7.95x |
+| 40 x 40 | 21.770 | 12.68x |
+
+
+0.398 * fac = 1.717
+
+WITH GAUSS SEIDEL INSTEAD OF SOR:
+Average runtimes (relative values are mean runtime / mean 20x20 runtime):
+| resolution (n x n) | average runtime [s] | relative to 20x20 baseline |
+| --- | ---: | ---: |
+| 10 x 10 | 0.470 | 0.17x |
+| 20 x 20 | 2.780 | 1.00x |
