@@ -1,9 +1,5 @@
 TODO wer bringt tabelle mit laufzeiten mit?
 
-
-
-
-
 # [Fragen für Abnahme](https://numsim-exercises.readthedocs.io/en/latest/exercise1/submission.html#questions-for-the-interview-abnahme)
 
 ### Was passiert, wenn die Reynolds-Zahl geändert wird: Re = 100, 500, 2000, 10000?

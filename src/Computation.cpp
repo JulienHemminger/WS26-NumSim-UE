@@ -65,10 +65,6 @@ void Computation::runSimulation() {
 }
 
 void Computation::computeTimeStepWidth() {
-    // Compute the biggest possible time step which is still stable. See Chapter 3.2.5 "Time Step –
-    // Stability Conditions"
-
-    // Time step condition by diffusion operator (Reynolds number)
     double boundary_diffusion = 0.;
 
     if (meshWidth_[0] == meshWidth_[1]) {
@@ -79,7 +75,6 @@ void Computation::computeTimeStepWidth() {
         boundary_diffusion = (settings_.re / 2.) * (h2x * h2y) * (1. / (h2x + h2y));
     }
 
-    // Time step condition by convection operator in x/y direction with highest velocity
     const auto maximumAbsoluteVelocity = [](int iBegin, int iEnd, int jBegin, int jEnd,
                                             const auto& velocityAt) {
         double maximum = 0.;
@@ -101,10 +96,34 @@ void Computation::computeTimeStepWidth() {
     double boundary_convection_u = meshWidth_[0] / u_max;
     double boundary_convection_v = meshWidth_[1] / v_max;
 
-    // The smallest necessary time step is the important one
     double min_dt = std::min({boundary_diffusion, boundary_convection_u, boundary_convection_v});
 
-    dt_ = std::min(min_dt * settings_.tau, settings_.maximumDt);
+    std::cout << "--- Time Step Breakdown ---" << std::endl;
+    std::cout << "Diffusion upper bound: " << boundary_diffusion << std::endl;
+    std::cout << "Convection U upper bound: " << boundary_convection_u << " (u_max = " << u_max
+              << ")" << std::endl;
+    std::cout << "Convection V upper bound: " << boundary_convection_v << " (v_max = " << v_max
+              << ")" << std::endl;
+
+    if (min_dt == boundary_diffusion) {
+        std::cout << "Limiting stability condition reached: Diffusion operator" << std::endl;
+    } else if (min_dt == boundary_convection_u) {
+        std::cout << "Limiting stability condition reached: Convection operator (U direction)"
+                  << std::endl;
+    } else {
+        std::cout << "Limiting stability condition reached: Convection operator (V direction)"
+                  << std::endl;
+    }
+
+    double tau_dt = min_dt * settings_.tau;
+    dt_ = std::min(tau_dt, settings_.maximumDt);
+
+    std::cout << "Smallest stability min_dt: " << min_dt << std::endl;
+    std::cout << "After applying safety factor tau (" << settings_.tau << "): " << tau_dt
+              << std::endl;
+    std::cout << "Maximum allowed dt configured: " << settings_.maximumDt << std::endl;
+    std::cout << "Final computed dt_: " << dt_ << std::endl;
+    std::cout << "---------------------------" << std::endl;
 }
 
 void Computation::applyBoundaryValues() {
