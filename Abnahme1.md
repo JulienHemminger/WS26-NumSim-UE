@@ -1,13 +1,25 @@
+TODO wer bringt tabelle mit laufzeiten mit?
+
+
+
+
+
 # [Fragen für Abnahme](https://numsim-exercises.readthedocs.io/en/latest/exercise1/submission.html#questions-for-the-interview-abnahme)
 
 ### Was passiert, wenn die Reynolds-Zahl geändert wird: Re = 100, 500, 2000, 10000?
 
-* *Antwort:* Je größer die Reynolds-Zahl ist, desto stärker rückt der Wirbel an den rechten Rand und konzentriert sich auf eine bestimmte Stelle. Bei hohen Werten stellt sich die stationäre Strömung schneller ein. Die Maximalgeschwindigkeit ($u_{max}, v_{max}$) bleibt aufgrund der Randbedingungen unverändert. \[24]
+* *Antwort:* Je größer die Reynolds-Zahl ist, desto stärker rückt der Wirbel an den rechten Rand und konzentriert sich auf eine bestimmte Stelle.
+* Bei hohen Werten stellt sich die stationäre Strömung schneller ein. Die Maximal-geschwindigkeit ($u_{max}, v_{max}$) bleibt aufgrund der Randbedingungen unverändert. \[24]
 * *Zusatzbeobachtung:* Es bilden sich große Wirbel in der Ecke. \[20b] Bei sehr kleinen Reynolds-Zahlen könnten theoretisch weitere Wirbel entstehen, allerdings ist die Gitterauflösung in der Regel zu rudimentär, um diese vollständig aufzulösen. \[24]
 * *Dynamik:* Wirbel bilden sich bei größerer Reynolds-Zahl schneller aus, kommen aber bei kleinerer Reynolds-Zahl schneller zum stationären Zustand. Die Strömung selbst ist nicht schneller, da die Maximalgeschwindigkeit durch die Randbedingung fixiert ist. \[21]
-* TODO: vllt plots?
+* SKRIPT: "For high Reynolds numbers, i.e., a convection-dominated flow, the spatial discretization from Sect. 3.1.2 leads to instabilities of the time steps. More precisely, we observe oscillations in the discrete approximation of u and v for Re ≫ 1."
+*
 
 ### Wählen Sie die Zeitschritte manuell aus. Für welche Zeitschritte dt ist der Algorithmus stabil?
+
+TODO gib u\_max aus, schau ob diffusions-beschränkung greift
+
+t = 0.5 / t= 0.6
 
 * *Antwort:* Das Programm ist sehr robust und schwer zum Absturz zu bringen. \[21]
 * Mit einer festen Zeitschrittweite von $\Delta t = 0.2\text{ s}$ ist das Verfahren im *lid-driven-cavity*-Fall akkumulieren sich Fehler im Druck und das Verfahren schlägt fehl. Eine Schrittweite von $\Delta t = 0.1\text{ s}$ liefert akzeptable, aber nicht 100 % stabile Ergebnisse. Mit $\Delta t < 0.05$ (Einhaltung der CFL-Bedingung) arbeitet das Verfahren stets stabil. \[24]
@@ -21,6 +33,8 @@
 * **Zeitkonvergenz:** Gitter konstant halten und $\Delta t$ halbieren. dann plotten wie bei der raumkonvergenz. steigung sollte 1 sein für O(dt). \[20b]
 
 ### Stellen Sie die Laufzeiten für verschiedene Gitterauflösungen in einer Tabelle zusammen (bringen Sie diese zum Treffen mit, eine pro Gruppe). Stimmen die Ergebnisse mit unseren theoretischen Überlegungen aus der Vorlesung überein? Warum / Warum nicht?
+
+TODO try with non square grids (10x10, 20x10, ...)
 
 laut skript: wenn\*\*$h \to h/2$\*\* **bzw.** **$N \to 2N$** wird, braucht SOR 2x so viele iterationen (p.29)
 
@@ -124,6 +138,7 @@ meine daten (table\_batches.txt):  h -> h/2 (z.b. von 10x10 -> 20x20) ist zeit 4
   * *Antwort:*
     * Fehler bereits im ersten Zeitschritt. \[24]
     * Divergierendes Verhalten. \[21, 24]
+      * i.e. wenn wir gitter immer feiner machen sollte die Lösung sich iwann nicht mehr verändern
     * Unphysikalische Ergebnisse und Artefakte (sichtbar z. B. in Paraview), unkontrollierte Fortpflanzung von Turbulenzen. \[21, 24]
     * Verlust der Stetigkeit im Druckfeld. \[24]
 

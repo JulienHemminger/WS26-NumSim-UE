@@ -1,10 +1,4 @@
 #!/usr/bin/env python3
-"""Measure the runtime of the CFD solver for several grid resolutions.
-
-The script reuses the standard configuration from test/0_driven_cavity/input_parameters.txt,
-updates the grid size, and executes the compiled simulation for each resolution. The result is a
-simple table that can be copied into the report for the Abnahme 1 runtime discussion.
-"""
 
 from __future__ import annotations
 
@@ -22,9 +16,7 @@ DEFAULT_BINARY_CANDIDATES = [
     REPO_ROOT / "build" / "numsim",
     REPO_ROOT / "build" / "src" / "numsim",
 ]
-DEFAULT_RESOLUTIONS = [10, 20, 40, 80]
-REPETITIONS = 10
-BASELINE_RESOLUTION = 20
+DEFAULT_RESOLUTIONS = ["10", "20", "40", "80"]
 
 
 def find_binary(explicit: str | None) -> Path:
@@ -39,7 +31,7 @@ def find_binary(explicit: str | None) -> Path:
             return candidate.resolve()
 
     raise FileNotFoundError(
-        "No numsim binary was found. Build the project first (for example: 'mkdir -p build && cd build && cmake .. && make install')."
+        "No numsim binary was found. Build the project first."
     )
 
 
@@ -89,72 +81,49 @@ def run_simulation(binary: Path, parameter_file: Path, working_directory: Path) 
     return elapsed, output
 
 
+def parse_resolution(value: str) -> tuple[int, int]:
+    text = str(value).strip()
+    if "x" in text.lower():
+        parts = text.lower().split("x")
+        if len(parts) != 2:
+            raise ValueError(f"Invalid resolution format: '{text}'. Use 'NxN' or 'N'.")
+        return (int(parts[0]), int(parts[1]))
+    else:
+        val = int(text)
+        return (val, val)
+
+
 def build_table(
-    resolutions: list[int], config_path: Path, binary: Path
-) -> list[tuple[int, float, float]]:
-    measured_resolutions = sorted(set(resolutions) | {BASELINE_RESOLUTION})
-    total_runs = len(measured_resolutions) * REPETITIONS
-    runtimes_by_resolution: dict[int, list[float]] = {}
-    run_number = 0
+    resolutions: list[str], config_path: Path, binary: Path
+) -> list[tuple[int, int, float]]:
+    parsed_resolutions = [parse_resolution(r) for r in resolutions]
+    total_runs = len(parsed_resolutions)
+    results: list[tuple[int, int, float]] = []
 
     with tempfile.TemporaryDirectory(prefix="numsim-runtime-") as temporary_directory:
         working_directory = Path(temporary_directory)
 
-        for resolution in measured_resolutions:
-            parameter_file = working_directory / f"input_{resolution}x{resolution}.txt"
-            create_parameter_file(config_path, parameter_file, resolution, resolution)
-            runtimes: list[float] = []
+        for run_number, (nx, ny) in enumerate(parsed_resolutions, start=1):
+            parameter_file = working_directory / f"input_{nx}x{ny}.txt"
+            create_parameter_file(config_path, parameter_file, nx, ny)
 
             print(
-                f"\nMeasuring {resolution}x{resolution} "
-                f"({REPETITIONS} repetitions; {total_runs - run_number} runs remaining)",
+                f"\n[{run_number}/{total_runs}] Running {nx}x{ny} simulation...",
                 flush=True,
             )
-            for repetition in range(1, REPETITIONS + 1):
-                run_number += 1
-                print(
-                    f"[{run_number}/{total_runs}] Starting "
-                    f"{resolution}x{resolution}, run {repetition}/{REPETITIONS}...",
-                    flush=True,
-                )
-                elapsed, _ = run_simulation(binary, parameter_file, working_directory)
-                runtimes.append(elapsed)
-                print(
-                    f"[{run_number}/{total_runs}] Finished "
-                    f"{resolution}x{resolution}, run {repetition}/{REPETITIONS}: "
-                    f"{elapsed:.3f} s",
-                    flush=True,
-                )
+            elapsed, _ = run_simulation(binary, parameter_file, working_directory)
+            print(f"[{run_number}/{total_runs}] Finished {nx}x{ny}: {elapsed:.3f} s", flush=True)
+            results.append((nx, ny, elapsed))
 
-            runtimes_by_resolution[resolution] = runtimes
-            average = sum(runtimes) / len(runtimes)
-            print(
-                f"Completed {resolution}x{resolution}: average {average:.3f} s",
-                flush=True,
-            )
-
-    baseline_runtimes = runtimes_by_resolution[BASELINE_RESOLUTION]
-    baseline_average = sum(baseline_runtimes) / len(baseline_runtimes)
-    return [
-        (
-            resolution,
-            sum(runtimes_by_resolution[resolution]) / len(runtimes_by_resolution[resolution]),
-            (
-                sum(runtimes_by_resolution[resolution])
-                / len(runtimes_by_resolution[resolution])
-                / baseline_average
-            ),
-        )
-        for resolution in measured_resolutions
-    ]
+    return results
 
 
-def print_table(results: list[tuple[int, float, float]]) -> None:
-    print("\nAverage runtimes (relative values are mean runtime / mean 20x20 runtime):")
-    print("| resolution (n x n) | average runtime [s] | relative to 20x20 baseline |")
-    print("| --- | ---: | ---: |")
-    for resolution, average_runtime, relative in results:
-        print(f"| {resolution} x {resolution} | {average_runtime:.3f} | {relative:.2f}x |")
+def print_table(results: list[tuple[int, int, float]]) -> None:
+    print("\nRuntimes:")
+    print("| resolution (n x n) | runtime [s] |")
+    print("| --- | ---: |")
+    for nx, ny, runtime in results:
+        print(f"| {nx} x {ny} | {runtime:.3f} |")
 
 
 def parse_args() -> argparse.Namespace:
@@ -165,20 +134,20 @@ def parse_args() -> argparse.Namespace:
         "--config",
         type=str,
         default=str(DEFAULT_CONFIG),
-        help="Path to the input parameter file. Defaults to test/0_driven_cavity/input_parameters.txt.",
+        help="Path to the input parameter file.",
     )
     parser.add_argument(
         "--binary",
         type=str,
         default=None,
-        help="Path to the compiled numsim executable. Defaults to the build directory.",
+        help="Path to the compiled numsim executable.",
     )
     parser.add_argument(
         "--resolutions",
-        type=int,
+        type=str,
         nargs="*",
         default=DEFAULT_RESOLUTIONS,
-        help="Grid sizes to test (for example: --resolutions 10 20 40 80).",
+        help="Grid sizes to test (for example: --resolutions 10 20 10x20).",
     )
     return parser.parse_args()
 
@@ -191,24 +160,21 @@ def main() -> int:
 
     if not args.resolutions:
         raise ValueError("Provide at least one grid resolution.")
-    if any(resolution <= 0 for resolution in args.resolutions):
+
+    parsed_res = [parse_resolution(r) for r in args.resolutions]
+    if any(nx <= 0 or ny <= 0 for nx, ny in parsed_res):
         raise ValueError("Grid resolutions must be positive integers.")
 
     config_path = config_path.resolve()
     binary = find_binary(args.binary)
 
-    resolutions = sorted(set(args.resolutions))
-    measured_resolutions = sorted(set(resolutions) | {BASELINE_RESOLUTION})
     print(
-        f"Running {len(measured_resolutions)} grid resolutions "
-        f"({REPETITIONS} runs each; {len(measured_resolutions) * REPETITIONS} simulations total)."
+        f"Running {len(parsed_res)} grid resolution(s) (1 run each)."
     )
-    if BASELINE_RESOLUTION not in resolutions:
-        print("Adding 20x20 as the baseline resolution.")
     print(f"Binary: {binary}")
     print(f"Config: {config_path}", flush=True)
 
-    results = build_table(resolutions, config_path, binary)
+    results = build_table(args.resolutions, config_path, binary)
     print_table(results)
     return 0
 
@@ -219,4 +185,3 @@ if __name__ == "__main__":
     except (FileNotFoundError, ValueError, RuntimeError) as exc:
         print(f"Error: {exc}", file=sys.stderr)
         raise SystemExit(1)
-
