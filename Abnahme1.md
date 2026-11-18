@@ -1,19 +1,26 @@
-TODO cann ich residuum calc in den solve() loop integrieren?
-
 # [Fragen für Abnahme](https://numsim-exercises.readthedocs.io/en/latest/exercise1/submission.html#questions-for-the-interview-abnahme)
 
-### Was passiert, wenn die Reynolds-Zahl geändert wird: Re = 100, 500, 2000, 10000?
+### Was passiert, wenn die Reynolds-Zahl geändert wird: Re = 100, 500, 2000, 10000
 
-* *Antwort:* Je größer die Reynolds-Zahl ist, desto stärker rückt der Wirbel an den rechten Rand und konzentriert sich auf eine bestimmte Stelle.
-* Bei hohen Werten stellt sich die stationäre Strömung schneller ein. Die Maximal-geschwindigkeit ($u_{max}, v_{max}$) bleibt aufgrund der Randbedingungen unverändert. \[24]
-* *Zusatzbeobachtung:* Es bilden sich große Wirbel in der Ecke. \[20b] Bei sehr kleinen Reynolds-Zahlen könnten theoretisch weitere Wirbel entstehen, allerdings ist die Gitterauflösung in der Regel zu rudimentär, um diese vollständig aufzulösen. \[24]
-* *Dynamik:* Wirbel bilden sich bei größerer Reynolds-Zahl schneller aus, kommen aber bei kleinerer Reynolds-Zahl schneller zum stationären Zustand. Die Strömung selbst ist nicht schneller, da die Maximalgeschwindigkeit durch die Randbedingung fixiert ist. \[21]
+| **Merkmal**                          |                                                                                |                                                                                        |                                                                                         |
+| :----------------------------------- | :----------------------------------------------------------------------------- | :------------------------------------------------------------------------------------- | :-------------------------------------------------------------------------------------- |
+|                                      | **Niedrige Re (Re≈100)**                                                       | **Mittlere Re (Re≈1000)**                                                              | **Hohe Re (Re≈10.000)**                                                                 |
+| **Position des Primärwirbels**       | oben rechts                                                                    | • oben rechts-ig aber bissl weiter mitting                                             | • mitte                                                                                 |
+| **Form & Kern des Primärwirbels**    | • Asymmetrisch, nierenförmig                                                   | • Kreisförmigerer Kern                                                                 | • Nahezu kreisrunder, gleichmäßiger Kern                                                |
+| **Sekundäre Eckwirbel**              | • Winzige Wirbel in der unteren linken und unteren rechten Ecke                | • Größere Wirbel unten links und unten rechts                                          | • Noch größere Wirbel unten links und unten rechts                                      |
+| **Grenzschichten**                   | • Dicke, diffuse Scherschichten entlang der Wände                              | • Dünnere Grenzschichten entlang des bewegten Deckels sowie der Seiten- und Bodenwände | • Sehr dünne, scharfe Grenzschichten                                                    |
+| **Strömungsregime & Stabilität**     | • Streng stationär, laminar                                                    | • Streng stationär, laminar                                                            | • Instationär / oszillierend (Hopf-Bifurkation tritt bei 2D um \$Re \approx 8000\$ auf) |
+| **Zeit bis zum stationären Zustand** | • schnell, Kürzeste dimensionslose Zeit (\$t^\* = tU/L \sim \mathcal{O}(10)\$) | • medium, Längere dimensionslose Zeit (\$t^\* \sim \mathcal{O}(50–100)\$)              | • langsam, Längste Übergangsphase (\$t^\* \sim \mathcal{O}(200+)\$)                     |
+
+*
+* Die Maximal-geschwindigkeit ($u_{max}, v_{max}$) bleibt aufgrund der Randbedingungen unverändert. \[24]
+* *unsere gitteraufl. ist oft zu grob um die kleineren Wirbel zu simulieren*/aufzulösen. \[24]
 * SKRIPT: "For high Reynolds numbers, i.e., a convection-dominated flow, the spatial discretization from Sect. 3.1.2 leads to instabilities of the time steps. More precisely, we observe oscillations in the discrete approximation of u and v for Re ≫ 1."
 *
 
 ### Wählen Sie die Zeitschritte manuell aus. Für welche Zeitschritte dt ist der Algorithmus stabil?
 
-TODO gib u\_max aus, schau ob diffusions-beschränkung greift
+
 
 t = 0.5 / t= 0.6
 
@@ -21,12 +28,13 @@ t = 0.5 / t= 0.6
 * Mit einer festen Zeitschrittweite von $\Delta t = 0.2\text{ s}$ ist das Verfahren im *lid-driven-cavity*-Fall akkumulieren sich Fehler im Druck und das Verfahren schlägt fehl. Eine Schrittweite von $\Delta t = 0.1\text{ s}$ liefert akzeptable, aber nicht 100 % stabile Ergebnisse. Mit $\Delta t < 0.05$ (Einhaltung der CFL-Bedingung) arbeitet das Verfahren stets stabil. \[24]
 * Wird der Zeitschritt zu groß gewählt, führt dies zu Artefakten, Flecken und Störungen in der Lösung. \[21]
 * *Einfluss von* *$u_{max}/v_{max}$:* Der Sicherheitsfaktor sorgt dafür, dass man im stabilen Bereich bleibt und die CFL-Bedingung erfüllt.
-* TODO: vllt plots?
+
+
 
 ### Wir haben in der Vorlesung festgestellt, dass unsere räumliche Diskretisierung (bei Verwendung zentraler Differenzen) genau zweiter Ordnung/O(h^2) bzw. (bei Verwendung der Donor-Cell-Verfahren) genau erster Ordnung/O(h) ist. Die zeitliche Diskretisierung ist genau erster Ordnung/O(dt). Wie könntet ihr dies mit eurem Simulationsprogramm überprüfen?
 
 * **Raumkonvergenz:** Gitterweite $h$ sukzessive halbieren (z. B. $N_x \in \{32, 64, 128\}$) bei konstant gehaltenem, sehr kleinem Zeitschritt (damit der Zeitfehler das Ergebnis nicht verfälscht). Die Differenz zweier aufeinanderfolgender Lösungen wird auf einer Log-Log-Skala über der Gitterweite aufgetragen. Die Steigung der Geraden entspricht der Konvergenzordnung (z. B. Steigung 1 für Verfahren 1. Ordnung wie Donor Cell, Steigung 2 für zentrale Differenzen). \[20a, 20b, 21, 24]
-* **Zeitkonvergenz:** Gitter konstant halten und $\Delta t$ halbieren. dann plotten wie bei der raumkonvergenz. steigung sollte 1 sein für O(dt). \[20b]
+* **Zeitkonvergenz:** Gitter konstant halten und $\Delta t$ halbieren. dann plotten wie bei der raumkonvergenz. expl. Euler hat fehler von O(dt). \[20b]
 
 ### Stellen Sie die Laufzeiten für verschiedene Gitterauflösungen in einer Tabelle zusammen (bringen Sie diese zum Treffen mit, eine pro Gruppe). Stimmen die Ergebnisse mit unseren theoretischen Überlegungen aus der Vorlesung überein? Warum / Warum nicht?
 
@@ -36,30 +44,18 @@ in der SOR residuum berechnung haben wir O(N^2) mehr als nötig weil das einen g
 
 laut skript: wenn\*\*$h \to h/2$\*\* **bzw.** **$N \to 2N$** wird, braucht SOR 2x so viele iterationen (p.29)
 
-meine daten (table\_batches.txt):  h -> h/2 (z.b. von 10x10 -> 20x20) ist zeit 4.314x ???
-
-* FRAGEN: ist das weil wir 2d sind? also ich halbiere h\_x und h\_y jeweils?
-* FRAGEN: ist das im skript auch für 2D? ist das im skript für dx=dy=h? (square grids in 2d?)
-
 **Wie ändert sich die Laufzeit des Programms, wenn die Gitterbreite halbiert wird ($h \to h/2$** **bzw.** **$N \to 2N$)?**
 
 * *Antwort:*
   * Zeitschritte verdoppeln sich bis zu $\times 4$. \[20a]
   * SOR-Iterationen / Gauss-Seidel-Iterationen im Pressure-Solver vervierfachen sich ($\times 4$ bzw. $\times 2$ pro Level). \[20a, 24]
   * Insgesamt skaliert die Laufzeit im Worst-Case bis zum $\times 64$-fachen (theoretisch oft $\mathcal{O}(1/h^2)$ bis $\mathcal{O}(n^4)$ bei Berücksichtigung aller Dimensionen und Zeitschritte). \[20a, 24]
-* *Beobachtete Laufzeiten aus Tabelle (Beispiel* *$20\times 20$* *bis* *$80\times 80$):*
-  * $20 \times 20$: $0.88\text{ s}$ \[24]
-  * $20 \times 40$: $2.45\text{ s}$ \[24]
-  * $40 \times 40$: $9.99\text{ s}$ \[24] (NOTE: (11.35x vom 20x20 wert von 0.88s)
-  * $40 \times 80$: $39.56\text{ s}$ \[24]
-  * $80 \times 80$: $196.45\text{ s}$ \[24]
-  * *Fazit:* Die Laufzeit wird durch den SOR- bzw. Gauss-Seidel-Solver dominiert; die lineare Komplexität anderer Komponenten (Finite Differenzen) ist vernachlässigbar. \[24]
+
+  * *Fazit:* Die Laufzeit wird durch den SOR dominiert; die lineare Komplexität anderer Komponenten (Finite Differenzen) ist vernachlässigbar. \[24]
 
 ***
 
-### warum druckgl. nicht bei tn auswerten
 
-* druckgl nicht von zeit abhängig (kein zeitableitung). können wir unabh von geschw berechnen. aber keine garantie dass mass erhaltung. mass erh wird nur für nächsten zeitschr. garantiert
 
 ## 2. Zeitschrittweite, CFL-Bedingung & Simulationsdauer
 
@@ -112,7 +108,7 @@ meine daten (table\_batches.txt):  h -> h/2 (z.b. von 10x10 -> 20x20) ist zeit 4
   * *Implementierungsstrategie:* Man kann die Array-Größen direkt von der Skizze des *staggered grid* ablesen und die Start-/Endwerte für Iterationen exakt bestimmen. Manchmal werden Arrays der Einfachheit halber direkt in Druckgröße anlegt, da das minimalen Speicherplatz kostet und die Implementierung vereinfacht. \[20b, 21]
 
 * **Welchen Vorteil hat ein** ***staggered grid*** **gegenüber einem** ***collocated grid***\*\*?\*\*
-  * *Antwort:* Bei einem *collocated grid* liegen alle diskreten Werte im Zellenzentrum (alle Variablen bräuchten $n+2$). Das *staggered grid* verhindert physikalisch unphysikalische Druckoszillationen, die auftreten könnten, wenn alle Werte an exakt demselben Punkt ausgewertet würden. \[24]
+  * *Antwort:* Bei einem *collocated grid* liegen alle diskreten Werte im Zellenzentrum (alle Variablen bräuchten $n+2$). Das *staggered(versetze) grid* verhindert unphysikalische Druckoszillationen, die auftreten könnten, wenn alle Werte an exakt demselben Punkt ausgewertet würden. \[24]
 
 * **Welche Zellen müssen für die Berechnung von** **$F$** **und** **$G$** **betrachtet werden?**
   * *Antwort:* Für die finiten Differenzen benötigt man die Nachbarzellen (oben/unten, links/rechts) sowie aufgrund gemischter Ableitungen auch die diagonalen Zellen (links-oben für den $G$-Term und rechts-unten für den $F$-Term). \[24]
@@ -128,19 +124,11 @@ meine daten (table\_batches.txt):  h -> h/2 (z.b. von 10x10 -> 20x20) ist zeit 4
 
 * **Warum dürfen wir den Druckgradienten nicht zum Zeitschritt** **$t^{(n)}$** **explizit auswerten ($u_{i,j}^{(n+1)} = u_{i,j}^{(n)} - \delta t A_{i,j}^{(n)} - \delta t \left[\frac{\partial p}{\partial x}\right]_{i,j}^{(n+1)}$)?**
   * *Antwort:* Die explizite Euler-Methode wird nicht auf den Druck angewendet, sondern nur auf die Konvektions- und Diffusionsterme ($A_{i,j}$). Der Druck wird implizit durch das Geschwindigkeitsfeld bestimmt und steht im ersten Zeitschritt nicht direkt zur Verfügung. Durch die implizite Verwendung hängt die neue Geschwindigkeit direkt vom aktuellen Druck ab, was eine höhere Genauigkeit und die Erfüllung der Massenerhaltung ermöglicht. \[24]
+  * druckgl nicht von zeit abhängig (kein zeitableitung). können wir unabh von geschw berechnen. aber keine garantie dass mass erhaltung. mass erh wird nur für nächsten zeitschr. garantiert
 
 * **Könnte man auch ein implizites Verfahren anwenden, bei dem die Druckgleichung nicht extra betrachtet werden muss?**
   * *Antwort:* Die Druckgleichung müsste dennoch berücksichtigt werden. Man könnte zwar theoretisch ein riesiges gekoppeltes Gleichungssystem für $u, v$ und $p$ (Größe $3N \times 3N$) lösen, dies wäre jedoch deutlich langsamer und speicherintensiver. \[21]
+  * wäre sehr langsam weil nichtlinear in den gleichungen
 
 ***
-
-## 9. Fehlererkennung, Divergenz & Artefakte
-
-* **Woran erkennt man, dass das Programm ein falsches Ergebnis liefert oder divergiert?**
-  * *Antwort:*
-    * Fehler bereits im ersten Zeitschritt. \[24]
-    * Divergierendes Verhalten. \[21, 24]
-      * i.e. wenn wir gitter immer feiner machen sollte die Lösung sich iwann nicht mehr verändern
-    * Unphysikalische Ergebnisse und Artefakte (sichtbar z. B. in Paraview), unkontrollierte Fortpflanzung von Turbulenzen. \[21, 24]
-    * Verlust der Stetigkeit im Druckfeld. \[24]
 
