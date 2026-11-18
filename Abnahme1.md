@@ -1,4 +1,4 @@
-TODO wer bringt tabelle mit laufzeiten mit?
+TODO cann ich residuum calc in den solve() loop integrieren?
 
 # [Fragen für Abnahme](https://numsim-exercises.readthedocs.io/en/latest/exercise1/submission.html#questions-for-the-interview-abnahme)
 
@@ -30,7 +30,9 @@ t = 0.5 / t= 0.6
 
 ### Stellen Sie die Laufzeiten für verschiedene Gitterauflösungen in einer Tabelle zusammen (bringen Sie diese zum Treffen mit, eine pro Gruppe). Stimmen die Ergebnisse mit unseren theoretischen Überlegungen aus der Vorlesung überein? Warum / Warum nicht?
 
-TODO try with non square grids (10x10, 20x10, ...)
+in der SOR residuum berechnung haben wir O(N^2) mehr als nötig weil das einen ganz neuen pass übers 2d gitter macht
+
+
 
 laut skript: wenn\*\*$h \to h/2$\*\* **bzw.** **$N \to 2N$** wird, braucht SOR 2x so viele iterationen (p.29)
 
@@ -54,6 +56,10 @@ meine daten (table\_batches.txt):  h -> h/2 (z.b. von 10x10 -> 20x20) ist zeit 4
   * *Fazit:* Die Laufzeit wird durch den SOR- bzw. Gauss-Seidel-Solver dominiert; die lineare Komplexität anderer Komponenten (Finite Differenzen) ist vernachlässigbar. \[24]
 
 ***
+
+### warum druckgl. nicht bei tn auswerten
+
+* druckgl nicht von zeit abhängig (kein zeitableitung). können wir unabh von geschw berechnen. aber keine garantie dass mass erhaltung. mass erh wird nur für nächsten zeitschr. garantiert
 
 ## 2. Zeitschrittweite, CFL-Bedingung & Simulationsdauer
 

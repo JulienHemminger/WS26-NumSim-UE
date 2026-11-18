@@ -4,6 +4,7 @@ void Computation::initialize(int argc, char* argv[]) {
     settings_.loadFromFile(argv[1]);
     settings_.printSettings();
 
+    // calc mesh widths (h)
     for (int i = 0; i < 2; i++) {
         meshWidth_[i] = settings_.physicalSize[i] / settings_.nCells[i];
     }
@@ -138,12 +139,12 @@ void Computation::applyBoundaryValues() {
         for (int i = discretization_->uIBegin(); i < discretization_->uIEnd(); i++) {
             discretization_->u(i, uBoundary) =
                 2. * boundaryValues[0] - discretization_->u(i, uInterior);
-            discretization_->f(i, uBoundary) = discretization_->u(i, uBoundary);
+            discretization_->f(i, uBoundary) = discretization_->u(i, uBoundary);  // F
         }
 
         for (int i = discretization_->vIBegin(); i < discretization_->vIEnd(); i++) {
             discretization_->v(i, vBoundary) = boundaryValues[1];
-            discretization_->g(i, vBoundary) = discretization_->v(i, vBoundary);
+            discretization_->g(i, vBoundary) = discretization_->v(i, vBoundary);  // G
         }
     };
 
