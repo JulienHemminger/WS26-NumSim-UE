@@ -17,11 +17,10 @@ void ComputationParallel::initialize(int argc, char* argv[]) {
     // initialize discretization and solver
     if (settings_.useDonorCell) {
         discretization_ =
-            std::make_shared<DonorCell>(partitioning_->nCellsLocal(), meshWidth_,
-                                        partitioning_->ownPartitionNeighbours(), settings_.alpha);
+            std::make_shared<DonorCell>(partitioning_->nCellsLocal(), meshWidth_, settings_.alpha);
     } else {
-        discretization_ = std::make_shared<CentralDifferences>(
-            partitioning_->nCellsLocal(), meshWidth_, partitioning_->ownPartitionNeighbours());
+        discretization_ =
+            std::make_shared<CentralDifferences>(partitioning_->nCellsLocal(), meshWidth_);
     }
 
     pressureSolver_ = std::make_unique<RedBlack>(
@@ -43,7 +42,6 @@ void ComputationParallel::runSimulation() {
     // profiling start
     double TOTAL_START_TIME = MPI_Wtime();
 
-    // the steps correspond to the steps in our algorithm in the overleaf or docs/numsim-algos.tex
     while (currentTime < settings_.endTime) {
         // step 1: set the boundary values / exchange the final velocities at the borders
         applyBoundaryValues();

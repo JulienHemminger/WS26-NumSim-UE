@@ -10,10 +10,6 @@ StaggeredGrid::StaggeredGrid(std::array<int, 2> nCells, std::array<double, 2> me
       meshWidth_(meshWidth),
       nCells_(nCells) {}
 
-StaggeredGrid::StaggeredGrid(std::array<int, 2> nCells, std::array<double, 2> meshWidth,
-                             std::array<int, 4>)
-    : StaggeredGrid(nCells, meshWidth) {}
-
 const std::array<double, 2> StaggeredGrid::meshWidth() const { return meshWidth_; }
 
 const std::array<int, 2> StaggeredGrid::nCells() const { return nCells_; }

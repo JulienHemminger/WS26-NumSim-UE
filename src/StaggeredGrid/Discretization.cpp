@@ -4,10 +4,6 @@
 Discretization::Discretization(std::array<int, 2> nCells, std::array<double, 2> meshWidth)
     : StaggeredGrid(nCells, meshWidth) {}
 
-Discretization::Discretization(std::array<int, 2> nCells, std::array<double, 2> meshWidth,
-                               std::array<int, 4> partitionNeighbours)
-    : StaggeredGrid(nCells, meshWidth, partitionNeighbours) {}
-
 //! compute the 2nd derivative ∂^2 u / ∂x^2 at right edge
 double Discretization::computeD2uDx2(int i, int j) const {
     return 1. / (dx() * dx()) * (u(i + 1, j) - 2. * u(i, j) + u(i - 1, j));
