@@ -6,6 +6,8 @@ class StaggeredGrid {
    public:
     // Constructor
     StaggeredGrid(std::array<int, 2> nCells, std::array<double, 2> meshWidth);
+    StaggeredGrid(std::array<int, 2> nCells, std::array<double, 2> meshWidth,
+                  std::array<int, 4> partitionNeighbours);
     //! get the mesh width, i.e. the length of a single cell in x and y direction
     const std::array<double, 2> meshWidth() const;
     //! get number of cells in each coordinate direction
@@ -79,6 +81,8 @@ class StaggeredGrid {
    protected:
     const std::array<int, 2> nCells_;
     const std::array<double, 2> meshWidth_;
+    const bool hasTopNeighbour_;
+    const bool hasRightNeighbour_;
     FieldVariable u_;
     FieldVariable v_;
     FieldVariable p_;

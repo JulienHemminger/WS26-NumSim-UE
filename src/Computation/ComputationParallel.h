@@ -35,19 +35,16 @@ class ComputationParallel : public Computation {
     void applyBoundaryValuesTop();
     void applyBoundaryValuesBottom();
 
+    void exchangeVelocityHalosHorizontal();
+    void exchangeVelocityHalosVertical();
+    void exchangePreliminaryVelocityHalosHorizontal();
+    void exchangePreliminaryVelocityHalosVertical();
+
     //! sets the ghost layers in the discretization correctly
     void uvExchangeVertical();
     void uvExchangeHorizontal();
 
     //! exchanges the ghost layers for u, v
-    void exchange(
-        int rankCorrespondent,  //! rank of the other process with which to exchange
-        int indexToSend,        //! index of the slice to send or NULL
-        int indexFromReceive,   //! index of the slice where to write the incoming data or NULL
-        char direction,         //! x or y direction
-        char variable,          //! u or v
-        bool ToFrom);           //! send and then receive, else receive then send
-
     std::shared_ptr<Partitioning> partitioning_;
 
     std::unique_ptr<OutputWriterParaviewParallel> outputWriterParaviewParallel_;

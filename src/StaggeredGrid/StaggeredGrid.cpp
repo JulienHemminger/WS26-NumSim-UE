@@ -1,14 +1,20 @@
 #include "StaggeredGrid.h"
 
 StaggeredGrid::StaggeredGrid(std::array<int, 2> nCells, std::array<double, 2> meshWidth)
-    : u_({nCells[0] + 1, nCells[1] + 2}, {0.0, meshWidth[1] / 2.}, meshWidth),
-      v_({nCells[0] + 2, nCells[1] + 1}, {meshWidth[0] / 2., 0.}, meshWidth),
-      p_({nCells[0] + 2, nCells[1] + 2}, {meshWidth[0] / 2., meshWidth[1] / 2.}, meshWidth),
-      f_({nCells[0] + 1, nCells[1] + 2}, {0., meshWidth[1] / 2.}, meshWidth),
-      g_({nCells[0] + 2, nCells[1] + 1}, {meshWidth[0] / 2., 0.}, meshWidth),
-      rhs_({nCells[0] + 2, nCells[1] + 2}, {meshWidth[0] / 2., meshWidth[1] / 2.}, meshWidth),
+    : StaggeredGrid(nCells, meshWidth, {-1, -1, -1, -1}) {}
+
+StaggeredGrid::StaggeredGrid(std::array<int, 2> nCells, std::array<double, 2> meshWidth,
+                             std::array<int, 4> partitionNeighbours)
+    : nCells_(nCells),
       meshWidth_(meshWidth),
-      nCells_(nCells) {}
+      hasTopNeighbour_(partitionNeighbours[2] >= 0),
+      hasRightNeighbour_(partitionNeighbours[3] >= 0),
+      u_({nCells[0] + 1 + hasRightNeighbour_, nCells[1] + 2}, {0.0, meshWidth[1] / 2.}, meshWidth),
+      v_({nCells[0] + 2, nCells[1] + 1 + hasTopNeighbour_}, {meshWidth[0] / 2., 0.}, meshWidth),
+      p_({nCells[0] + 2, nCells[1] + 2}, {meshWidth[0] / 2., meshWidth[1] / 2.}, meshWidth),
+      f_({nCells[0] + 1 + hasRightNeighbour_, nCells[1] + 2}, {0., meshWidth[1] / 2.}, meshWidth),
+      g_({nCells[0] + 2, nCells[1] + 1 + hasTopNeighbour_}, {meshWidth[0] / 2., 0.}, meshWidth),
+      rhs_({nCells[0] + 2, nCells[1] + 2}, {meshWidth[0] / 2., meshWidth[1] / 2.}, meshWidth) {}
 
 const std::array<double, 2> StaggeredGrid::meshWidth() const { return meshWidth_; }
 
@@ -26,7 +32,7 @@ double StaggeredGrid::dy() const { return meshWidth_[1]; }
 
 int StaggeredGrid::uIBegin() const { return -1; }
 
-int StaggeredGrid::uIEnd() const { return nCells_[0]; }
+int StaggeredGrid::uIEnd() const { return nCells_[0] + hasRightNeighbour_; }
 
 int StaggeredGrid::uJBegin() const { return -1; }
 
@@ -38,7 +44,7 @@ int StaggeredGrid::vIEnd() const { return nCells_[0] + 1; }
 
 int StaggeredGrid::vJBegin() const { return -1; }
 
-int StaggeredGrid::vJEnd() const { return nCells_[1]; }
+int StaggeredGrid::vJEnd() const { return nCells_[1] + hasTopNeighbour_; }
 
 int StaggeredGrid::pIBegin() const { return -1; }
 

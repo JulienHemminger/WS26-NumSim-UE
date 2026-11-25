@@ -6,6 +6,10 @@
 DonorCell::DonorCell(std::array<int, 2> nCells, std::array<double, 2> meshWidth, double alpha)
     : Discretization(nCells, meshWidth), alpha_(alpha) {}
 
+DonorCell::DonorCell(std::array<int, 2> nCells, std::array<double, 2> meshWidth,
+                     std::array<int, 4> partitionNeighbours, double alpha)
+    : Discretization(nCells, meshWidth, partitionNeighbours), alpha_(alpha) {}
+
 //! compute the 1st derivative ∂ u^2 / ∂x
 double DonorCell::computeDu2Dx(int i, int j) const {
     const double uCenterRight = (u(i + 1, j) + u(i, j)) / 2.;
